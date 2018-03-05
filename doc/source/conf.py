@@ -86,6 +86,7 @@ todo_include_todos = False
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'display_version': False,
+    'collapse_navigation': False,
 }
 html_title = project
 
