@@ -1,0 +1,9 @@
+# Sphinx documentation
+doc/_build/
+
+# Python
+.ipynb_checkpoints
+__pycache__
+
+# OS-generated
+.DS_Store
