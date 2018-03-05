@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'cloud-GC'
+project = 'GEOS-Chem on cloud'
 copyright = '2018, Jiawei Zhuang'
 author = 'Jiawei Zhuang'
 
@@ -84,6 +84,10 @@ todo_include_todos = False
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'display_version': False,
+}
+html_title = project
 
 
 # change background color
