@@ -1,5 +1,6 @@
 # Sphinx documentation
 doc/_build/
+doc/build/
 
 # Python
 .ipynb_checkpoints
