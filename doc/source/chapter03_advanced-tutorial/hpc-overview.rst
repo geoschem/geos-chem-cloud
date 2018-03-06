@@ -11,7 +11,7 @@ HPC cluster management tools
 
 CfnCluster
 
-Alcesflight
+AlcesFlight
 
 StarCluster
 

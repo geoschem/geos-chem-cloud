@@ -1,4 +1,4 @@
-Use Alcesflight to manage HPC clusters
+Use AlcesFlight to manage HPC clusters
 ======================================
 
 
