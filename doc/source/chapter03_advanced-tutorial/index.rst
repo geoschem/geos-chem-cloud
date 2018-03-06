@@ -1,5 +1,5 @@
-Advanced tutorial
-=================
+Advanced tutorials
+==================
 
 This chapter provides advanced tutorials to improve your research workflow. Make sure you've gone through all beginner tutorials first.
 

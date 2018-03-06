@@ -1,5 +1,5 @@
-Beginner tutorial
-=================
+Beginner tutorials
+==================
 
 This chapter provides hands-on tutorials for absolute beginners with no cloud computing experience.
 
