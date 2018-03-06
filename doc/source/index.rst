@@ -3,7 +3,7 @@ GEOS-Chem on cloud computing platforms
 
 `GEOSChem-on-cloud <http://acmg.seas.harvard.edu/research.html#cloud>`_ project aims to build a cloud computing capability for `GEOS-Chem <http://acmg.seas.harvard.edu/geos/>`_ that can be easily accessed by researchers worldwide. 
 
-See :ref:`motivation-label` for the motivation of this project. See :ref:`quick-start-label` to start your first GEOS-Chem simulation on the `Amazon Web Services (AWS) <https://aws.amazon.com/>`_ cloud within 10 mintues (and within seconds for the next time).
+See :ref:`motivation-label` for the motivation of this project. See :ref:`quick-start-label` to start your first GEOS-Chem simulation on the `Amazon Web Services (AWS) <https://aws.amazon.com/>`_ cloud within 10 minutes (and within seconds for the next time).
 
 This project is supported by the AWS Public Data Set Program and the NASA Atmospheric Composition Modeling and Analysis Program (ACMAP).
 
