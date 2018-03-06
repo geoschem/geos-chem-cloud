@@ -1,3 +1,3 @@
-Install MPI library
-===================
+Install MPI libraries
+=====================
 

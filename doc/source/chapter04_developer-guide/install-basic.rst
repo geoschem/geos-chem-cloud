@@ -1,5 +1,5 @@
-Install compilers and NetCDF library
-====================================
+Install compilers and NetCDF libraries
+======================================
 
 GCC and gfortran compilers
 --------------------------
