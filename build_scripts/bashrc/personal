@@ -1,0 +1,25 @@
+
+# ==========================
+# my personal settings
+# feel free to change
+# ==========================
+
+# control conda virtual env
+alias act='source activate'
+alias deact='source deactivate'
+
+# auto "ls" after "cd". I can't live without this
+alias cd=cdls
+function cdls() {
+# first do 'cd'
+command cd $@  #'command' ensures we use original 'cd'
+# then do 'ls'
+nfiles=$(ls -1 | wc -l) # how many files
+if [ $nfiles -lt 60 ] # list all files if not too many
+then
+  ls
+else
+  ls | head -n 4
+  echo $nfiles ' files in total, only list a few'
+fi
+}
