@@ -1,8 +1,8 @@
 Overview of HPC cluster options on AWS
 ======================================
 
-Why do you need a HPC cluster
------------------------------
+Why do you need an HPC cluster
+------------------------------
 
 
 HPC cluster management tools
