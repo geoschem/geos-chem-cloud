@@ -6,10 +6,10 @@ Currently all resources are in us-east-1 (N. Virginia).
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Tutorial AMI     | ami-0b851a1d           | 90 GB    | Core AMI + sample data below     |
+|| Tutorial AMI     | ami-3514eb48           | 90 GB    | Core AMI + sample data below     |
 |                   |                        |          |                                  |
 +-------------------+------------------------+----------+----------------------------------+
-|| Core AMI         | ami-d4e817a9           | 8 GB     | 1. gcc & gfortran 5.4.0,         | 
+|| Core AMI         | ami-a219e6df           | 8 GB     | 1. gcc & gfortran 5.4.0,         | 
 |                   |                        |          |    netCDF-Fortran 4.4.3          |
 |                   |                        |          | 2. GC environment variables      |
 |                   |                        |          | 3. GC source code and Unit Tester|
