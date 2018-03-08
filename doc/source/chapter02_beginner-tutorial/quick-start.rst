@@ -97,7 +97,7 @@ Or you can re-compile the model on your own::
   $ make clean
   $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
 
-Congratulations! You’ve just done a GEOS-Chem simulation in cloud, without spending any time on buying your own server, setting up environment, and preparing model input data!
+Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up your own server, configuring software environment, and preparing model input data!
 
 The default setting only runs the model for 20 minutes, for demonstration purpose. The "r4.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
 
