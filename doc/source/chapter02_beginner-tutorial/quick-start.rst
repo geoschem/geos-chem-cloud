@@ -84,7 +84,7 @@ Your terminal should look like this:
 
 That's a system with GEOS-Chem already built!
 
-Go the pre-generated run directory::
+Go to the pre-generated run directory::
   
   $ cd geosfp_4x5_standard
 
