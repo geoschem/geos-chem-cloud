@@ -14,6 +14,7 @@ dependencies:
     - h5py          # Wrapper for HDF5
     - ipython       # IPython interpreter and tools
     - jupyter       # Jupyter federation architecture
+    - tornado=4.5.3 # Use older version to prevent Jupyter error
     - matplotlib    # 2D plotting library
     - netcdf4       # Wrapper for netcdf4
     - numpy         # N-d array and numerics
