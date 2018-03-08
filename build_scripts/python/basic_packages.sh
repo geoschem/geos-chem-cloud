@@ -6,4 +6,5 @@
 conda install -y tornado=4.5.3 jupyter netcdf4 xarray cartopy
 
 # Also install AWSCLI into conda root environment
-pip install -y awscli
+# NOTE: pip has no -y option
+yes | pip install awscli
