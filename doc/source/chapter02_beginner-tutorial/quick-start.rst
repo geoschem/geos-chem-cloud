@@ -147,7 +147,7 @@ If you wait the simulation to finish (takes 5~10 min), it will produce `NetCDF d
 
 A much better data-analysis environment is `Jupyter notebooks <http://jupyter.org>`_. If you have been using Jupyter on your local machine, the user experience on the cloud would be exactly the same.
 
-To use Jupyter on remote servers, re-login to the server with port-forwaring option ``-L 8999:localhost:8999``::
+To use Jupyter on remote servers, re-login to the server with port-forwarding option ``-L 8999:localhost:8999``::
   
   $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
   
