@@ -1,4 +1,4 @@
 #!/bin/bash
-cat ./bashrc/GEOSChem_env >> ~/.bashrc
-cat ./bashrc/personal >> ~/.bashrc
+cat ./GEOSChem_env >> ~/.bashrc
+cat ./personal >> ~/.bashrc
 source ~/.bashrc
