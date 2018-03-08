@@ -1,0 +1,4 @@
+name: cloud_GC
+dependencies:
+    - python=3.5
+    - sphinx
