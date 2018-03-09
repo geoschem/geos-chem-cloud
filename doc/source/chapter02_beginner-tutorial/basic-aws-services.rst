@@ -24,6 +24,8 @@ In this section you will familarize yourself with the following concepts and the
 
 - `EBS (Elastic Block Storage) <https://aws.amazon.com/ebs/>`_ is a disk storage service to increase the disk capacity of existing EC2 instances. You create an "EBS volume" and "attach" it to an EC2 instance, just like attaching a USB drive to a computer. The default disk storage of the EC2 instance itself is also a "EBS volume". You will learn how to do this later. EBS is suitable for temporarily hosting files that you are directly working with. For long-term, persisent storage, S3 (see below) is a much better option. `The price of EBS volumes <https://aws.amazon.com/ebs/pricing/>`_ is $0.1/GB/month.
 
+.. _s3-intro-label:
+
 * `S3 (Simple Storage Service) <https://aws.amazon.com/s3/>`_ is the major storage service on AWS. Unlike traditional hard disk storage, S3 uses `object storage model <https://en.wikipedia.org/wiki/Object_storage>`_ which is much more scalable. Traditional disks have limited storage capacity -- once you hit the limit you need to either delete some data or buy new disks; EBS volumes are just like physical disks so also have limits, although you can create new volumes easily; **S3, on the other hand, has almost no capacity limit** -- you can dump as many data into it as you like. `The price of S3 <https://aws.amazon.com/s3/pricing/>`_ is $0.023/GB/month, only 23% of EBS price.
 
   S3 is thus the default storage mechanism for most of :ref:`Earth Science Big Data <earth-data-label>`. Later in this tutorial you will learn how to access all 30 TB of GEOS-Chem input data on S3, as well as other  `public Earth Science data on AWS <https://aws.amazon.com/earth/>`_. You will also upload your own data (e.g. model simulation results) to S3.

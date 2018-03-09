@@ -1,3 +1,3 @@
-Use EBS volumes as fast disk storage
-====================================
+Use EBS volumes as additional disk storage
+==========================================
 
