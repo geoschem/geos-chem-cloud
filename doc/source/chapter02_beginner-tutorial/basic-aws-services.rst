@@ -7,6 +7,9 @@ AWS has hundreds of services (shown in the main console; see the figure below), 
 
 .. image:: img/aws_services.png
 
+Core AWS concepts for scientific computing
+------------------------------------------
+
 In this section you will familarize yourself with the following concepts and their costs: EC2, Spot Instances, AMI, EBS, S3, and Data egress charge.
 
 - `EC2 (Elastic Compute Cloud) <https://aws.amazon.com/ec2/>`_ is the major computing service. You can create any number of servers (called "EC2 instances" in AWS context). They are just like normal servers that you can ``ssh`` to, to perform various computing tasks. Unlike local servers that have fixed hardware capacity and software environment, EC2 instances are highly-customizable. For hardware, there are tons of `EC2 instances types <https://aws.amazon.com/ec2/instance-types/>`_ with different capacities in CPUs, memory, and disk storage. For software, you can start with a brand new operating system, or use other people's system images as you did in the quick start guide. `The price of EC2 <https://aws.amazon.com/ec2/pricing/>`_ is roughly $0.01 /CPU/hour.
