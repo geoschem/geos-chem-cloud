@@ -104,7 +104,7 @@ The default setting only runs the model for 20 minutes, for demonstration purpos
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
 
-Step 4: (Optional) Analyze output data with Python
+Step 4: Analyze output data with Python (Optional)
 --------------------------------------------------
 
 If you wait the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.inst.20130701.nc4``. There is also a pre-generated ``GEOSChem.inst.20130701_backup.nc4`` ready for you to analyze::
@@ -145,6 +145,8 @@ If you wait the simulation to finish (takes 5~10 min), it will produce `NetCDF d
       SpeciesConc_O3  (time, lev, lat, lon) float32 ...
       SpeciesConc_NO  (time, lev, lat, lon) float32 ...
 
+.. _jupyter-label:
+
 A much better data-analysis environment is `Jupyter notebooks <http://jupyter.org>`_. If you have been using Jupyter on your local machine, the user experience on the cloud would be exactly the same.
 
 To use Jupyter on remote servers, re-login to the server with port-forwarding option ``-L 8999:localhost:8999``::
@@ -167,8 +169,8 @@ Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter envir
 .. note::
   There are many ways to use Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter.
 
-Step 5: (Very important!) Shut down the server
-----------------------------------------------
+Step 5: Shut down the server (Very important!!) 
+-----------------------------------------------
 
 Right-click on the instance in your console to get this menu:
 
@@ -176,9 +178,9 @@ Right-click on the instance in your console to get this menu:
 
 There are two different ways to stop being charged:
 
-- "stop" will make the system inactive, so that you'll not be charged by the CPU time, 
-  and only be charged by the negligible disk storage fee.
-- "terminate" will completely remove that virtual server so you won't be charged at all after that.
+- "Stop" will make the system inactive, so that you'll not be charged by the CPU time, 
+  and only be charged by the negligible disk storage fee. You can start your stopped servers at any time.
+- "Terminate" will completely remove that virtual server so you won't be charged at all after that.
   Unless you save your system as an AMI or transfer the data to other storage services, 
   you will lose all your data and software.
 
