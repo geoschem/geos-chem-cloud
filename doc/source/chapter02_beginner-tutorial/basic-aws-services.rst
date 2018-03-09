@@ -1,8 +1,28 @@
 Overview of basic AWS compute and storage services
 ==================================================
 
-AWS has 1000 services but we only need a tiny subet for scientific computing.
+In the quick start guide, you have used **EC2 (Elastic Compute Cloud)** to perform simulations and data analysis. Unlike your local server, cloud platforms are designed to be ephemeral -- you can launch or shut down servers at any time. No up-front investment, no hardware maintenance. This flexibility is a great advantage of cloud platforms, but it also means that you need to care special care of your data. On local servers, one can simply log out after the work is done. But if you simply terminate your cloud server, all data will disappear. Instead of keeping your server running (which incurs hourly cost), a much cheaper and cleverer way is to move data to other storage services.
 
+AWS has hundreds of services (shown in the main console; see the figure below), and EC2 is just one them. Fortunately, a tiny subset of services is enough for scientific computing. The two biggest services are **EC2** for compute and **S3** for storage. Tons of other services are targetted at IT/Bussiness applications that scientists can safely ignore:
 
-Simple Storage Service (S3)
-Elastic Block Store (EBS)
+.. image:: img/aws_services.png
+
+In this section you will familarize yourself with following concepts and their costs: EC2, AMI, EBS, S3, Data egress charge, and Spot Instances. 
+
+- `EC2 (Elastic Compute Cloud) <https://aws.amazon.com/ec2/>`_ is the major computing service. You can create any number of servers (called "EC2 instances" in AWS context). They are just like normal servers that you can ``ssh`` to, to perform various computing tasks. Unlike local servers that have fixed hardware capacity and software environment, EC2 instances are highly-customizable. For hardware, there are tons of `EC2 instances types <https://aws.amazon.com/ec2/instance-types/>`_ with different capacities in CPUs, memory, and disk storage. For software, you can start with a brand new operating system, or use other people's system images as you did in the quick start guide. `The price of EC2 <https://aws.amazon.com/ec2/pricing/>`_ is roughly $0.01 /CPU/hour.
+
+.. note::
+  
+  EC2 used to charge by hours but it now uses `per-second billing <https://aws.amazon.com/blogs/aws/new-per-second-billing-for-ec2-instances-and-ebs-volumes/>`_. That's a great saving for short simulations -- a 10-min simulation is only charged as 1/6 hour.
+
+* `AMI (Amazon Machine Image) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`_ is a frozen system image of an EC2 instance. It contains the operating system, the software libraries, and all the files on a server. An AMI can be used to create any number of EC2 instances. Once a model is configured and saved as an AMI, any researchers can replicate the same environment and start using the model instantly. Good examples are `Deep Learning AMI <https://aws.amazon.com/marketplace/pp/B077GCH38C>`_ and `OpenFOAM AMI <https://aws.amazon.com/marketplace/pp/B017AHYO16>`_.
+
+- `EBS (Elastic Block Storage) <https://aws.amazon.com/ebs/>`_ is a disk storage service to increase the disk capacity of existing EC2 instances. You create an EBS volume and "attach" it to an EC2 instance, just like attaching a USB drive to a computer. You will learn how to do this in the next tutorial. EBS is suitable for temporarily hosting files that you are directly working with. For long-term, persisent storage, S3 (see below) is a much better option. `The price of EBS volumes <https://aws.amazon.com/ebs/pricing/>`_ is $0.1/GB/month.
+
+* `S3 (Simple Storage Service) <https://aws.amazon.com/s3/>`_ is the major storage service on AWS. Unlike traditional hard disk storage, S3 uses `object storage model <https://en.wikipedia.org/wiki/Object_storage>`_ which is much more scalable. Traditional disks have limited storage capacity -- once you hit the limit you need to either delete some data or buy new disks; EBS volumes are just like physical disks so also have limits, although you can create new volumes easily; **S3, on the other hand, has almost no capacity limit** -- you can simply keep dumping data into it. 
+
+  S3 is thus the default storage mechanism for most of :ref:`Earth Science Big Data <earth-data-label>`. Later in this tutorial you will learn how to access all 30 TB of GEOS-Chem input data on S3, as well as other  `public Earth Science data on AWS <https://aws.amazon.com/earth/>`_. You will also upload your own data (e.g. model simulation results) to S3. `The price of S3 <https://aws.amazon.com/ebs/pricing/>`_ is $0.023/GB/month, only 23% of EBS price.
+
+- `Spot instances <https://aws.amazon.com/ec2/spot/>`_ are a special pricing model for EC2 that is `particularly suitable for scientific computing <https://aws.amazon.com/ec2/spot/spot-and-science/>`_. You will learn how to use it later in this tutorial. 
+
+See "AWS services in human language" for a more complete review of AWS services.
