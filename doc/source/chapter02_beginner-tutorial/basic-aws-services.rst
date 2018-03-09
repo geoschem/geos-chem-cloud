@@ -3,7 +3,7 @@ Overview of basic AWS compute and storage services
 
 In the quick start guide, you have used **EC2 (Elastic Compute Cloud)** to perform simulations and data analysis. Unlike your local server, cloud platforms are designed to be ephemeral -- you can launch or shut down servers at any time. No up-front investment, no hardware maintenance. This flexibility is a great advantage of cloud platforms, but it also means that you need to care special care of your data. On local servers, one can simply log out after the work is done. But if you simply terminate your cloud server, all data will disappear. Instead of keeping your server running (which incurs hourly cost), a much cheaper and cleverer way is to move data to other storage services.
 
-AWS has hundreds of services (shown in the main console; see the figure below), and EC2 is just one them. Fortunately, a tiny subset of services is enough for scientific computing. The most important services are **EC2** for compute and **S3** for storage. Tons of other services are targetted at IT/Bussiness applications that scientists can safely ignore:
+AWS has hundreds of services (shown in the main console; see the figure below), and EC2 is just one of them. Fortunately, a tiny subset of services is enough for scientific computing. The most important services are **EC2** for compute and **S3** for storage. Tons of other services are targetted at IT/Bussiness applications that scientists can safely ignore:
 
 .. image:: img/aws_services.png
 
