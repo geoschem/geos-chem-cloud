@@ -18,7 +18,7 @@ You can also use AWSCLI on your own computer (which is a very common practice)::
 .. note::
   AWSCLI is a like "Python package" that you can install into your Anaconda environment. However, it is directly used in the shell (or bash shell scripts), not an "importable package" in Python code. The actual Python tool to control AWS resources is `boto3 <https://aws.amazon.com/sdk-for-python/>`_. For most cases, AWSCLI is enough. For very complicated administrative tasks (say, launching hundreds of EC2 instances on a dedicated schedule) that are too complicated for shell scripts, consider writing Python scripts with boto3. We will not cover boto3 in this tutorial as it is generally an overkill.
 
-Then try ``aws help`` get general help information, or ``aws s3 help`` to get help specifically on S3.
+Then try ``aws help`` to get general help information, or ``aws s3 help`` to get help specifically on S3.
 
 Try to configure AWSCLI
 -----------------------
