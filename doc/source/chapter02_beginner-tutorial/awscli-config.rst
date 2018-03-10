@@ -106,7 +106,7 @@ Additional notes
   
 .. note::
   
-  Secret Access Key? EC2 Key Pair? Why are there are so many keys? Do not be confused: the **AWS Secret Access Key** is tied to your AWS account itself, while the **EC2 Key Pair** is only for accessing a specific server. In general, the Access Key is stored in ``~/.aws/`` as they are general AWS configurations; while EC2 Key Pairs are stored in ``~/.ssh/``, as they are only for ``ssh``.
+  Secret Access Key? EC2 Key Pair? Why are there are so many keys? Do not be confused: the **AWS Secret Access Key** is tied to your AWS account itself, while the **EC2 Key Pair** is only for accessing a specific server. In general, the Access Keys are stored in ``~/.aws/`` as they are general AWS configurations; while EC2 Key Pairs are stored in ``~/.ssh/``, as they are only for ``ssh``.
   
   It is totally fine to give your EC2 Key Pair to your friend to allow them to log into a your EC2 instances. You can easily create a new EC2 Key Pair to launch another EC2 instance that your friend have no access to. On the other hand, **NEVER** give you Secret Access Key to others. This will allow them to purchase AWS resources on your behalf!
 
