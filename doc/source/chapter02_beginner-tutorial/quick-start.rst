@@ -99,7 +99,7 @@ Or you can re-compile the model on your own::
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up your own server, configuring software environment, and preparing model input data!
 
-The default setting only runs the model for 20 minutes, for demonstration purpose. The "r4.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
+The default simulation length is only 20 minutes, for demonstration purpose. The "r4.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
 
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
@@ -125,7 +125,7 @@ If you wait the simulation to finish (takes 5~10 min), it will produce `NetCDF d
   		time:axis = "T" ;
 
 `Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my tutorial on 
-`xarray for GEOS-Chem <http://gcpy-demo.readthedocs.io>`_. You can simply use `ipython` from the command line::
+`xarray for GEOS-Chem <http://gcpy-demo.readthedocs.io>`_. You can simply use ``ipython`` from the command line::
   
   ubuntu@ip-172-31-36-170:~/geosfp_4x5_standard$ ipython
   Python 3.6.4 |Anaconda, Inc.| (default, Jan 16 2018, 18:10:19)
@@ -167,7 +167,7 @@ Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=89
 Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` ``python_example/plot_GC_data.ipynb`` that you can just execute.
 
 .. note::
-  There are many ways to use Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter.
+  There are many ways to use Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
 
 Step 5: Shut down the server (Very important!!) 
 -----------------------------------------------
