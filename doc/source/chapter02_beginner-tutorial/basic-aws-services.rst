@@ -22,6 +22,8 @@ In this section you will familarize yourself with the following concepts and the
 
 * `AMI (Amazon Machine Image) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`_ is a frozen system image of an EC2 instance. It contains the operating system, the software libraries, and all the files on a server. An AMI can be used to create any number of EC2 instances. Once a model is configured and saved as an AMI, any researchers can replicate the same environment and start using the model instantly. Some good examples are the `Deep Learning AMI <https://aws.amazon.com/marketplace/pp/B077GCH38C>`_ and the `OpenFOAM AMI <https://aws.amazon.com/marketplace/pp/B017AHYO16>`_.
 
+.. _ebs-intro-label:
+
 - `EBS (Elastic Block Storage) <https://aws.amazon.com/ebs/>`_ is a disk storage service to increase the disk capacity of existing EC2 instances. You create an "EBS volume" and "attach" it to an EC2 instance, just like attaching a USB drive to a computer. You will learn how to do this later. The default disk storage of the EC2 instance itself is also an "EBS volume". EBS is suitable for temporarily hosting files that you are directly working with. For long-term, persisent storage, S3 (see below) is a much better option. `The price of EBS volumes <https://aws.amazon.com/ebs/pricing/>`_ is $0.1/GB/month.
 
 .. _s3-intro-label:

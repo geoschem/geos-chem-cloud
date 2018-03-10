@@ -33,6 +33,9 @@ But you might already have an EC2 instance running and don't want to start over.
 Attach new volumes after EC2 launch (Optional)
 ----------------------------------------------
 
+.. note::
+  This part is not absolutely necessary for a typical research workflow so free feel to jump to the :ref:`next tutorial on Spot Instances <spot-label>` which is more important for scientific computing.
+
 Launch and attach a volume
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -75,8 +78,10 @@ After attaching, the ``lsblk`` command will show the new 200 GB volume.
   └─xvda1 202:1    0   70G  0 part /
   xvdf    202:80   0  200G  0 disk
 
-Mount the volume on file system
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(An equivalent way to replicate the above steps is during launching the EC2 instance, "Step 4: add storage", click on "Add New Volume". But you still need to do the below steps to make that volume usable)
+
+Make that volume usable
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Before actually using this additional disk, you need to type a few commands. If you have no idea about file system management, simpliy copy and paste the following commands without thinking too much (adapted from `AWS official guide <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html>`_).
 
@@ -114,7 +119,9 @@ Test if you can write files into that new disk::
   $ touch new_disk/test_file
   [no error occurs]
 
-Done! EBS volumes are useful for hosting input/output data temporarily. For long-term, persistently storage, alway upload your stuff to S3. S3 is much more "transparent" than EBS. To know what's in an EBS volume, you have to attach it to an EC2 instance and view the files through EC2. On the other hand, you can view all your files on S3 directly in the graphical conole, without having any EC2 instances running.
+Done! This disk size of your server is now much bigger. EBS volumes are useful for hosting input/output data temporarily. For long-term, persistently storage, alway upload your stuff to S3. S3 is much more "transparent" than EBS. To know what's in an EBS volume, you have to attach it to an EC2 instance and view the files through EC2. On the other hand, you can view all your files on S3 directly in the graphical conole, without having any EC2 instances running.
+
+You can also detach a volume and re-attach it to another EC2 instance, as a way to share data between two EC2 instances. However, using S3 as the medium of data transfer is generally more convenient, and it doesn't require two EC2 instances to be in the same Avail Zone.
 
 .. warning::
   Terminating your EC2 instance will not remove attached EBS volumes. You need to delete them manually.
@@ -122,7 +129,7 @@ Done! EBS volumes are useful for hosting input/output data temporarily. For long
 Save volumes into snapshots (Optional)
 --------------------------------------
 
-Recall that EBS price is $100/TB and S3 price is $23/TB.  There is something in between, called `"snapshot EBS volumes to S3" <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html>`_, which causes $50/TB. You seldom need to use this functionality, but the concept is quite important -- AMIs are actually backed by "EBS snapshots", which physically live on S3.
+:ref:`Recall <ebs-intro-label>` that EBS price is $100/TB and S3 price is $23/TB.  There is something in between, called `"snapshot EBS volumes to S3" <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html>`_, which causes $50/TB. You seldom need to use this functionality (since simply using S3 itself is more convenient), but the concept is quite important -- AMIs are actually backed by "EBS snapshots", which physically live on S3.
 
 .. note:: 
-  Remember the "warm-up" time I mentioned in the quick start guide? It is not any physical "warm-up" at all -- it is because the data are being pulled from S3 to the EBS volume under the hood. Thus the first simulation has a quite slow I/O. After the data actually live on EBS, the subsequent I/O will be much faster.
+  Remember the "warm-up" time I mentioned in the quick start guide? It is not any physical "warm-up" at all -- it is because the data are being pulled from S3 to the EBS volume under the hood. For a newly-created EC2 instance, although it looks like all files are already on that server, the actual data content actually live on S3. The data will be pulled from S3 on-the-fly whenever your try to access it. Thus the first simulation has quite slow I/O. After the data actually live on EBS, the subsequent I/O will be much faster.
