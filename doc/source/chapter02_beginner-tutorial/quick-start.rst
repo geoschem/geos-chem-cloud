@@ -179,7 +179,7 @@ Right-click on the instance in your console to get this menu:
 There are two different ways to stop being charged:
 
 - "Stop" will make the system inactive, so that you'll not be charged by the CPU time, 
-  and only be charged by the negligible disk storage fee. You can start your stopped servers at any time.
+  and only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved.
 - "Terminate" will completely remove that virtual server so you won't be charged at all after that.
   Unless you save your system as an AMI or transfer the data to other storage services, 
   you will lose all your data and software.
