@@ -68,6 +68,8 @@ Then your new key will appear in the console. Here you can only see the "Access 
 
 Keep your Key File in a safe place. Now we can answer ``aws configure`` questions.
 
+.. _awscli_configure-label:
+
 Finish AWSCLI configuration
 ---------------------------
 

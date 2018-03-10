@@ -20,7 +20,7 @@ The S3 console is convenient for viewing files, but most of time you will use AW
 Working with S3 using AWSCLI
 ----------------------------
 
-On an EC2 instance launched from the GEOSChem tutorial AMI, configure AWSCLI by ``aws configure`` as in the previous chapter and make sure ``aws s3 ls`` can run without error.
+On an EC2 instance launched from the GEOSChem tutorial AMI, configure AWSCLI by ``aws configure`` as in the :ref:`previous chapter <awscli_configure-label>` and make sure ``aws s3 ls`` can run without error.
 
 Now, say you've made some changes to the ``geosfp_4x5_standard/`` run directory, such as tweaking model configurations in ``input.geos`` or running simulations to produce new diagnostics files. You want to keep those changes after you terminate the server, so you can retrieve them when you continue the work next time.
 
@@ -57,7 +57,7 @@ Now list your S3 bucket content by ``aws s3 ls s3://your-bucket-name``::
 
 You can also see all the files in the S3 console, which is a quite convenient way to view your data without launching any servers.
 
-Then, try to get data back from S3 by reversing the ``aws s3 cp`` arguments, i.e. ``aws s3 cp s3://your-bucket-name local_file`` ::
+Then, try to get data back from S3 by swapping the arguments to ``aws s3 cp``::
 
   ubuntu@ip-172-31-46-2:~$ aws s3 cp --recursive s3://geoschem-run-directory/ rundir_copy
   download: s3://geoschem-run-directory/.gitignore to rundir_copy/.gitignore
@@ -67,8 +67,8 @@ Then, try to get data back from S3 by reversing the ``aws s3 cp`` arguments, i.e
 
 Since your run directory is now safely living in the S3 bucket that is independent to any servers, terminating your EC2 instance won't cause data loss. You can use ``aws s3 cp`` to get data back from S3, on any number of newly-launched EC2 instances. 
 
-.. note::
-  S3 is not a standard Linux file system and thus cannot preserve Linux file permissions. After retrieving your run directory back from S3, the executable ``geos.mp`` will not have execute-permission by default.
+.. warning::
+  S3 is not a standard Linux file system and thus cannot preserve Linux file permissions. After retrieving your run directory back from S3, the executable ``geos.mp`` and ``getRunInfo`` will not have execute-permission by default.
   Simply type ``chmod u+x geos.mp getRunInfo`` to grant permission again. 
   
   Another approach to preserve permissions is to use ``tar -zcvf`` to compress your directory before loading to S3, and then use ``tar -zxvf`` to decompress it after retrieving from S3. Only consider this approach if you absolutely want to preverse all the permission information. 
@@ -80,7 +80,7 @@ Since your run directory is now safely living in the S3 bucket that is independe
 Access NASA-NEX data in S3 (Optional but recommended)
 -----------------------------------------------------
 
-Before accessing GEOS-Chem input data repository, let's play with some `NASA-NEX <https://nex.nasa.gov/nex/>`_ data first. `"NASA-NEX on AWS" <https://aws.amazon.com/public-datasets/nasa-nex/>`_ is one of the earliest "Earth Data on cloud" project that was launch `around 2013 <https://aws.amazon.com/blogs/aws/process-earth-science-data-on-aws-with-nasa-nex/>`_. Unlike other newer projects that constantly change, the NASA-NEX repository is very stable, so it is a good starting example.
+Before accessing GEOS-Chem input data repository, let's play with some `NASA-NEX <https://nex.nasa.gov/nex/>`_ data first. `"NASA-NEX on AWS" <https://aws.amazon.com/public-datasets/nasa-nex/>`_ is one of the earliest "Earth Data on cloud" project that was launch `around 2013 <https://aws.amazon.com/blogs/aws/process-earth-science-data-on-aws-with-nasa-nex/>`_. Unlike other newer projects that are still evolving (and might change constantly), the NASA-NEX repository is very stable, so it is a good starting example.
 
 Let's download the `NEX-GDDP <https://cds.nccs.nasa.gov/nex-gddp/>`_ dataset produced by `CMIP5 <https://cmip.llnl.gov/cmip5/>`_::
 
@@ -112,7 +112,7 @@ Or just get down to one of the the lowest level folders ::
   Total Objects: 3986
      Total Size: 1.4 TiB
 
-The ``--summarize --human-readable`` options print total size in human-readable formats (like the normal Linux command ``du -sh``) As you see, that subfolder has 1.4 TB of data. Just get one file to play with::
+The ``--summarize --human-readable`` options print the total size in human-readable formats (like the normal Linux command ``du -sh``) As you see, that subfolder has 1.4 TB of data. Just get one file to play with::
   
   $ aws s3 cp s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc ./
   download: s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc to ./tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc
@@ -169,4 +169,4 @@ Access GEOS-Chem input data repository in S3
   
 GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transfering data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the egress fee it you download data to local machines.
 
-The tutorial AMI only has 1-month GEOS-FP metfield. You can get metfields over any periods from the S3 bucket.
+The tutorial AMI only has 1-month GEOS-FP metfield. You can get other metfields from that S3 bucket, to support simulations wtih any configurations.
