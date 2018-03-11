@@ -1,5 +1,7 @@
-Use EBS volumes as additional disk storage
-==========================================
+Use EBS volumes as temporary disk storage
+=========================================
+
+In the previous tutorial you've learned S3, which is independent of any EC2 instances. :ref:`EBS volumes <ebs-intro-label>`, on the other hand, are traditional disks that directly used by EC2. Whenever you are using EC2 you are also implicitly using EBS (it's just the disk!). Here we just briefly show how to view&control them in the console.
 
 Viewing existing EBS volumes
 ----------------------------
@@ -20,7 +22,7 @@ When the instance is running, you can see the underlying EBS volume in the EC2 c
 Choose volume size at launch time
 ---------------------------------
 
-The easiest way to increase your EC2 instance's disk size is during launching. In the quick start guide you've skipped all EC2 configuration details. Step 4 of the configuration specifies disk size:
+The easiest way to increase your EC2 instance's disk size is during launching. In the :ref:`quick start guide <quick-start-label>` you've skipped all EC2 configuration details. Step 4 of the configuration specifies disk size:
 
 .. figure:: img/choose_storage.png
 
@@ -121,7 +123,7 @@ Test if you can write files into that new disk::
 
 Done! This disk size of your server is now much bigger. EBS volumes are useful for hosting input/output data temporarily. For long-term, persistently storage, alway upload your stuff to S3. S3 is much more "transparent" than EBS. To know what's in an EBS volume, you have to attach it to an EC2 instance and view the files through EC2. On the other hand, you can view all your files on S3 directly in the graphical conole, without having any EC2 instances running.
 
-You can also detach a volume and re-attach it to another EC2 instance, as a way to share data between two EC2 instances. However, using S3 as the medium of data transfer is generally more convenient, and it doesn't require two EC2 instances to be in the same Avail Zone.
+You can also detach the volume and re-attach it to another EC2 instance, as a way to share data between two EC2 instances. However, using S3 as the medium of data transfer is generally more convenient, and it doesn't require two EC2 instances to be in the same Avail Zone.
 
 .. warning::
   Terminating your EC2 instance will not remove attached EBS volumes. You need to delete them manually.

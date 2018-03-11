@@ -1,6 +1,8 @@
 Use S3 as major storage
 =======================
 
+:ref:`S3 <s3-intro-label>` is the most important storage service on AWS. Knowing how to use it crucial for almost any projects on the cloud.
+
 Use S3 from the console
 -----------------------
 
