@@ -47,9 +47,13 @@ In this toy example, choose "Memory optimized"-"r4.large" to test GEOS-Chem with
 
 There are many CPU options, including numbers and types. AWS free tier also gives you 750 free hours of "t2.micro", which is the tiniest CPU. Its memory is too small to run GEOS-Chem, but it is good for testing software installation if you need to.
 
+.. _skip-ec2-config-label:
+
 **Then, just click on "Review and Launch".** You don't need to touch other options this time. This brings you to "Step 7: Review Instance Launch". Simply click on the Launch button again.
 
-For the first time of using EC2, you need to create and download a "KeyPair". This is equivalent to the password you enter to ssh to your local server, but much safer than a normal password. Here, such "password" is a file, being stored in your own computer. The only way to share your server password with others is to share that file.
+.. _keypair-label:
+
+For the first time of using EC2, you need to create and download a "Key Pair". This is equivalent to the password you enter to ssh to your local server, but much safer than a normal password. Here, such "password" is a file, being stored in your own computer. The only way to share your server password with others is to share that file.
 
 Give your KeyPair a name, click on "Download Key Pair", and finally click on "Launch Instances". (for the next time, you can simply select "Choose an existing Key Pair" and launch).
 
@@ -83,6 +87,10 @@ Your terminal should look like this:
 .. figure:: img/ssh_terminal.png
 
 That's a system with GEOS-Chem already built!
+
+.. note::
+
+  **Trouble shooting**: if you have trouble ``ssh`` to the server, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
 
 Go to the pre-generated run directory::
   

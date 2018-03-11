@@ -14,3 +14,4 @@ This chapter provides hands-on tutorials for absolute beginners with no cloud co
    use-s3
    use-ebs
    spot-instances
+   security-group
