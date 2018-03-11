@@ -41,6 +41,8 @@ Attach new volumes after EC2 launch (Optional)
 Launch and attach a volume
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. _ebs-az-label:
+
 Click on the "Create Volume" button in the "Volumes" page. You should see:
 
 .. figure:: img/create_ebs_volume.png

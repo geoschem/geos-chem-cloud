@@ -145,6 +145,7 @@ Congrats! You know how to access and analyze public datasets on AWS. Accessing G
   
   Get tired of lengthy S3 commands? The `s3fs-fuse <https://github.com/s3fs-fuse/s3fs-fuse>`_ tool can make S3 buckets and objects behave just like normal directories and files on disk. We will mention it in advanced tutorials.
 
+.. _gcdata-bucket-label:
 
 Access GEOS-Chem input data repository in S3
 --------------------------------------------
