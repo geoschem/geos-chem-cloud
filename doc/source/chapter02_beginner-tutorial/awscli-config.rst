@@ -101,6 +101,8 @@ Now ``aws s3 ls`` should run smoothly. Since you don't have your own data on S3 
 
 You will learn how to retrieve and analyze those data in the next tutorial. 
 
+Another major use case of AWSCLI is to launch EC2 servers. You must already get tired of clicking through the EC2 console to launch a new server. You can actually launch a server with one single AWSCLI command, which is far more convenient than clicking tons of buttons. We defer this to advanced tutorials, as there are more important things to learn (S3, spot..) right now.
+
 Additional notes
 ----------------
 
