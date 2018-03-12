@@ -9,7 +9,7 @@ There are also ways to make cloud platforms :ref:`behave like traditional HPC cl
 
 Here's my typical research workflow for reference:
 
-1. Launch EC2 instances from pre-configured AMI. Consider spot instances for big computing. (Use AWSCLI to launch them with one command.)
+1. Launch EC2 instances from pre-configured AMI. Consider spot instances for big computing. (:doc:`Use AWSCLI to launch them with one command <../chapter03_advanced-tutorial/advanced-awscli>`.)
 2. Prepare input data by pulling them from S3 to EC2. Put commonly used ``aws s3 cp`` commands into bash scripts.
 3. Tweak model configurations as needed.
 4. Run simulations :ref:`with tmux <keep-running-label>`. Log out and go to sleep if the model runs for a long time.
