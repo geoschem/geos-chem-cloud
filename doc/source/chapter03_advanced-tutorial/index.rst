@@ -8,5 +8,3 @@ This chapter provides advanced tutorials to improve your research workflow. Make
 
    container
    hpc-overview
-   cfncluster
-   alcesflight
