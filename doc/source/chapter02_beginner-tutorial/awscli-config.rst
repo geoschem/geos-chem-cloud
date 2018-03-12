@@ -52,8 +52,7 @@ Then you will likely be prompted with this warning:
 
 .. figure:: img/security_prompt.png
 
-AWS encourages you to create "IAM users" instead of simply getting your Security Credentials. However, I find the concept of "IAM users" a bit overwhelming for who just starts to use the cloud. As scientists we want to get the science done as quickly as possible, so I defer the concept of "IAM users" to advanced tutorials. For now, simply choose "Continue to Security Credentials".
-(If you want to follow the IAM user approach right now, see the `official tutorial <https://aws.amazon.com/getting-started/tutorials/backup-to-s3-cli/>`_.)
+AWS encourages you to create "IAM users" instead of simply getting your Security Credentials. However, I find the concept of "IAM users" a bit overwhelming for who just starts to use the cloud, so I defer the concept of "IAM users" to advanced tutorials. For now, simply choose "Continue to Security Credentials" to get the science done as quickly as possible. (If you want to follow the IAM user approach right now, see the `official tutorial <https://aws.amazon.com/getting-started/tutorials/backup-to-s3-cli/>`_.)
 
 In the Security Credential console, choose Access keys -- Create New Access Key:
 
