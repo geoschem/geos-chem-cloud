@@ -76,5 +76,5 @@ Inside the session, run the model as usual, just like in the ``screen`` session:
 
 Type ``Crtl + b``, and then type ``d``, to **detach** from the current session. Use ``tmux ls`` to list existing sessions and ``tmux a`` (shortcut for ``tmux attach``) to resume the session.
 
-To handle multiple sessions, use ``tmux new -s session_name`` to create a session with a name and ``tmux a -t session_name`` to assume to that specific session.
+To handle multiple sessions, use ``tmux new -s session_name`` to create a session with a name and ``tmux a -t session_name`` to resume that specific session.
 
