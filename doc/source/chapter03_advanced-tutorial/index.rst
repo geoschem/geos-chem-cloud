@@ -6,5 +6,7 @@ This chapter provides advanced tutorials to improve your research workflow. Make
 .. toctree::
    :maxdepth: 2
 
+   iam-role
+   advanced-awscli
    container
    hpc-overview
