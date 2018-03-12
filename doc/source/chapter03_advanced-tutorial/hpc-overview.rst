@@ -1,3 +1,5 @@
+.. _hpc-overview-label:
+
 Overview of HPC cluster options on AWS
 ======================================
 
