@@ -32,7 +32,7 @@ In any case, understand basic AWS services and concepts (finish all the beginner
 HPC cluster management tools
 ----------------------------
 
-Many cloud-HPC tools have been developed over the past 10+ years, but only a few has have relatively large community. They are introduced below. I personally recommend AlcesFlight, according to the current development status of these tools.
+Many cloud-HPC tools have been developed over the past 10+ years, but only a few have relatively large communities. They are introduced below. I personally recommend AlcesFlight, according to the current development status of these tools.
 
 CfnCluster
 ^^^^^^^^^^
