@@ -32,6 +32,8 @@ In this section you will familarize yourself with the following concepts and the
 
   S3 is thus the default storage mechanism for most of :ref:`Earth Science Big Data <earth-data-label>`. Later in this tutorial you will learn how to access all 30 TB of GEOS-Chem input data on S3, as well as other  `public Earth Science data on AWS <https://aws.amazon.com/earth/>`_. You will also upload your own data (e.g. model simulation results) to S3.
 
+.. _data-egress-label:
+
 - **Data egress charge** is an additional charge besides compute (EC2) and storage (EBS, S3). While **transfering data into the cloud is free**, almost all commercial cloud providers **charge for data transferring out of their cloud** -- that's how they make money and encourage people to keep stuff within their cloud. The data egress fee on AWS is $0.09/GB. AWS does also offer `Data egress discount to researchers <https://aws.amazon.com/blogs/publicsector/aws-offers-data-egress-discount-to-researchers/>`_, but the discount cannot exceed 15% of total AWS cost.
 
   The data egress fee is actually not a big worry because:

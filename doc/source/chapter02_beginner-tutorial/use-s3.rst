@@ -170,6 +170,6 @@ Access GEOS-Chem input data repository in S3
                              PRE SPC_RESTARTS/
   2018-03-08 00:18:41       3908 README
   
-GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transfering data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the egress fee it you download data to local machines.
+GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transfering data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` it you download data to local machines.
 
 The tutorial AMI only has 1-month GEOS-FP metfield. You can get other metfields from that S3 bucket, to support simulations wtih any configurations.
