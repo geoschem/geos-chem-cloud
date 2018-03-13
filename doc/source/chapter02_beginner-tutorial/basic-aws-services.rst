@@ -24,7 +24,7 @@ In this section you will familarize yourself with the following concepts and the
 
 .. _ebs-intro-label:
 
-- `EBS (Elastic Block Storage) <https://aws.amazon.com/ebs/>`_ is a disk storage service to increase the disk capacity of existing EC2 instances. You create an "EBS volume" and "attach" it to an EC2 instance, just like attaching a USB drive to a computer. You will learn how to do this later. The default disk storage of the EC2 instance itself is also an "EBS volume". EBS is suitable for temporarily hosting files that you are directly working with. For long-term, persisent storage, S3 (see below) is a much better option. `The price of EBS volumes <https://aws.amazon.com/ebs/pricing/>`_ is $0.1/GB/month.
+- `EBS (Elastic Block Storage) <https://aws.amazon.com/ebs/>`_ is a disk storage service to increase the disk capacity of existing EC2 instances. You create an "EBS volume" and "attach" it to an EC2 instance, just like attaching a USB drive to a computer. You will learn how to do this later. The default disk storage of the EC2 instance itself is also an "EBS volume". EBS is suitable for temporarily hosting files that you are directly working with. For long-term, persistent storage, S3 (see below) is a much better option. `The price of EBS volumes <https://aws.amazon.com/ebs/pricing/>`_ is $0.1/GB/month.
 
 .. _s3-intro-label:
 
