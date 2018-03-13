@@ -27,11 +27,11 @@ Just open the file ``~/.ssh/config`` (create it if doesn't exist), and enter the
 Enable port forwarding
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Port forwarding for Jupyter can be done usual::
+Port forwarding for Jupyter can be done as usual::
   
   ssh ec2 -L 8999:localhost:8999
 
-Or can be also included in the config file::
+Or can be also included in ``~/.ssh/config`` so you simply need ``ssh ec2``::
   
   Host ec2
     Hostname ec2-35-169-93-188.compute-1.amazonaws.com
