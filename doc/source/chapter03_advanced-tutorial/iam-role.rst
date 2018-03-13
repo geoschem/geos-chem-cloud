@@ -1,7 +1,7 @@
 Enable S3 access from EC2 by IAM role
 =====================================
 
-I've promised you :ref:`in the beginner tutorial <mention-ec2-iam-label>` that you can skip ``aws configure`` before using AWSCLI on EC2. Here is how.
+I've promised you :ref:`in the beginner tutorial <mention-ec2-iam-label>` that you can skip ``aws configure`` before using AWSCLI on EC2. Here is how. The initial configuration takes a few steps, but once it's done your overall workflow will be simplified quite a bit.
 
 What is Identity and Access Management (IAM)
 --------------------------------------------
@@ -22,17 +22,48 @@ To further complicate things, **"X" doesn't have to be a human user, but can als
   | **"X" = our EC2 instances**
   | **"Y" = S3 buckets**
 
-"Y" can also be more detailed as "read-only access to S3" (so, no write access) or even "read-only access to a specific S3 bucket" (so, no access to other buckets). All those possible combinations make the IAM console kind of daunting for beginners. Fortunately, here we only need to enable a simple permission rule, which it is very easy to do.
+"Y" can also be as detailed as "read-only access to S3" (so, no write access) or even "read-only access to a specific S3 bucket" (so, no access to other buckets). All those possible combinations make the IAM console kind of daunting for beginners. Fortunately, here we only need to enable a simple permission rule, which it is very easy to do.
 
 Grant S3 permission to EC2
 --------------------------
 
-
 Create a new IAM role 
 ^^^^^^^^^^^^^^^^^^^^^
 
+Choose "IAM" in the AWS main console:
 
+.. figure:: img/iam-in-main-console.png
+  :width: 200 px
+
+It can also be searched from the top search bar, so you don't have to look through hundreds of AWS services:
+
+.. figure:: img/search_iam.png
+
+Then choose "Roles" in the IAM console and click on "Create role":
+
+.. figure:: img/iam_console.png
+
+The first step is to choose "X" (which will be allowed to access "Y"). AWS called it "trusted entity". Select EC2, of course.
+
+.. figure:: img/create-iam-role-step1.png
+
+The second step is to choose "Y". Search for "S3" and then select "AmazonS3FullAccess":
+
+.. figure:: img/create-iam-role-step2.png
+
+Finally, give this role a descriptive name. Here I use "full_S3_access_from_EC2". (For the "Role description", enter whatever you like or just keep default.)
+
+.. figure:: img/create-iam-role-step3.png
+
+Now a new IAM role is created. This only needs to be done once.
 
 Assign that role to EC2
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+Whenever you launch a new EC2 instance, in "Step 3: Configure Instance Details", select the IAM role you created previously for the "IAM role" option.
+
+.. figure:: img/assign-iam-to-ec2.png
+
+No need to touch other options on this page and just launch as usual. On this EC2 instance, you don't need to run ``aws configure``, and commands like ``aws s3 ls`` will just work (as long as AWSCLI is installed). This is actually a better practice since you never type your security credentials on this server (which might be stolen if your server gets hacked).
+
+This IAM role configuration can be further :doc:`automated by AWSCLI scripts <./advanced-awscli>`.
