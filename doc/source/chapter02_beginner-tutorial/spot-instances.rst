@@ -3,7 +3,7 @@
 Use Spot Instances to reduce EC2 cost
 =====================================
 
-In the :ref:`quick start guide <quick-start-label>`, you've chosen the "r4.large" instance type to conduct proof-of-concept simulations. For real, serious simulations, definitely use bigger instances with more CPU cores in the `Compute Optimized <https://aws.amazon.com/ec2/instance-types/>`_ families (e.g. c5.4xlarge, c4.4xlarge). Larger instances also have higher bandwidth, allowing faster data transfer between EC2 and S3.
+In the :ref:`quick start guide <quick-start-label>`, you've chosen the "r4.large" instance type to conduct proof-of-concept simulations. For real, serious simulations, definitely use bigger instances with more CPU cores in the `Compute Optimized <https://aws.amazon.com/ec2/instance-types/>`_ families (e.g. c5.4xlarge, c4.4xlarge). Larger instances also have higher network bandwidth, allowing faster data transfer between EC2 and S3.
 
 However, bigger instances are also `more expensive <https://aws.amazon.com/ec2/pricing/on-demand/>`_. While "r4.large" only costs $0.1/hour, the most powerful instance "c5.18xlarge" with 72 cores costs $3/hour. If the simulation runs for days or weeks, the total cost will be not a trivial number. The good news is, the `Spot Instance <https://aws.amazon.com/ec2/spot/>`_ pricing model can generally reduce the cost by ~70%.
 
@@ -20,7 +20,7 @@ Choose an instance type, for example "c4.4xlarge". You should see that spot pric
 
 .. figure:: img/spot_c4.png
 
-Each "Availability Zone" has its on spot price. You will get the cheapest one by default. (Recall that different `Avail Zones <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html>`_ are physically located at different locations. This was mentioned in the :ref:`EBS tutorial <ebs-az-label>`.)
+Each "Availability Zone" has its own spot price. You will get the cheapest one by default. (Recall that different `Avail Zones <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html>`_ are physically located at different locations. This was mentioned in the :ref:`EBS tutorial <ebs-az-label>`.)
 
 Spot prices are fluctuating according to current user demand. **Once the price exceeds the on-demand price, your spot instance will be reclaimed by AWS to serve on-demand users who pay much more.** That's why they are "sloppy" and thus much cheaper than standard, on-demand instances.
 
