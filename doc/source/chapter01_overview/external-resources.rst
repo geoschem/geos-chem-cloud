@@ -22,6 +22,8 @@ The book is `free available online <https://cloud4scieng.org/chapters/>`_.
 gives a nice overview of various cloud computing applications in our field.
 It doesn't tell you how to actually use the cloud, though.
 
+.. _researcher-handbook-label:
+
 [4] **Researcher’s Handbook by AWS** is the most useful AWS material for you 
 (as a scientist, not an IT person). You will need to sign-up the 
 `AWS Research Cloud Program <https://aws.amazon.com/

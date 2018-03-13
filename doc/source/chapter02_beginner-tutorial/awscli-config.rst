@@ -114,6 +114,8 @@ Additional notes
   
   It is totally fine to give your EC2 Key Pair to your friend to allow them to log into a your EC2 instances. You can easily create a new EC2 Key Pair to launch another EC2 instance that your friend have no access to. On the other hand, **NEVER** give you Secret Access Key to others. This will allow them to purchase AWS resources on your behalf!
 
+.. _mention-ec2-iam-label:
+
 **2. Simplifying AWSCLI configuration on EC2**
   
 .. note::
