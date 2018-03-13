@@ -10,7 +10,7 @@ However, bigger instances are also `more expensive <https://aws.amazon.com/ec2/p
 What are spot instances and why they exist
 ------------------------------------------
 
-The `default EC2 pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ is called "on-demand" pricing. This service model is extremely flexible (whenever you request a server, you get it almost instantly; you can stop and restart it at any time) and very stable (the server is guaranteed to run for no matter how long, as long as you don't stop it on purpose). This kind of high quality is needed by `web servers <https://en.wikipedia.org/wiki/Web_server>`_ which have be stable for a long time, but it is often an overkill for scientific computing workflow, which are generally intermittent. By allowing the server to be a little bit sloppy, the cost can be drastically reduced. That's the role of spot instances.
+The `default EC2 pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ is called "on-demand" pricing. This service model is extremely flexible (whenever you request a server, you get it almost instantly; you can stop and restart it at any time) and very stable (the server is guaranteed to run for no matter how long, as long as you don't stop it on purpose). This kind of high quality is needed by `web servers <https://en.wikipedia.org/wiki/Web_server>`_ which have to be stable for a long time, but it is often an overkill for scientific computing workflows which are generally intermittent. By allowing the server to be a little bit sloppy, the cost can be drastically reduced. That's the role of spot instances.
 
 In the EC2 console, go to "Spot Requests" page, and then click on "Pricing History". 
 
