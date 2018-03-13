@@ -133,7 +133,7 @@ You can also detach the volume and re-attach it to another EC2 instance, as a wa
 Save volumes into snapshots (Optional)
 --------------------------------------
 
-:ref:`Recall <ebs-intro-label>` that EBS price is $100/TB and S3 price is $23/TB.  There is something in between, called `"snapshot EBS volumes to S3" <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html>`_, which causes $50/TB. You seldom need to use this functionality (since simply using S3 itself is more convenient), but the concept is quite important -- AMIs are actually backed by "EBS snapshots", which physically live on S3.
+:ref:`Recall <ebs-intro-label>` that EBS price is $100/TB/month and S3 price is $23/TB/month.  There is something in between, called `"snapshot EBS volumes to S3" <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html>`_, which causes $50/TB/month. You seldom need to use this functionality (since simply using S3 itself is more convenient), but the concept is quite important -- AMIs are actually backed by "EBS snapshots", which physically live on S3.
 
 .. note:: 
   Remember the "warm-up" time I mentioned in the quick start guide? It is not any physical "warm-up" at all -- it is because the data are being pulled from S3 to the EBS volume under the hood. For a newly-created EC2 instance, although it looks like all files are already on that server, the actual data content actually live on S3. The data will be pulled from S3 on-the-fly whenever your try to access it. Thus the first simulation has quite slow I/O. After the data actually live on EBS, the subsequent I/O will be much faster.
