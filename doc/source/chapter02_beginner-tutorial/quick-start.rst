@@ -192,4 +192,4 @@ There are two different ways to stop being charged:
   Unless you save your system as an AMI or transfer the data to other storage services, 
   you will lose all your data and software.
 
-You will learn how to save your data and configurations persistently in the next tutorials.
+You will learn how to save your data and configurations persistently in the next tutorials. You might also want to :doc:`simplify your ssh login command <../chapter06_appendix/ssh-config>`.
