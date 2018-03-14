@@ -65,7 +65,7 @@ Amazon Linux
 
 For Amazon Linux, the equivalent command is::
 
-  sudo yum install gcc gcc-gfortran
+  $ sudo yum install gcc gcc-gfortran
 
 It gets 4.8.5 by default::
 
@@ -84,7 +84,7 @@ Ubuntu
 
 On Ubuntu, simply::
 
-  sudo apt-get install libnetcdf-dev libnetcdff-dev
+  $ sudo apt-get install libnetcdf-dev libnetcdff-dev
 
 Note that "dev" stands for "development tool" since you are going to use it to compile models. (it is not "developing version" -- the package repository is quite mature and stable!) Also note that after version 4.2, the NetCDF-C and NetCDF-Fortran libraries are installed separately.
 
