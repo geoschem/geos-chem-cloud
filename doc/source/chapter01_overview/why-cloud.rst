@@ -20,7 +20,7 @@ On the cloud, you can launch a server with everything configured correctly. Once
 This has more implications in the age of High-Performance Computing (HPC). Modern atmospheric models are often built with complicated software frameworks, notably the `Earth System Modeling Framework (ESMF) <https://www.earthsystemcog.org/projects/esmf/>`_. Those frameworks allow model developers to utilize HPC technologies without writting tons of boilerplate `MPI <https://computing.llnl.gov/tutorials/mpi/>`_ code, but they add extra burdens on model users -- installing and configuring those frameworks is daunting, if not impossible, for a typical graduate student without a CS background. Fortunately, no matter how difficult it is to install those libraries, there only needs to be one person to build it once on the cloud. Then, no one needs to redo this labor again.
 
 .. note::
-  This software dependency hell can also be solved by containers such as `Docker <https://www.docker.com>`_ and `Singularity <http://singularity.lbl.gov>`_ (e.g. `Docker-WRF <https://ral.ucar.edu/projects/ncar-docker-wrf>`_). But the cloud also solves compute and data problems, as discussed below. You can combine containers and cloud to have a consistent environment across local machines and cloud platforms.
+  This software dependency hell can also be solved by containers such as `Docker <https://www.docker.com>`_ and `Singularity <http://singularity.lbl.gov>`_. But the cloud also solves compute and data problems, as discussed below. You can combine containers and cloud to have a consistent environment across local machines and cloud platforms. This is :doc:`introduced in advanced tutorials <../chapter03_advanced-tutorial/container/>`.
 
 Compute
 ^^^^^^^
