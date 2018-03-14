@@ -27,7 +27,7 @@ So, when do you actually need an HPC environment?
 In any case, understand basic AWS services and concepts (finish all the beginner tutorials) before trying HPC clusters.
 
 .. warning::
-  **The major caveat of HPC clusters on cloud:** Those "clusters" are built upon tons of different AWS services to behave like a traditional cluster. The underlying AWS services are abstracted away and not directly exposed to users. However, `all abstractions are leaky <https://en.wikipedia.org/wiki/Leaky_abstraction>`_. If the cluster just works as you expected, then everything is fine. However, if you encounter a bug, the solution would generally require a fix of the underlying AWS services which you might have no idea about. That's another reason why I recommend really getting used to basic AWS services before trying clusters.
+  **The major caveat of HPC clusters on cloud:** Those "clusters" are built upon tons of different AWS services to behave like a traditional cluster. The underlying AWS services are abstracted away and not directly exposed to users. However, `all abstractions are leaky <https://en.wikipedia.org/wiki/Leaky_abstraction>`_. If the cluster just works as you expect, then everything is fine. However, if you encounter a bug, the solution would generally require a fix to the underlying AWS services which you might have no idea about. That's another reason why I recommend really getting used to basic AWS services before trying clusters.
 
 HPC cluster management tools
 ----------------------------
