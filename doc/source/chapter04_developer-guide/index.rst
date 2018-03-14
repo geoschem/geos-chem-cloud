@@ -10,5 +10,5 @@ This chapter shows how to build models on the cloud from stratch. Ironically, th
    share-ami
    gc-env
    install-python
-   build-container
    install-mpi
+   build-container
