@@ -160,7 +160,7 @@ Install ``ncdump`` to check data content::
 
 You might want to build NetCDF from source if:
 
-1. To install into a different directory. Package managers can only install libraries in to ``/usr``.
+1. To install into a different directory. Package managers can only install libraries into ``/usr``.
 2. To ensure the latest version. Package managers are not necessarily up-to-date.
 
 Doing so is quite tedious so we will not cover it here. Please refer to the `official guide <https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html>`_.
