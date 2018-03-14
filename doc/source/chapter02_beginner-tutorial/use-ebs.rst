@@ -130,6 +130,8 @@ You can also detach the volume and re-attach it to another EC2 instance, as a wa
 .. warning::
   Terminating your EC2 instance will not remove attached EBS volumes. You need to delete them manually.
 
+.. _ebs-snap-label:
+
 Save volumes into snapshots (Optional)
 --------------------------------------
 
