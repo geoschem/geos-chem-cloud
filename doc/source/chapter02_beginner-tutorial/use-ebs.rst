@@ -67,7 +67,7 @@ Right click on the new volume and choose "Attach Volume":
 .. figure:: img/attach_ebs_in_menu.png
   :width: 350 px
 
-You should be prompted with ID of the running EC2 instance. If nothing gets prompted, double check if you choose the same Avail Zone for your EC2 instance and EBS volume.
+You should be prompted with the ID of the running EC2 instance. If nothing gets prompted, double check if you have chosen the same Avail Zone for your EC2 instance and EBS volume.
 
 .. figure:: img/attach_ebs_option.png
   :width: 500 px 

@@ -12,7 +12,7 @@ Basic EC2 instances can already fulfill most of computing needs, as you've learn
 
 - **Jobs scheduler**. On the cloud, the job scheduler is generally not for sharing resources between multiple users, since the entire server belongs to you. Instead, the scheduler is for **requesting new resources automatically**. Whenever your submit a new job by ``qsub`` or ``sbatch``, a new instance is automatically launched (with spot pricing if needed) to run that job, and gets automatically terminated after the job is finished.
 
-* **Shared disk storage**. By default, an EBS data volume can only be attached to one EC2 instance at a time. It also is possible share an EBS volume between instances using the `Network File System (NFS) <https://en.wikipedia.org/wiki/Network_File_System>`_, but doing that by hand is kind of complicated and tedious. Instead, HPC management tools (see the next section) can set up shared disks for you.
+* **Shared disk storage**. By default, an EBS data volume can only be attached to one EC2 instance at a time. It is also possible to share an EBS volume between instances using the `Network File System (NFS) <https://en.wikipedia.org/wiki/Network_File_System>`_, but doing that by hand is kind of complicated and tedious. Instead, HPC management tools (see the next section) can set up shared disks for you.
 
 - **Cross-node MPI connection**. To run large-scale MPI jobs with hundreds and thousands of cores, you need to connect multiple EC2 instances (just like connecting multiple "nodes" on traditional clusters). This can be done by hand, but using existing HPC tools is much easier.
 
@@ -39,7 +39,7 @@ CfnCluster
 
 `CfnCluster <http://cfncluster.readthedocs.io>`_ is an `open-source tool <https://github.com/awslabs/cfncluster/blob/develop/LICENSE.txt>`_ developed directly by AWS. The full name "cloud formation cluster" comes from the `Cloud​Formation service <https://aws.amazon.com/cloudformation/>`_, which is for combining different AWS resources together. Understanding CloudFormation is far beyond the IT knowledge of domain scientists. Fortunately, you can just use CfnCluster with terminal commands ``cfncluster xxx`` and don't have to understand how CloudFormation works under the hood. Its official doc provides a `simple tutorial <http://cfncluster.readthedocs.io/en/latest/hello_world.html>`_ on running a 2-node MPI job.
 
-However, CfnCluster is an not an official AWS service, as you cannot find it anywhere in the AWS console. Its documentaion is not as comprehensive as AlcesFlight (see below) and there is a lack of comprehensive instructions for new users.
+However, CfnCluster is an not an official AWS service, as you cannot find it anywhere in the AWS console. Its documentaion is not as user-friendly as AlcesFlight (see below) and there is a lack of comprehensive instructions for new users.
 
 AlcesFlight
 ^^^^^^^^^^^

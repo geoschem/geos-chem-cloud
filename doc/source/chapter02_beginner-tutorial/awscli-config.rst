@@ -81,10 +81,10 @@ Copy and paste your Key ID and Secret Key from the Key File::
   Default region name [None]: us-east-1
   Default output format [None]: json
 
-- For the default region, enter ``us-east-1`` . It is just an alias to the "US East (N. Virginia)" region that you chose in the quick start guide. Currently all GEOS-Chem resources are within in this region, so use it as default.
+- For the default region, enter ``us-east-1`` . It is just an alias to the "US East (N. Virginia)" region that you chose in the quick start guide. Currently all GEOS-Chem resources are within this region, so use it as default.
 - For output format, enter ``json``. (`JSON <https://en.wikipedia.org/wiki/JSON>`_ is the most widely used format in web services. You don't need to worry about it right now. It looks almost the same as Python dictionaries and lists.)
 
-The answers you typed are saved in ``~/.aws/credentials`` and ``~/.aws/config``. You can rerun ``aws configure`` to overwrite them, just edit the files directly.
+The answers you typed are saved in ``~/.aws/credentials`` and ``~/.aws/config``. You can rerun ``aws configure`` to overwrite them, or just edit the files directly.
 
 Now ``aws s3 ls`` should run smoothly. Since you don't have your own data on S3 yet, that command is likely to show nothing. However, you can already access tons of `AWS Public Datasets <https://aws.amazon.com/public-datasets>`_. For example, let's view the `NASA-NEX data <https://aws.amazon.com/public-datasets/nasa-nex/>`_ by ``aws s3 ls s3://nasanex/``::
 

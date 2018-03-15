@@ -22,7 +22,7 @@ To further complicate things, **"X" doesn't have to be a human user, but can als
   | **"X" = our EC2 instances**
   | **"Y" = S3 buckets**
 
-"Y" can also be as detailed as "read-only access to S3" (so, no write access) or even "read-only access to a specific S3 bucket" (so, no access to other buckets). All those possible combinations make the IAM console kind of daunting for beginners. Fortunately, here we only need to enable a simple permission rule, which it is very easy to do.
+"Y" can also be as detailed as "read-only access to S3" (so, no write access) or even "read-only access to a specific S3 bucket" (so, no access to other buckets). All those possible combinations make the IAM console kind of daunting for beginners. Fortunately, here we only need to enable a simple permission rule, which is very easy to do.
 
 Grant S3 permission to EC2
 --------------------------
@@ -43,7 +43,7 @@ Then choose "Roles" in the IAM console and click on "Create role":
 
 .. figure:: img/iam_console.png
 
-The first step is to choose "X" (which will be allowed to access "Y"). AWS called it "trusted entity". Select EC2, of course.
+The first step is to choose "X" (which will be allowed to access "Y"). AWS calls it "trusted entity". Select EC2, of course.
 
 .. figure:: img/create-iam-role-step1.png
 
