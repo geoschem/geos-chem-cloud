@@ -12,6 +12,8 @@ What are spot instances and why they exist
 
 The `default EC2 pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ is called "on-demand" pricing. This service model is extremely flexible (whenever you request a server, you get it almost instantly; you can stop and restart it at any time) and very stable (the server is guaranteed to run for no matter how long, as long as you don't stop it on purpose). This kind of high quality is needed by `web servers <https://en.wikipedia.org/wiki/Web_server>`_ which have to be stable for a long time, but it is often an overkill for scientific computing workflows which are generally intermittent. By allowing the server to be a little bit sloppy, the cost can be drastically reduced. That's the role of spot instances.
 
+.. _spot-price-label:
+
 In the EC2 console, go to "Spot Requests" page, and then click on "Pricing History". 
 
 .. figure:: img/spot_console.png
@@ -20,7 +22,7 @@ Choose an instance type, for example "c4.4xlarge". You should see that spot pric
 
 .. figure:: img/spot_c4.png
 
-Each "Availability Zone" has its own spot price. You will get the cheapest one by default. (Recall that different `Avail Zones <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html>`_ are physically located at different locations. This was mentioned in the :ref:`EBS tutorial <ebs-az-label>`.)
+Each ":ref:`Availability Zone <az-detail-label>`" has its own spot price. You will get the cheapest one by default.
 
 Spot prices are fluctuating according to current user demand. **Once the price exceeds the on-demand price, your spot instance will be reclaimed by AWS to serve on-demand users who pay much more.** That's why they are "sloppy" and thus much cheaper than standard, on-demand instances.
 

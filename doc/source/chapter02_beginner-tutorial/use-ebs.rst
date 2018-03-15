@@ -47,7 +47,7 @@ Click on the "Create Volume" button in the "Volumes" page. You should see:
 
 .. figure:: img/create_ebs_volume.png
 
-Key parameters are "Size" (say you need a 200 GB disk in this case) and "Availability Zone" (a new concept). Keep other options as default. Currently there are 6 Avail Zones in the us-east-1 region (i.e. N. Virginia). EBS volumes are only attachable to EC2 instances in the same Avail Zone, because different Avail Zones are physically located at different locations (how can you attach a USB drive to a computer in another building?).
+Key parameters are "Size" (say you need a 200 GB disk in this case) and "Availability Zone" (a new concept). Keep other options as default. Currently there are 6 Avail Zones in the us-east-1 region (i.e. N. Virginia). EBS volumes are only attachable to EC2 instances in the same Avail Zone, because different Avail Zones :ref:`are physically located at different locations <az-detail-label>`  (how can you attach a USB drive to a computer in another building?).
 
 You can see the Avail Zone of your running instances in the EC2 console, "Instance" page: 
 

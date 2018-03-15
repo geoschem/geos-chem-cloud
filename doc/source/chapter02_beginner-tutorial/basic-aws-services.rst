@@ -42,4 +42,4 @@ In this section you will familarize yourself with the following concepts and the
   (2) For large data (~TBs), downloading takes a long time so we would like to avoid downloading them anyway. After all, the key idea of cloud computing is "bringing compute to data". With Python and Jupyter, analyzing simulation results on the cloud is just as convenient as having data locally available.
 
 
-See "AWS services in human language" for a more complete review of AWS services.
+That's all core concepts you need to remember. For a more complete review, see :doc:`../chapter05_aws-in-detail/index`. For first-time readers, simply go to the next hands-on tutorial. The best way to learn cloud computing is trying it yourself.
