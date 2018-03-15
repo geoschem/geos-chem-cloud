@@ -82,7 +82,7 @@ Since your run directory is now safely living in the S3 bucket that is independe
 Access NASA-NEX data in S3 (Optional but recommended)
 -----------------------------------------------------
 
-Before accessing GEOS-Chem input data repository, let's play with some `NASA-NEX <https://nex.nasa.gov/nex/>`_ data first. `"NASA-NEX on AWS" <https://aws.amazon.com/public-datasets/nasa-nex/>`_ is one of the earliest "Earth Data on cloud" project that was launch `around 2013 <https://aws.amazon.com/blogs/aws/process-earth-science-data-on-aws-with-nasa-nex/>`_. Unlike other newer projects that are still evolving (and might change constantly), the NASA-NEX repository is very stable, so it is a good starting example.
+Before accessing GEOS-Chem input data repository, let's play with some `NASA-NEX <https://nex.nasa.gov/nex/>`_ data first. `"NASA-NEX on AWS" <https://aws.amazon.com/public-datasets/nasa-nex/>`_ is one of the earliest "Earth data on cloud" project that was launch `around 2013 <https://aws.amazon.com/blogs/aws/process-earth-science-data-on-aws-with-nasa-nex/>`_. Unlike other newer projects that are still evolving (and might change constantly), the NASA-NEX repository is very stable, so it is a good starting example.
 
 Let's download the `NEX-GDDP <https://cds.nccs.nasa.gov/nex-gddp/>`_ dataset produced by `CMIP5 <https://cmip.llnl.gov/cmip5/>`_::
 
