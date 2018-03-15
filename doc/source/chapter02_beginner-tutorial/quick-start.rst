@@ -172,7 +172,7 @@ Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=89
   [I 21:11:42.046 NotebookApp] http://localhost:8999/
   [I 21:11:42.046 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
-Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` ``python_example/plot_GC_data.ipynb`` that you can just execute.
+Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` ``python_example/plot_GC_data.ipynb`` that you can just execute. You can also use Jupyter as a graphical text editor on remote servers. Jupyter also allows you to download/upload data without using ``scp``.
 
 .. note::
   There are many ways to use Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
