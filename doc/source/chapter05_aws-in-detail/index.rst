@@ -1,5 +1,5 @@
-AWS services in detail
-======================
+AWS concepts and services in detail
+===================================
 
 AWS just has too many services, often with strange names (if you think "EC2" and "S3" are not strange enough, look through all services in the AWS main console). Even web developers need something called "`AWS in Plain English <https://www.expeditedssl.com/aws-in-plain-english>`_" to figure out what those services actually are. For domain scientists who know almost nothing about web development (which is what AWS is mainly designed for), getting a full understanding of AWS is even more challenging.
 
