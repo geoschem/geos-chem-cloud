@@ -4,7 +4,7 @@ Use containers to enhance research reproducibility
 The reproducibility crisis in science
 -------------------------------------
 
-A large number of research papers `cannot be reproduced <https://www.nature.com/collections/prbfkwmwvz/>`_. Reproducing Earth science model simulations is particularly hard, due to the difficulty of getting adequate computing power, downloading model input data, and configuring software environment. The cloud :ref:`helps a lot with all those problems <motivation-label>`, but is still not ideal because you are essentially locked-in by AWS (or other cloud vendors). We want to go one step further make research projects reproducible everywhere.
+A large number of research papers `cannot be reproduced <https://www.nature.com/collections/prbfkwmwvz/>`_. Reproducing Earth science model simulations is particularly hard, due to the difficulty of getting adequate computing power, downloading model input data, and configuring software environment. The cloud :ref:`helps a lot with all those problems <motivation-label>`, but is still not ideal because you are essentially locked-in by AWS (or other cloud vendors). We want to go one step further to make research projects reproducible everywhere.
 
 The container technology can ensure exactly the same software environment everywhere, including your own machines, shared HPC clusters, and different cloud platforms. Thus you can easily combine cloud platforms with your already-invested local computing resources.
 
