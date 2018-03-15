@@ -1,6 +1,10 @@
 Common AWS concepts (but often confuse non-IT people)
 =====================================================
 
+While this entire documentation is about using AWS for **scientific computing**, one should always keep in mind that AWS is mainly designed for **IT/web applications**. Although I've been trying to avoid any IT concepts throughout the tutorials, all kinds of IT jargons will pop up here and there, when you are navigating through the AWS console or looking at their documentations.
+
+Here I try to give a gentle introduction to the most basic IT stuff, to make you feel more comfortable with AWS jargons.
+
 .. _az-detail-label:
 
 Regions and Availability Zones
