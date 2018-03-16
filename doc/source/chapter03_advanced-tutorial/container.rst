@@ -11,7 +11,7 @@ The container technology can ensure exactly the same software environment everyw
 What are containers and how can they help
 -----------------------------------------
 
-A brute-force way to get the same software environment on different computers is to use a `virtual machine (VM) <https://en.wikipedia.org/wiki/Virtual_machine>`_ to deliver the entire system. But VMs incur a significant performance penalty since a new operating system needs to run inside the existing system. A `container <https://en.wikipedia.org/wiki/Linux_containers>`_ behaves pretty much the same as a VM, while having almost no performance penalty. (Their underlying implementations are vastly different but that's out of score here.)
+A brute-force way to get the same software environment on different computers is to use a `virtual machine (VM) <https://en.wikipedia.org/wiki/Virtual_machine>`_ to deliver the entire system. But VMs incur a significant performance penalty since a new operating system needs to run inside the existing system. A `container <https://en.wikipedia.org/wiki/Linux_containers>`_ behaves pretty much the same as a VM, while having almost no performance penalty. (Their underlying implementations are vastly different but that's out of scope here.)
 
 `Docker <https://www.docker.com>`_ is the most widely used container in the software world. The major use case is web applications but it is also used for scientific computing & data science (e.g. `Anaconda Docker image <https://github.com/ContinuumIO/docker-images>`_) and deep learning (e.g. `NVIDIA Docker <https://github.com/NVIDIA/nvidia-docker>`_). NCAR has a `Docker-WRF <https://ral.ucar.edu/projects/ncar-docker-wrf>`_ image which might be the easiest way to start WRF.
 
