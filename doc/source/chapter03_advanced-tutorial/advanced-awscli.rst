@@ -1,7 +1,7 @@
 More advanced usages of AWSCLI
 ==============================
 
-Besides accessing S3, AWSCLI can control any kinds of AWS resources you can imagine. Very useful ones are ``aws ec2 run-instances`` (`official doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html>`_) and ``aws ec2 request-spot-instances`` (`doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html>`_) as they save a lot of time clicking throught the console.
+Besides accessing S3, AWSCLI can control any kinds of AWS resources you can imagine. A very useful one is ``aws ec2 run-instances`` (`official doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html>`_) , as it saves a lot of time clicking throught the console.
 
 While ``aws s3 xxx`` are often used on EC2 instances to interact with S3, ``aws ec2 xxx`` are mostly used on local computers to control remote servers.
 
@@ -38,13 +38,12 @@ Use this bash script to launch an on-demand instance::
 Request spot instances
 ----------------------
 
-For spot instances, use::
+For spot instances, simply add ``--instance-market-options '{"MarketType":"Spot"}`` option to ``aws ec2 run-instances``. Other options are exactly the same as the on-demand case::
 
   #!/bin/bash
 
   # == often change ==
   TYPE=c5.4xlarge  # EC2 instance type
-  MAXPRICE=0.68    # Price limit
 
   # ==  set it once and seldom change ==
   AMI=ami-xxxxxxx # AMI to launch from
@@ -54,19 +53,18 @@ For spot instances, use::
   IAM=xxxxx       # EC2 IAM role name
 
   # == almost never change; just leave it as-is ==
-  aws ec2 request-spot-instances --spot-price "$MAXPRICE" \
-  --instance-count $COUNT --type "one-time" --launch-specification \
-  '{
-  "ImageId": "'"$AMI"'",
-  "InstanceType": "'"$TYPE"'",
-  "KeyName": "'"$KEY"'",
-  "SecurityGroupIds": [ "'"$SG"'" ],
-  "IamInstanceProfile": {"Name": "'"$IAM"'"}
+  aws ec2 run-instances --image-id $AMI \
+      --security-group-ids $SG --count $COUNT \
+      --instance-type $TYPE --key-name $KEY \
+      --iam-instance-profile Name=$IAM \
+      --instance-market-options '{"MarketType":"Spot"}'
   }'
 
-- **MAXPRICE**: Usually use `on-demand pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ as the limit. :ref:`Check out the actual spot pricing <spot-label>` to see the most cost-effective one.
+By default, the `on-demand pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ will be used as the spot price limit. You can further set a custom limit (generally not necessary)::
 
-Other options are exactly the same as the on-demand case.
+  --instance-market-options '{"MarketType":"Spot", "SpotOptions": {"SpotPrice": "0.68"}}'
+
+The command ``aws ec2 request-spot-instances`` (`doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html>`_) can also launch spot instances, but its syntax is slightly more complicated.
 
 Other use cases
 ---------------
