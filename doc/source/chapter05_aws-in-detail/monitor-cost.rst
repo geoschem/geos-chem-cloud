@@ -26,4 +26,4 @@ You can see the day-to-day cost very clearly, broken into EC2, S3, and other cha
 
 .. note::
 
-  For some reason, you might be directed to the `Simple Monthly Calculator <https://calculator.s3.amazonaws.com/index.html>`_, say if you just google "estimate aws cost". This tool is not going to help you because it is for estimating the cost of web servers. Web servers run stably for a long time and so their costs are very easy to pre-calculate. On the other hand, scientific computing workloads are intermittent and hard to predict. So, the most helpful thing you can do is looking at the history.
+  For some reason, you might be directed to the `Simple Monthly Calculator <https://calculator.s3.amazonaws.com/index.html>`_, say if you just google "estimate aws cost". This tool is not going to help you because it is for estimating the cost of web servers. Web servers run stably for a long time, so their costs are very easy to pre-calculate. On the other hand, scientific computing workloads are intermittent and hard to predict. So, the most helpful thing you can do is looking at the history.
