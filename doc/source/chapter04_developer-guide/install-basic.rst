@@ -53,7 +53,7 @@ By default the package manager gets 5.4.0::
   GNU Fortran (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609
   ...
 
-You can also install higher verions from the `Toolchain test builds <https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test>`_, for example::
+You can also install higher versions from the `Toolchain test builds <https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test>`_, for example::
 
   $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
   Press [ENTER]
