@@ -1,7 +1,7 @@
 More advanced usages of AWSCLI
 ==============================
 
-Besides accessing S3, AWSCLI can control any kinds of AWS resources you can imagine. A very useful one is ``aws ec2 run-instances`` (`official doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html>`_) , as it saves a lot of time clicking throught the console.
+Besides accessing S3, AWSCLI can control any kinds of AWS resources you can imagine. A very useful one is ``aws ec2 run-instances`` (`official doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html>`_) , as it saves a lot of time clicking through the console.
 
 While ``aws s3 xxx`` are often used on EC2 instances to interact with S3, ``aws ec2 xxx`` are mostly used on local computers to control remote servers.
 
