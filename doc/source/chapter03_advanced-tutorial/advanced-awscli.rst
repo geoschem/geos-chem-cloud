@@ -58,7 +58,6 @@ For spot instances, simply add ``--instance-market-options '{"MarketType":"Spot"
       --instance-type $TYPE --key-name $KEY \
       --iam-instance-profile Name=$IAM \
       --instance-market-options '{"MarketType":"Spot"}'
-  }'
 
 By default, the `on-demand pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ will be used as the spot price limit. You can further set a custom limit (generally not necessary)::
 
