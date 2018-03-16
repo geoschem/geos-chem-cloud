@@ -45,7 +45,7 @@ Launch a new EC2 instance just like in the quick start guide, but in "Step 2: Ch
 .. figure:: img/spot_configure.png
 
 
-Select "Request Spot instances", enter the on-demand price for the "Maximum price" option. You can also use a different price limit other than the on-demand price. Once the spot price goes beyong that limit, your server will be reclaimed. In other words, you will never pay a price higher than the limit you set. You can even set the price higher than on-demand but `this is generally not recommended <https://devops.stackexchange.com/questions/893/why-is-the-aws-ec2s-spot-price-greater-than-the-on-demand-price>`_.
+Select "Request Spot instances", enter the on-demand price for the "Maximum price" option. You can also use a different price limit other than the on-demand price. Once the spot price goes beyong that limit, your server will be reclaimed. In other words, you will never pay a price higher than the limit you set. You can even set the price higher than on-demand but `this is generally not recommended <https://devops.stackexchange.com/questions/893/why-is-the-aws-ec2s-spot-price-greater-than-the-on-demand-price>`_. It is also OK to leave the "Maximum price" option blank; the on-demand price will be used as default.
 
 No need to touch other options. Then just launch as usual. This spot request should be fulfilled pretty quickly, and your server will be running as usual. Just ``ssh`` to your server. You can make sure you do get 16 cores by ``lscpu``::
 
