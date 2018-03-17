@@ -13,7 +13,7 @@ Here's my typical research workflow for reference:
 2. Prepare input data by pulling them from S3 to EC2. Put commonly used ``aws s3 cp`` commands into bash scripts.
 3. Tweak model configurations as needed.
 4. Run simulations :ref:`with tmux <keep-running-label>`. Log out and go to sleep if the model runs for a long time.
-5. Use Python/Jupyter to analyze output data. Our tutorial AMI contains a `geoscientific Python environment <https://github.com/JiaweiZhuang/cloud_GC/blob/master/build_scripts/python/geo.yml>`_ that has much more packages than the `root environment <https://github.com/JiaweiZhuang/cloud_GC/blob/master/build_scripts/python/basic_packages.sh>`_. It can be activated by ``source activate geo``, or ``act geo`` with my alias.
+5. Use Python/Jupyter to analyze output data.
 6. After simulation and data analysis tasks are done, upload output data and customized model configuration (mostly run directories) to S3. Or download them to local machines if necessary (Recall that :ref:`egress charge <data-egress-label>` is $90/TB; for several GBs the cost is negligible).
 7. Once important data safely live on S3 or on your local machine, shut down EC2 instances to stop paying for CPU charges.
 8. Go to write papers, attend meetings, do anything other than computing. During this time, no machines are running on the cloud, and the only cost is data storage on S3 ($23/TB/month). Consider `S3 - Infrequent Access <https://aws.amazon.com/blogs/aws/aws-storage-update-new-lower-cost-s3-storage-option-glacier-price-reduction/>`_ which costs half if the data will not be used for several months.

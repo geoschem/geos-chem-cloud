@@ -33,7 +33,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 .. figure:: img/region_list.png
   :width: 300 px
 
-In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-c135ccbc** or **GEOSChem_tutorial_20180307** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-ab925cd6** or **GEOSChem_tutorial_20180316** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
@@ -94,7 +94,7 @@ That's a system with GEOS-Chem already built!
 
 Go to the pre-generated run directory::
   
-  $ cd geosfp_4x5_standard
+  $ cd ~/tutorial/geosfp_4x5_standard
 
 Just run the pre-compiled the model by::
   
@@ -102,7 +102,7 @@ Just run the pre-compiled the model by::
 
 Or you can re-compile the model on your own::
 
-  $ make clean
+  $ make realclean
   $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up your own server, configuring software environment, and preparing model input data!
@@ -112,12 +112,14 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
 
+Note that this system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. It uses `v11-02d <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v11-02#v11-02d>`_, which might not be the version you want for a serious scientific analysis. You can easily :doc:`switch to other versions <../chapter06_appendix/gc-version>`.
+
 Step 4: Analyze output data with Python (Optional)
 --------------------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.inst.20130701.nc4``. There is also a pre-generated ``GEOSChem.inst.20130701_backup.nc4`` ready for you to analyze::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.inst.20130701.nc4``. There is also a pre-generated ``GEOSChem.inst.20130701_backup.nc4`` in the run directory, ready for you to analyze::
 
-  ubuntu@ip-172-31-36-170:~/geosfp_4x5_standard$ ncdump -h GEOSChem.inst.20130701_backup.nc4
+  $ ncdump -h GEOSChem.inst.20130701_backup.nc4
   netcdf GEOSChem.inst.20130701_backup {
   dimensions:
   	time = UNLIMITED ; // (1 currently)
@@ -133,9 +135,12 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
   		time:axis = "T" ;
 
 `Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my tutorial on 
-`xarray for GEOS-Chem <http://gcpy-demo.readthedocs.io>`_. You can simply use ``ipython`` from the command line::
-  
-  ubuntu@ip-172-31-36-170:~/geosfp_4x5_standard$ ipython
+`xarray for GEOS-Chem <http://gcpy-demo.readthedocs.io>`_. 
+
+Activate the pre-installed `geoscientific Python environment <https://github.com/JiaweiZhuang/cloud_GC/blob/master/build_scripts/python/geo.yml>`_ by ``source activate geo`` (it is generally a bad idea to directly install things into the root Python environment), and then start ``ipython`` from the command line::
+
+  $ source activate geo  # I also set a `act geo` alias
+  $ ipython
   Python 3.6.4 |Anaconda, Inc.| (default, Jan 16 2018, 18:10:19)
   Type 'copyright', 'credits' or 'license' for more information
   IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
@@ -163,7 +168,7 @@ To use Jupyter on remote servers, re-login to the server with port-forwarding op
   
 Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
 
-  ubuntu@ip-172-31-36-170:~$ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
+  $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
   [I 21:11:41.503 NotebookApp] Writing notebook server cookie secret to /run/user/1000/jupyter/notebook_cookie_secret
   [W 21:11:41.986 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
   [I 21:11:42.046 NotebookApp] Serving notebooks from local directory: /home/ubuntu
@@ -172,10 +177,20 @@ Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=89
   [I 21:11:42.046 NotebookApp] http://localhost:8999/
   [I 21:11:42.046 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
-Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` ``python_example/plot_GC_data.ipynb`` that you can just execute. You can also use Jupyter as a graphical text editor on remote servers. Jupyter also allows you to download/upload data without using ``scp``.
+Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` that you can just execute. It is located at::
+
+  ~/tutorial/python_example/plot_GC_data.ipynb
+
+Besides being a data analysis environment, Jupyter can also be used as a graphical text editor on remote servers so you don't have to use ``vim``/``emacs``/``nano``. The Jupyter console also allows you to download/upload data without using ``scp``.
 
 .. note::
-  There are many ways to use Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
+  There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
+
+We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you want to. Just compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is also pre-installed in the ``geo`` environment. 
+
+My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed on the server, which can fulfill all horizontal regridding needs for GEOS-Chem data (and most of Earth science data). It should be much easier to use and orders of magnitude faster than the regridding routines in IDL/gamap.
+
+Also, nothing prevents you from downloading the output data and using old tools like IDL & MATLAB to analyze them, but we highly encourage you to switch to the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
 
 Step 5: Shut down the server (Very important!!) 
 -----------------------------------------------

@@ -103,7 +103,7 @@ You can explore sub-directories by, for example::
   $ aws s3 ls s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/
   
 Or just get down to one of the the lowest level folders ::
-  
+
   $ aws s3 ls --summarize --human-readable s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/
   ...
   2015-09-25 21:07:06    8.3 KiB tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2099.json
@@ -115,7 +115,7 @@ Or just get down to one of the the lowest level folders ::
      Total Size: 1.4 TiB
 
 The ``--summarize --human-readable`` options print the total size in human-readable formats (like the normal Linux command ``du -sh``) As you see, that subfolder has 1.4 TB of data. Just get one file to play with::
-  
+
   $ aws s3 cp s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc ./
   download: s3://nasanex/NEX-GDDP/BCSD/rcp85/day/atmos/tasmax/r1i1p1/v1.0/tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc to ./tasmax_day_BCSD_rcp85_r1i1p1_inmcm4_2100.nc
 
@@ -141,16 +141,12 @@ Here's an :doc:`example notebook <../chapter06_appendix/plot_NASANEX>` to plot t
 
 Congrats! You know how to access and analyze public datasets on AWS. Accessing GEOS-Chem's input data repository will be exactly the same.
 
-.. note::
-  
-  Get tired of lengthy S3 commands? The `s3fs-fuse <https://github.com/s3fs-fuse/s3fs-fuse>`_ tool can make S3 buckets and objects behave just like normal directories and files on disk. We will mention it in advanced tutorials.
-
 .. _gcdata-bucket-label:
 
 Access GEOS-Chem input data repository in S3
 --------------------------------------------
 
-::
+List out bucket by::
   
   $ aws s3 ls --request-payer=requester s3://gcgrid/
                              PRE BPCH_RESTARTS/
@@ -172,4 +168,44 @@ Access GEOS-Chem input data repository in S3
   
 GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transferring data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` it you download data to local machines.
 
-The tutorial AMI only has 1-month GEOS-FP metfield. You can get other metfields from that S3 bucket, to support simulations with any configurations.
+The tutorial AMI only has 4x5 GEOS-FP metfield for 1-month (2013/07). You can get other metfields from that S3 bucket, to support simulations with any configurations.
+
+For example, download the 4x5 GEOS-FP data over the next month (2013/08)
+
+::
+  
+  $ aws s3 cp --request-payer=requester --recursive \
+    s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/ \
+    ~/gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/
+
+  download: s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A1.4x5.nc to gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A1.4x5.nc
+  download: s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A3mstC.4x5.nc to gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A3mstC.4x5.nc
+  ...
+
+Downloading this ~2.5 GB data should just take 10~20s.
+
+To download more months (but not the entire year), consider simple bash "for" loop::
+
+  for month in 09 10
+  do
+  aws s3 cp --request-payer=requester --recursive \
+    s3://gcgrid/GEOS_4x5/GEOS_FP/2013/$month \
+    ~/gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/$month
+  done
+
+`Wildcards are also supported <https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters>`_, but it feels pretty different from common Linux wildcards. I often find writing bash scripts a lot quicker. 
+
+Then you may want to change the simulation date in ``input.geo`` to test the new data. For example, change to next month::
+
+  Start YYYYMMDD, hhmmss  : 20130801 000000
+  End   YYYYMMDD, hhmmss  : 20130901 000000
+  Run directory           : ./
+  Input restart file      : GEOSChem_restart.201307010000.nc
+
+(Note that the restart file is still at 2013/07 in this case.)
+
+The EC2 instance launched from the tutorial AMI only has 70 GB disk by default, so the disk will be full very soon. You will learn how to increase the disk size, right in the next tutorial.
+
+.. note::
+
+  Get tired of lengthy S3 commands? The `s3fs-fuse <https://github.com/s3fs-fuse/s3fs-fuse>`_ tool can make S3 buckets and objects behave just like normal directories and files on disk. However, it doesn't work well with requester-pay buckets yet (`issue#635 <https://github.com/s3fs-fuse/s3fs-fuse/issues/635>`_). If that issue is resolved we will add more instructions. 

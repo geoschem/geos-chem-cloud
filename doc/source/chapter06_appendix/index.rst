@@ -7,6 +7,7 @@ This chapter provides additional resources that don't fit into the main tutorial
    :maxdepth: 2
 
    aws-resources-for-gc
+   gc-version
    ssh-config
    keep-running
    sample-python-code
