@@ -71,7 +71,7 @@ The model will run ~10x faster on this advanced instance than on the previous "r
 
 If you like, try performing a 1-month simulation on this fast machine. This would take several hours so you might want to :ref:`keep the program running even after logging off the server <keep-running-label>`.
 
-Spot instances cannot be stopped and can only be terminated. Make sure you've transfering important data to S3 before terminating the server.
+Spot instances cannot be stopped and can only be terminated. Make sure you've transfered important data to S3 before terminating the server.
 
 Deal with spot instance interruptions
 -------------------------------------
