@@ -6,7 +6,7 @@ I've promised you :ref:`in the beginner tutorial <mention-ec2-iam-label>` that y
 What is Identity and Access Management (IAM)
 --------------------------------------------
 
-`Identity and Access Management (IAM) <https://aws.amazon.com/iam/>`_ is a very powerful ultility to **control the permissions** of your AWS resources. More specifically, a "permission" is: 
+`Identity and Access Management (IAM) <https://aws.amazon.com/iam/>`_ is a very powerful utility to **control the permissions** of your AWS resources. More specifically, a "permission" is: 
 
   **X is allowed to use Y**
 

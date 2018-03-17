@@ -60,7 +60,7 @@ Then you should see two active volumes in the EC2 console, "Volumes" page:
 
 .. figure:: img/new_ebs_volume.png
 
-The "in-use" one is the disk for the runnning EC2 instance. The "available" one is the newly-created volume that isn't attached to an EC2 instance yet.
+The "in-use" one is the disk for the running EC2 instance. The "available" one is the newly-created volume that isn't attached to an EC2 instance yet.
 
 Right click on the new volume and choose "Attach Volume":
 
@@ -123,7 +123,7 @@ Test if you can write files into that new disk::
   $ touch new_disk/test_file
   [no error occurs]
 
-Done! The disk size of your server is now much bigger. EBS volumes are useful for hosting input/output data temporarily. For long-term, persistently storage, alway upload your stuff to S3. S3 is much more "transparent" than EBS. To know what's in an EBS volume, you have to attach it to an EC2 instance and view the files through EC2. On the other hand, you can view all your files on S3 directly in the graphical conole, without having any EC2 instances running.
+Done! The disk size of your server is now much bigger. EBS volumes are useful for hosting input/output data temporarily. For long-term, persistently storage, alway upload your stuff to S3. S3 is much more "transparent" than EBS. To know what's in an EBS volume, you have to attach it to an EC2 instance and view the files through EC2. On the other hand, you can view all your files on S3 directly in the graphical console, without having any EC2 instances running.
 
 You can also detach the volume and re-attach it to another EC2 instance, as a way to share data between two EC2 instances. However, using S3 as the medium of data transfer is generally more convenient, and it doesn't require two EC2 instances to be in the same Avail Zone.
 

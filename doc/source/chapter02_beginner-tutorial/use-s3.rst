@@ -15,7 +15,7 @@ Please follow `the official S3 tutorial <https://aws.amazon.com/getting-started/
 
 The S3 console is convenient for viewing files, but most of time you will use AWSCLI to work with S3 because:
 
-- It is much easier to recurisively upload/download directories with AWSCLI. 
+- It is much easier to recursively upload/download directories with AWSCLI. 
 - To transfer data between S3 and EC2, you have to use AWSCLI since there is no graphical console on EC2 instances.
 - To work with public data set, AWSCLI is almost the only way you can use. Recall that in the previous chapter you use ``aws s3 ls s3://nasanex/`` to list the NASA-NEX data. But you cannot see the "s3://nasanex/" bucket in S3 console, since it doesn't belong to you.
 
@@ -26,7 +26,7 @@ On an EC2 instance launched from the GEOSChem tutorial AMI, configure AWSCLI by 
 
 Now, say you've made some changes to the ``geosfp_4x5_standard/`` run directory, such as tweaking model configurations in ``input.geos`` or running simulations to produce new diagnostics files. You want to keep those changes after you terminate the server, so you can retrieve them when you continue the work next time.
 
-Create a new bucket by ``aws s3 mb s3://your-bucket-name``. Note that S3 bucket names must be unique across all accounts, as this facilitates sharing data between different people (If others' buckets are public, you can access them just like how the owners access them). Getting a unique name is easy -- it the name already exists, just add your name initials or some prefix. If you just use the name in the exmaple below, you are likely to get an ``make_bucket failed`` error since that bucket already exists in my account::
+Create a new bucket by ``aws s3 mb s3://your-bucket-name``. Note that S3 bucket names must be unique across all accounts, as this facilitates sharing data between different people (If others' buckets are public, you can access them just like how the owners access them). Getting a unique name is easy -- it the name already exists, just add your name initials or some prefix. If you just use the name in the example below, you are likely to get an ``make_bucket failed`` error since that bucket already exists in my account::
 
   $ aws s3 mb s3://geoschem-run-directory
   make_bucket: geoschem-run-directory
@@ -73,7 +73,7 @@ Since your run directory is now safely living in the S3 bucket that is independe
   S3 is not a standard Linux file system and thus cannot preserve Linux file permissions. After retrieving your run directory back from S3, the executable ``geos.mp`` and ``getRunInfo`` will not have execute-permission by default.
   Simply type ``chmod u+x geos.mp getRunInfo`` to grant permission again. 
   
-  Another approach to preserve permissions is to use ``tar -zcvf`` to compress your directory before loading to S3, and then use ``tar -zxvf`` to decompress it after retrieving from S3. Only consider this approach if you absolutely want to preverse all the permission information. 
+  Another approach to preserve permissions is to use ``tar -zcvf`` to compress your directory before loading to S3, and then use ``tar -zxvf`` to decompress it after retrieving from S3. Only consider this approach if you absolutely want to preserve all the permission information. 
    
   S3 also has no concept of symbolic links created by ``ln -s``. By default, it will turn all links into real files by making real copies. You can use ``aws s3 cp --no-follow-symlinks ...`` to ignore links.
   
@@ -170,6 +170,6 @@ Access GEOS-Chem input data repository in S3
                              PRE SPC_RESTARTS/
   2018-03-08 00:18:41       3908 README
   
-GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transfering data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` it you download data to local machines.
+GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transferring data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` it you download data to local machines.
 
-The tutorial AMI only has 1-month GEOS-FP metfield. You can get other metfields from that S3 bucket, to support simulations wtih any configurations.
+The tutorial AMI only has 1-month GEOS-FP metfield. You can get other metfields from that S3 bucket, to support simulations with any configurations.

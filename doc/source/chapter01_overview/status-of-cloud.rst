@@ -8,7 +8,7 @@ Atmospheric models
 
 `The Modeling Research in the Cloud Workshop <https://www.unidata.ucar.edu/events/2017CloudModelingWorkshop/>`_ was hosted by NCAR in 2017. Most presentation slides are `available online <https://www.unidata.ucar.edu/events/2017CloudModelingWorkshop/#schedule>`_.
 
-Relavant applications
+Relevant applications
 ---------------------
 
 - `OpenFOAM on cloud <https://cfd.direct/cloud/>`_. OpenFOAM is a popular library for computational fluid dynamics (CFD). The team `started cloud migration in 2015 <https://cfd.direct/cloud/year-1-cloud/>`_ and the project is now very mature. CFD simulations are very similar to atmospheric simulations from a computational perspective -- they both solve variants of Navier–Stokes equations and use MPI-based domain decomposition. 

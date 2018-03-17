@@ -67,7 +67,7 @@ The model will run ~10x faster on this advanced instance than on the previous "r
 
 .. note::
 
-  c4.4xlarge or c5.4xlarge? `C5 <https://aws.amazon.com/ec2/instance-types/c5/>`_ is a newer generation, and is ~10% faster than C4. Further, the on-demand price of C5 is ~10% cheaper than C4. So seems like C5 is clearly more cost-effective. But this might not be true for spot prices which depend on the current market. In general, both familities are pretty good for HPC workloads.
+  c4.4xlarge or c5.4xlarge? `C5 <https://aws.amazon.com/ec2/instance-types/c5/>`_ is a newer generation, and is ~10% faster than C4. Further, the on-demand price of C5 is ~10% cheaper than C4. So seems like C5 is clearly more cost-effective. But this might not be true for spot prices which depend on the current market. In general, both families are pretty good for HPC workloads.
 
 If you like, try performing a 1-month simulation on this fast machine. This would take several hours so you might want to :ref:`keep the program running even after logging off the server <keep-running-label>`.
 

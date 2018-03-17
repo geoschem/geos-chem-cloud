@@ -22,7 +22,7 @@ Just open the file ``~/.ssh/config`` (create it if doesn't exist), and enter the
     IdentityFile ~/.ssh/my-aws-key.pem
     Port 22
 
-"Host" is the shortcut you want to use in ``ssh`` and ``scp`` commands. "user", "IdentityFile" (EC2 Key Pair), and "Port" (always 22 for ``ssh``) are almost never changed for different EC2 instances. So you only need to change "Hostname" everytime you have a new instance.
+"Host" is the shortcut you want to use in ``ssh`` and ``scp`` commands. "user", "IdentityFile" (EC2 Key Pair), and "Port" (always 22 for ``ssh``) are almost never changed for different EC2 instances. So you only need to change "Hostname" every time you have a new instance.
 
 Enable port forwarding
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -120,8 +120,8 @@ Additional notes
   
 .. note::
   
-  If you are using AWSCLI on EC2 instances, not on your local computer, you might wonder why you still need to configure those credentials? Afterall, it's on AWS's server, and AWS should know that you are using AWSCLI on your own EC2 instances. Yes, you can avoid running ``aws configure`` everytime you launch a new EC2 instance. It is just not enabled by default because of security reasons. For example, you might want to allow your friend to log into your EC2 servers, but you don't want to let them control your other AWS resources using AWSCLI. 
+  If you are using AWSCLI on EC2 instances, not on your local computer, you might wonder why you still need to configure those credentials? After all, it's on AWS's server, and AWS should know that you are using AWSCLI on your own EC2 instances. Yes, you can avoid running ``aws configure`` every time you launch a new EC2 instance. It is just not enabled by default because of security reasons. For example, you might want to allow your friend to log into your EC2 servers, but you don't want to let them control your other AWS resources using AWSCLI. 
   
-  Enabling AWSCLI by default requires some understandings of IAM (Identity and Access Management), so we defer it to advanced tutorials. For now, simply copy and paste your credientials -- it is pretty quick!
+  Enabling AWSCLI by default requires some understandings of IAM (Identity and Access Management), so we defer it to advanced tutorials. For now, simply copy and paste your credentials -- it is pretty quick!
 
   

@@ -22,7 +22,7 @@ So, when do you actually need an HPC environment?
 
 - You need to use hundreds of cores to run a single MPI job.
 - You have tens or hundreds of jobs to submit, which is too inconvenient to do with basic EC2 instances.
-- When you decide that AWS should be your major working environment (i.e. "all-in on cloud"). Then it worths the effort to really get familiar with one HPC management tool. (For occassional use, the basic EC2 is more convenient.)
+- When you decide that AWS should be your major working environment (i.e. "all-in on cloud"). Then it worths the effort to really get familiar with one HPC management tool. (For occasional use, the basic EC2 is more convenient.)
 
 In any case, understand basic AWS services and concepts (finish all the beginner tutorials) before trying HPC clusters.
 

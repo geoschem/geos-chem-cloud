@@ -12,11 +12,11 @@ AWS promotes their `Amazon Linux AMI <https://aws.amazon.com/amazon-linux-ami/>`
 
 So which to choose? Recall that Linux distributions fall into two big categories:
 
-1. **The Debian familily**, such as `Debian GNU/Linux <https://en.wikipedia.org/wiki/Debian>`_ and `Ubuntu <https://en.wikipedia.org/wiki/Ubuntu_(operating_system)>`_. They use ``apt`` as the high-level package manager and ``dpkg`` as the low-level one.
+1. **The Debian family**, such as `Debian GNU/Linux <https://en.wikipedia.org/wiki/Debian>`_ and `Ubuntu <https://en.wikipedia.org/wiki/Ubuntu_(operating_system)>`_. They use ``apt`` as the high-level package manager and ``dpkg`` as the low-level one.
 
-2. **The Red Hat famility**, such as `Red Hat Enterprise Linux (RHEL) <https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux>`_ and `CentOS <https://en.wikipedia.org/wiki/CentOS>`_. Amazon Linux also belongs to this familily. They use ``yum`` as the high-level package manager and ``rpm`` as the low-level one.
+2. **The Red Hat family**, such as `Red Hat Enterprise Linux (RHEL) <https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux>`_ and `CentOS <https://en.wikipedia.org/wiki/CentOS>`_. Amazon Linux also belongs to this family. They use ``yum`` as the high-level package manager and ``rpm`` as the low-level one.
 
-Ubuntu tends to have the largest user base; CentOS seems to be widely used on HPC clusters; Amazon Linux has the most native AWS support. I find the model performace almost the same on different systems; but this could depend on specific programs.
+Ubuntu tends to have the largest user base; CentOS seems to be widely used on HPC clusters; Amazon Linux has the most native AWS support. I find the model performance almost the same on different systems; but this could depend on specific programs.
 
 In this guide, we use with **Ubuntu 16.04 LTS (ami-66506c1c)** as the major example. Commands for **Amazon Linux 2017.09.1 (ami-1853ac65)** as also provided for reference.
 

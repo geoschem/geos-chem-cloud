@@ -9,7 +9,7 @@ Right-click on your EC2 instance, and select "Image" - "Create Image":
 
 .. warning::
   
-  If you are going to make an AMI for public use, make sure you did not leave any private information on the EC2 instance, such as your AWS security credientials or your GitHub credientials. Also clean your command history by ``shred -u ~/.*history``. Please refer to `AWS official doc <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/building-shared-amis.html>`_ for the full guidelines.
+  If you are going to make an AMI for public use, make sure you did not leave any private information on the EC2 instance, such as your AWS security credentials or your GitHub credentials. Also clean your command history by ``shred -u ~/.*history``. Please refer to `AWS official doc <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/building-shared-amis.html>`_ for the full guidelines.
 
 Give your AMI a meaningful name, edit "Image description" as you like. and then simply click on "Create Image". Then, your EC2 instance will reboot and you will lose connection for several seconds.
 

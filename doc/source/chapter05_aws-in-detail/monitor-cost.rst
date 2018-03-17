@@ -1,7 +1,7 @@
 Monitoring AWS cost
 ===================
 
-Time to talk about money. The :ref:`Researcher’s Handbook <researcher-handbook-label>` has a very comprehensive introduction to all kinds of budget management tools. I find that the `AWS Cost Explorer <https://aws.amazon.com/aws-cost-management/aws-cost-explorer/>`_ is the most straighforward and intuitive one.
+Time to talk about money. The :ref:`Researcher’s Handbook <researcher-handbook-label>` has a very comprehensive introduction to all kinds of budget management tools. I find that the `AWS Cost Explorer <https://aws.amazon.com/aws-cost-management/aws-cost-explorer/>`_ is the most straightforward and intuitive one.
 
 Go to your billing console:
 
