@@ -10,7 +10,7 @@ Why do you need an HPC cluster
 
 Basic EC2 instances can already fulfill most of computing needs, as you've learned in the beginner tutorials. An "HPC cluster" just provides those additional functionalities:
 
-- **Jobs scheduler**. On the cloud, the job scheduler is generally not for sharing resources between multiple users, since the entire server belongs to you. Instead, the scheduler is for **requesting new resources automatically**. Whenever your submit a new job by ``qsub`` or ``sbatch``, a new instance is automatically launched (with spot pricing if needed) to run that job, and gets automatically terminated after the job is finished.
+- **Jobs scheduler**. On the cloud, the job scheduler is generally not for sharing resources between multiple users, since the entire server belongs to you. Instead, the scheduler is for **requesting new resources automatically**. Whenever you submit a new job by ``qsub`` or ``sbatch``, a new instance is automatically launched (with spot pricing if needed) to run that job, and gets automatically terminated after the job is finished.
 
 * **Shared disk storage**. By default, an EBS data volume can only be attached to one EC2 instance at a time. It is also possible to share an EBS volume between instances using the `Network File System (NFS) <https://en.wikipedia.org/wiki/Network_File_System>`_, but doing that by hand is kind of complicated and tedious. Instead, HPC management tools (see the next section) can set up shared disks for you.
 
