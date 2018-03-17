@@ -42,7 +42,7 @@ Configure unit tester and generate run directory
 
 Here's how I set up the tutorial run directory, for reference.
 
-In ``ut_bleeding_edge/CopyRunDirs.input``, change the default paths::
+In ``ut_bleeding_edge/perl/CopyRunDirs.input``, change the default paths::
 
   GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
   DATA_ROOT      : {GCGRIDROOT}/data/ExtData
@@ -64,7 +64,7 @@ Then uncomment the run directory I want::
 
   geosfp   4x5         -      standard         2013070100   2013080100     -
   
-In ``ut_bleeding_edge/Makefile``, change the source code path::
+In ``ut_bleeding_edge/perl/Makefile``, change the source code path::
 
     CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
 
