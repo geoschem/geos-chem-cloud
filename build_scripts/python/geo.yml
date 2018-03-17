@@ -14,7 +14,6 @@ dependencies:
     - h5py          # Wrapper for HDF5
     - ipython       # IPython interpreter and tools
     - jupyter       # Jupyter federation architecture
-    - tornado=4.5.3 # Use older version to prevent Jupyter error
     - matplotlib    # 2D plotting library
     - netcdf4       # Wrapper for netcdf4
     - numpy         # N-d array and numerics
@@ -24,14 +23,13 @@ dependencies:
     - statsmodels   # Regression/modeling toolkit
     - seaborn       # Statistical visualizations
     - six           # Python 2/3 compatibility
-    - xarray        # N-d labeled array library
+    - tqdm          # Nice progressbar for longer computations
+    - xarray=0.9.6  # Use older version to prevent xbpch error
+    - xbpch         # Interface for bpch output files
     - esmpy         # Python interface to ESMF (xesmf dependency)
     - pip:
         # These are additional libraries to search for on PyPI
-        - xbpch    # Interface for bpch output files
         - xesmf    # Regridding xarray and numpy data
         - h5netcdf # allow HDF5-backend for xarray
         - graphviz # visualize dask graph (python package)
         - awscli   # AWS command line interface
-        - boto3    # Python version of "AWSCLI"
-        - cfncluster # manage HPC clusters on AWS

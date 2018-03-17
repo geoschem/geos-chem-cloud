@@ -1,7 +1,5 @@
 #!/bin/bash
-
 # Tested on EC2 ubuntu-xenial-16.04 (ami-80861296)
-
 sudo apt-get update
 
 # The quickest way to install NetCDF libraries. Can compile GEOS-Chem classic.
