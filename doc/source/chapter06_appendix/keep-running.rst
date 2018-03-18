@@ -48,7 +48,7 @@ Inside the screen session, run the model as usual::
 
 (Here I use ``tee`` to print model log to both the terminal screen and a file.)
 
-Type ``Crtl + a``, and then type ``d``, to **detach** from the current session. You will be back to the normal terminal but the model is still running inside that detached session. You can log off the server and re-login if you like.
+Type ``Ctrl + a``, and then type ``d``, to **detach** from the current session. You will be back to the normal terminal but the model is still running inside that detached session. You can log off the server and re-login if you like.
 
 List existing sessions by::
 
@@ -74,7 +74,7 @@ Inside the session, run the model as usual, just like in the ``screen`` session:
 
   $ ./geos.mp | tee run.log
 
-Type ``Crtl + b``, and then type ``d``, to **detach** from the current session. Use ``tmux ls`` to list existing sessions and ``tmux a`` (shortcut for ``tmux attach``) to resume the session.
+Type ``Ctrl + b``, and then type ``d``, to **detach** from the current session. Use ``tmux ls`` to list existing sessions and ``tmux a`` (shortcut for ``tmux attach``) to resume the session.
 
 To handle multiple sessions, use ``tmux new -s session_name`` to create a session with a name and ``tmux a -t session_name`` to resume that specific session.
 
