@@ -146,8 +146,8 @@ Congrats! You know how to access and analyze public datasets on AWS. Accessing G
 Access GEOS-Chem input data repository in S3
 --------------------------------------------
 
-List out bucket by::
-  
+List our bucket by::
+
   $ aws s3 ls --request-payer=requester s3://gcgrid/
                              PRE BPCH_RESTARTS/
                              PRE CHEM_INPUTS/
