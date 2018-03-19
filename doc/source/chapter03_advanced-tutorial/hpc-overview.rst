@@ -39,7 +39,7 @@ CfnCluster
 
 `CfnCluster <http://cfncluster.readthedocs.io>`_ is an `open-source tool <https://github.com/awslabs/cfncluster/blob/develop/LICENSE.txt>`_ developed directly by AWS. The full name "cloud formation cluster" comes from the `Cloud​Formation service <https://aws.amazon.com/cloudformation/>`_, which is for combining different AWS resources together. Understanding CloudFormation is far beyond the IT knowledge of domain scientists. Fortunately, you can just use CfnCluster with terminal commands ``cfncluster xxx`` and don't have to understand how CloudFormation works under the hood. Its official doc provides a `simple tutorial <http://cfncluster.readthedocs.io/en/latest/hello_world.html>`_ on running a 2-node MPI job.
 
-However, CfnCluster is an not an official AWS service, as you cannot find it anywhere in the AWS console. Its documentaion is not as user-friendly as AlcesFlight (see below) and there is a lack of comprehensive instructions for new users.
+However, CfnCluster is not an official AWS service, as you cannot find it anywhere in the AWS console. Its documentaion is not as user-friendly as AlcesFlight (see below) and there is a lack of comprehensive instructions for new users.
 
 AlcesFlight
 ^^^^^^^^^^^
