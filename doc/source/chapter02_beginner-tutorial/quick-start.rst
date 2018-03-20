@@ -186,11 +186,9 @@ Besides being a data analysis environment, Jupyter can also be used as a graphic
 .. note::
   There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
 
-We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you want to. Just compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is also pre-installed in the ``geo`` environment. 
+We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you want to. Just compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is pre-installed in the ``geo`` environment. My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed, which can fulfill almost all horizontal regridding needs for GEOS-Chem data (and most of Earth science data).
 
-My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed on the server, which can fulfill all horizontal regridding needs for GEOS-Chem data (and most of Earth science data). It should be much easier to use and orders of magnitude faster than the regridding routines in IDL/gamap.
-
-Also, nothing prevents you from downloading the output data and using old tools like IDL & MATLAB to analyze them, but we highly encourage you to switch to the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
+Also, you could indeed download the output data and use old tools like IDL & MATLAB to analyze them, but we highly recommend the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
 
 Step 5: Shut down the server (Very important!!) 
 -----------------------------------------------
