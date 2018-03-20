@@ -18,7 +18,7 @@ So which to choose? Recall that Linux distributions fall into two big categories
 
 Ubuntu tends to have the largest user base; CentOS seems to be widely used on HPC clusters; Amazon Linux has the most native AWS support. I find the model performance almost the same on different systems; but this could depend on specific programs.
 
-In this guide, we use with **Ubuntu 16.04 LTS (ami-66506c1c)** as the major example. Commands for **Amazon Linux 2017.09.1 (ami-1853ac65)** as also provided for reference.
+In this guide, we use with **Ubuntu 16.04 LTS (ami-66506c1c)** as the major example. Commands for **Amazon Linux 2017.09.1 (ami-1853ac65)** are also provided for reference.
 
 To test software installation, the smallest instance "t2.micro" is good enough. 
 
