@@ -39,7 +39,7 @@ Follow the `official docs <http://singularity.lbl.gov/docs-installation>`_ for i
   make
   sudo make install
 
-We deliberately do not include pre-installed Singularity in the tutorial AMI, to let you go through the installation process on your own -- you will see that installation is very easy and quick. On your own machine, the installation process is the same, and you will be able to use exactly the same environment on your own machine as on the cloud. On shared HPC clusters, you need to ask the cluster administrator to install Singularity for you if it is not there already.
+We deliberately do not include pre-installed Singularity in the tutorial AMI, to let you go through the installation process on your own -- you will see that installation is very easy and quick. On your own machine, the installation process is the same, and you will be able to use exactly the same environment on your own machine as on the cloud. On shared HPC clusters, you need to `ask the cluster administrator <http://singularity.lbl.gov/install-request>`_ to install Singularity for you if it is not there already.
 
 Do some basic tests like in the `official start guide <http://singularity.lbl.gov/quickstart>`_::
 
