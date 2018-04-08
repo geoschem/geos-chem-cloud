@@ -166,7 +166,7 @@ List our bucket by::
                              PRE SPC_RESTARTS/
   2018-03-08 00:18:41       3908 README
   
-GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transferring data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` it you download data to local machines.
+GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transferring data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` if you download data to local machines.
 
 The tutorial AMI only has 4x5 GEOS-FP metfield for 1-month (2013/07). You can get other metfields from that S3 bucket, to support simulations with any configurations.
 
@@ -208,4 +208,4 @@ The EC2 instance launched from the tutorial AMI only has 70 GB disk by default, 
 
 .. note::
 
-  Get tired of lengthy S3 commands? The `s3fs-fuse <https://github.com/s3fs-fuse/s3fs-fuse>`_ tool can make S3 buckets and objects behave just like normal directories and files on disk. However, it doesn't work well with requester-pay buckets yet (`issue#635 <https://github.com/s3fs-fuse/s3fs-fuse/issues/635>`_). If that issue is resolved we will add more instructions. 
+  Get tired of lengthy S3 commands? The `s3fs-fuse <https://github.com/s3fs-fuse/s3fs-fuse>`_ tool can make S3 buckets and objects behave just like normal directories and files on disk. However, it doesn't work well with requester-pay buckets yet (`issue#635 <https://github.com/s3fs-fuse/s3fs-fuse/issues/635>`_). If that issue is resolved we will add more instructions.
