@@ -129,7 +129,9 @@ This currently gives you 4.1.1 with C and Fortran bundled together::
 
 (CentOS's package registry has a newer version of NetCDF which separates Fortran and C libraries, so you would need ``sudo yum install -y netcdf-devel netcdf-fortran-devel``)
 
-However, this NetCDF distribution seems to lack ``/usr/include/netcdf.mod`` for ``use netcdf`` statement in Fortran 90 code. The ``include 'netcdf.inc'`` statement would work fine. Consider other distributions or install NetCDF from source.
+However, this NetCDF distribution seems to lack ``/usr/include/netcdf.mod`` for ``use netcdf`` statement in Fortran 90 code. The ``include 'netcdf.inc'`` statement would work fine. 
+
+CentOS will put one at ``/usr/lib64/gfortran/modules/netcdf.mod``. The include statement needs to be changed to ``-I/usr/lib64/gfortran/modules/``.
 
 Test sample NetCDF code
 -----------------------
