@@ -1,0 +1,21 @@
+Scripts to build GCHP on the cloud (works but highly experimental!)
+
+Tested with GCHP v11-02e:
+- commit a1d3b46 in https://bitbucket.org/gcst/gc_bleeding_edge.git
+- commit bfcc105 in https://bitbucket.org/gcst/GCHP.git
+- commit eca29e0 in https://bitbucket.org/gcst/ut_bleeding_edge
+Currently needs many dirty fixes for MAPL. Might be improved in future versions.
+
+Steps:
+1. Run ./build_GCHP_env.sh to install libraries
+2. Source ./bashrc_GCHP_CentOS to set environment and apply additional fixes
+3. (!!??) Install anaconda and numpy, because MAPL needs f2py to compile.
+4. Then follow http://wiki.seas.harvard.edu/geos-chem/index.php/Getting_Started_With_GCHP#GCHP_Quick_Start_Guide to configure and compile GCHP.
+
+Also need to change GCHP/Shared/Config/ESMA_base.mk to fix MAPL_COMMS___.f90 error.
+See http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP_v11-02#C_preprocessor_inserting_GNU_compiler_version_6.1.0_information_text_into_MAPL_COMMS_.f90
+
+
+Minor note:
+Top-level Makefile uses "git -C" that is not implemented in git1.8.3 on CentOS7.
+See https://github.com/ebrian/gitdummy/issues/5
