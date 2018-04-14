@@ -1,0 +1,72 @@
+BootStrap: docker
+From: centos:centos7
+
+%post
+    yum -y update
+    yum install -y wget vim git m4 bzip2 bc gcc gcc-gfortran gcc-c++ numpy-f2py epel-release
+    yum install -y netcdf-devel netcdf-fortran-devel mpich-3.2-devel
+    
+    ln -s /usr/lib64/gfortran/modules/netcdf.mod /usr/include/
+
+%environment
+    # fix Singularity + Perl error
+    # https://groups.google.com/a/lbl.gov/forum/#!msg/singularity/58Xr72oDfBg/m3Y7Nr_PBAAJ
+    export LANG=C
+    
+    # ====================================
+    # --- Same as GEOS-Chem classic  ---
+    # ====================================
+
+    export NETCDF_HOME=/usr
+    export NETCDF_FORTRAN_HOME=/usr
+
+    export FC=gfortran
+    export CC=gcc
+    export CXX=g++
+
+    export GC_BIN=$NETCDF_HOME/bin
+    export GC_INCLUDE=$NETCDF_HOME/include
+    export GC_LIB=$NETCDF_HOME/lib
+
+    export GC_F_BIN=$NETCDF_FORTRAN_HOME/bin
+    export GC_F_INCLUDE=$NETCDF_FORTRAN_HOME/include
+    export GC_F_LIB=$NETCDF_FORTRAN_HOME/lib
+    
+    # ====================================
+    # --- GCHP-specific settings  ---
+    # ====================================
+
+    export OMPI_CC=$CC
+    export OMPI_CXX=$CXX
+    export OMPI_FC=$FC
+    export F77=$FC
+    export F90=$FC
+    export COMPILER=$FC # needed for gfortran?
+
+    export PATH=/usr/lib64/mpich-3.2/bin:$PATH
+    export ESMF_COMM=mpich2
+    export MPI_ROOT=/usr/lib64/mpich-3.2
+    
+   # ====================================
+   # --- Dirty fixes for MAPL  ---
+   # ====================================
+
+   # --- Fixes for Makefile ---
+   export VPATH=/usr/include/mpich-3.2-x86_64:$VPATH # mpi.h, mpif.h, mpio.h
+   export VPATH=$GC_CODE_DIR/GCHP/Shared/MAPL_Base:$VPATH # mapl_*.mod
+   export VPATH=$GC_CODE_DIR/GCHP/ESMF/Linux/mod:$VPATH # esmf.mod
+   
+   # --- Fixed for header files ("#include <xxx.h>" statement) ---
+   export CPATH=/usr/include/mpich-3.2-x86_64:$CPATH # mpi.h, mpif.h, mpio.h
+   export CPATH=$GC_CODE_DIR/GCHP/Shared/MAPL_Base:$CPATH # MAPL_Generic.h
+   export CPATH=$GC_CODE_DIR/GCHP/Shared/GFDL_fms/shared/include:$CPATH # fms_platform.h
+   export CPATH=$GC_CODE_DIR/GCHP/gchp_standard/CodeDir/GCHP/ESMF/Linux/include:$CPATH # ESMF_ErrReturnCodes.inc
+
+%runscript
+    echo "Container for GCHP environment"
+    echo "Please use run it interactively by:"
+    echo "SINGULARITY_SHELL=/bin/bash SINGULARITYENV_GC_CODE_DIR=your_gc_code_dir singularity shell container_name"
+    echo "For example:"
+    echo "SINGULARITY_SHELL=~/GCHP/Code.v11-02_gchp SINGULARITYENV_GC_CODE_DIR=your_gc_code_dir singularity shell GCHP.simg"
+    echo "Inside container, run:"
+    echo "ln -s \$GC_CODE_DIR/GCHP/Shared/MAPL_Base/mapl_constantsmod.mod /usr/include/"
