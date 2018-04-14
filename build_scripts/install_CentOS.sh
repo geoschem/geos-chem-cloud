@@ -7,7 +7,7 @@
 sudo yum install -y wget vim git tmux m4 bzip2 bc
 
 sudo yum install -y epel-release # extra repo for NetCDF and MPI
-sudo yum install -y libnetcdf-devel libnetcdff-devel
+sudo yum install -y netcdf-devel netcdf-fortran-devel
 # The module file will be at /usr/lib64/gfortran/modules/netcdf.mod
 
 sudo yum install -y gcc-c++ # MAPL needs c++ compiler
