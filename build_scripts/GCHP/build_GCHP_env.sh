@@ -23,8 +23,9 @@
 
 # those very basic tools are not on CentOS by default
 # bzip2 is for decompressing anaconda
+# f2py is needed to compile MAPL
 # remember to add emacs for production version
-sudo yum install -y wget vim git screen tmux m4 bzip2 bc
+sudo yum install -y wget vim git screen tmux m4 bzip2 bc numpy-f2py
 
 # Install GNU compiler family MAPL needs c++ compiler
 sudo yum install -y gcc gcc-gfortran gcc-c++ 

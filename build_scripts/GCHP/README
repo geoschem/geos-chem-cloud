@@ -9,7 +9,7 @@ Currently needs many dirty fixes for MAPL. Might be improved in future versions.
 Steps:
 1. Run ./build_GCHP_env.sh to install libraries
 2. Source ./bashrc_GCHP_CentOS to set environment and apply additional fixes
-3. (!!??) Install anaconda and numpy, because MAPL needs f2py to compile.
+3. (!!??) Install numpy, because MAPL needs f2py to compile. Can use either Anaconda or system python. Anaconda can also help install the latest awscli; system Python is useful for container.
 4. Then follow http://wiki.seas.harvard.edu/geos-chem/index.php/Getting_Started_With_GCHP#GCHP_Quick_Start_Guide to configure and compile GCHP.
 
 Also need to change GCHP/Shared/Config/ESMA_base.mk to fix MAPL_COMMS___.f90 error.
