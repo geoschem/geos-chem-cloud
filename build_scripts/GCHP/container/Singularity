@@ -3,7 +3,7 @@ From: centos:centos7
 
 %post
     yum -y update
-    yum install -y wget vim git m4 bzip2 bc gcc gcc-gfortran gcc-c++ numpy-f2py epel-release
+    yum install -y make wget vim git m4 bzip2 bc gcc gcc-gfortran gcc-c++ numpy-f2py epel-release
     yum install -y netcdf-devel netcdf-fortran-devel mpich-3.2-devel
     
     ln -s /usr/lib64/gfortran/modules/netcdf.mod /usr/include/
@@ -67,6 +67,6 @@ From: centos:centos7
     echo "Please use run it interactively by:"
     echo "SINGULARITY_SHELL=/bin/bash SINGULARITYENV_GC_CODE_DIR=your_gc_code_dir singularity shell container_name"
     echo "For example:"
-    echo "SINGULARITY_SHELL=~/GCHP/Code.v11-02_gchp SINGULARITYENV_GC_CODE_DIR=your_gc_code_dir singularity shell GCHP.simg"
+    echo "SINGULARITY_SHELL=~/GCHP/Code.v11-02_gchp singularity shell GCHP.simg"
     echo "Inside container, run:"
     echo "ln -s \$GC_CODE_DIR/GCHP/Shared/MAPL_Base/mapl_constantsmod.mod /usr/include/"
