@@ -138,7 +138,7 @@ From: centos:centos7
     # --- Dirty fixes for MAPL  ---
     # ====================================
 
-    # --- Fixed for header files ("#include <xxx.h>" statement) ---
+    # --- Fixes for header files ("#include <xxx.h>" statement) ---
     # mpi.h locates at /usr/include so MAPL can find it
     export CPATH=$GC_CODE_DIR/GCHP/Shared/MAPL_Base:$CPATH # MAPL_Generic.h
     export CPATH=$GC_CODE_DIR/GCHP/Shared/GFDL_fms/shared/include:$CPATH # fms_platform.h
