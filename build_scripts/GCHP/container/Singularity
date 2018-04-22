@@ -105,6 +105,7 @@ From: centos:centos7
 
     export NETCDF_HOME=/usr
     export NETCDF_FORTRAN_HOME=/usr
+    export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH # for libnetcdff.so
 
     export FC=gfortran
     export CC=gcc
@@ -133,9 +134,19 @@ From: centos:centos7
     export PATH=$MPI_ROOT/bin:$PATH
     export ESMF_COMM=mpich2
 
+    # ====================================
+    # --- Dirty fixes for MAPL  ---
+    # ====================================
+
+    # --- Fixed for header files ("#include <xxx.h>" statement) ---
+    # mpi.h locates at /usr/include so MAPL can find it
+    export CPATH=$GC_CODE_DIR/GCHP/Shared/MAPL_Base:$CPATH # MAPL_Generic.h
+    export CPATH=$GC_CODE_DIR/GCHP/Shared/GFDL_fms/shared/include:$CPATH # fms_platform.h
+    export CPATH=$GC_CODE_DIR/GCHP/gchp_standard/CodeDir/GCHP/ESMF/Linux/include:$CPATH # ESMF_ErrReturnCodes.inc
+
 %runscript
     echo "Container for GCHP environment"
     echo "Please use run it interactively by, for example:"
-    echo "singularity shell GCHP.simg"
+    echo "SINGULARITYENV_GC_CODE_DIR=~/GCHP/Code.v11-02_gchp singularity shell GCHP.simg"
     echo "To enable coloring inside container, run:"
     echo 'alias ls="ls --color=auto"'
