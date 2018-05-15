@@ -21,7 +21,7 @@ After entering some basic information, you will be required to enter your credit
 
 Now you should have an AWS account! It's time to run the model in cloud. (You can skip Step 1 for the next time, of course)
 
-Step 2: Launch a server with GEOS-Chem pre-installed 
+Step 2: Launch a server with GEOS-Chem pre-installed
 ----------------------------------------------------
 
 Log in to AWS console, and click on EC2 (Elastic Compute Cloud), which is the most basic cloud computing service.
@@ -74,10 +74,10 @@ Select your instance, click on the "Connect" button near the blue "Launch Instan
 .. figure:: img/connect_instruction.png
   :width: 500 px
 
-- On Mac or Linux, copy the ``ssh -i "xx.pem" root@xxx.com`` command under "Example". 
-  Before using that command to ssh to your server, do some minor stuff: 
-  
-  (1) ``cd`` to the directory where store your Key Pair (preferably ``$HOME/.ssh``) 
+- On Mac or Linux, copy the ``ssh -i "xx.pem" root@xxx.com`` command under "Example".
+  Before using that command to ssh to your server, do some minor stuff:
+
+  (1) ``cd`` to the directory where store your Key Pair (preferably ``$HOME/.ssh``)
   (2) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
   (3) Change the user name in that command from ``root`` to ``ubuntu``. (You'll be asked to use ``ubuntu`` if you keep ``root``).
 - On Windows, please refer to the guide for `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_ and `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_ (Your life would probably be easier with MobaXterm).
@@ -93,11 +93,11 @@ That's a system with GEOS-Chem already built!
   **Trouble shooting**: if you have trouble ``ssh`` to the server, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
 
 Go to the pre-generated run directory::
-  
+
   $ cd ~/tutorial/geosfp_4x5_standard
 
 Just run the pre-compiled the model by::
-  
+
   $ ./geos.mp
 
 Or you can re-compile the model on your own::
@@ -134,8 +134,7 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
   		time:calendar = "gregorian" ;
   		time:axis = "T" ;
 
-`Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my tutorial on 
-`xarray for GEOS-Chem <http://gcpy-demo.readthedocs.io>`_. 
+`Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/JiaweiZhuang/GEOSChem-python-tutorial>`_.
 
 Activate the pre-installed `geoscientific Python environment <https://github.com/JiaweiZhuang/cloud_GC/blob/master/build_scripts/python/geo.yml>`_ by ``source activate geo`` (it is generally a bad idea to directly install things into the root Python environment), and then start ``ipython`` from the command line::
 
@@ -163,9 +162,9 @@ Activate the pre-installed `geoscientific Python environment <https://github.com
 A much better data-analysis environment is `Jupyter notebooks <http://jupyter.org>`_. If you have been using Jupyter on your local machine, the user experience on the cloud would be exactly the same.
 
 To use Jupyter on remote servers, re-login to the server with port-forwarding option ``-L 8999:localhost:8999``::
-  
+
   $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
-  
+
 Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
 
   $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
@@ -190,7 +189,7 @@ We encourage users to try the new NetCDF diagnostics, but you can still use the 
 
 Also, you could indeed download the output data and use old tools like IDL & MATLAB to analyze them, but we highly recommend the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
 
-Step 5: Shut down the server (Very important!!) 
+Step 5: Shut down the server (Very important!!)
 -----------------------------------------------
 
 Right-click on the instance in your console to get this menu:
@@ -199,10 +198,10 @@ Right-click on the instance in your console to get this menu:
 
 There are two different ways to stop being charged:
 
-- "Stop" will make the system inactive, so that you'll not be charged by the CPU time, 
+- "Stop" will make the system inactive, so that you'll not be charged by the CPU time,
   and only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved.
 - "Terminate" will completely remove that virtual server so you won't be charged at all after that.
-  Unless you save your system as an AMI or transfer the data to other storage services, 
+  Unless you save your system as an AMI or transfer the data to other storage services,
   you will lose all your data and software.
 
 You will learn how to save your data and configurations persistently in the next tutorials. You might also want to :doc:`simplify your ssh login command <../chapter06_appendix/ssh-config>`.
