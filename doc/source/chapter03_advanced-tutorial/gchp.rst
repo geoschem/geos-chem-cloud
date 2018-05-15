@@ -1,4 +1,4 @@
-GEOS-Chem High-Performance version (GCHP) (experiential)
+GEOS-Chem High-Performance version (GCHP) (experimental)
 ========================================================
 
 We've successfully made GCHP running on the cloud. **It is functioning correctly** but there are several issues to be resolved:
