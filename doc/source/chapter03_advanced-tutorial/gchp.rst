@@ -17,7 +17,7 @@ We will be using :doc:`containers <./container>` to run GCHP. It allows you to s
 
 The Singularity image for GCHP can be obtained from `Singularity Hub <https://singularity-hub.org/collections/946/usage>`_, with the command::
 
-  $ singularity pull --name GCHP.simg shub://JiaweiZhuang/Singularity_GC
+  $ singularity pull --name GCHP.simg shub://JiaweiZhuang/Singularity_GCHP
 
 Launch server
 -------------
