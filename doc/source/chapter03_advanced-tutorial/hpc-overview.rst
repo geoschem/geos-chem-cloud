@@ -16,7 +16,7 @@ Basic EC2 instances can already fulfill most of computing needs, as you've learn
 
 - **Cross-node MPI connection**. To run large-scale MPI jobs with hundreds and thousands of cores, you need to connect multiple EC2 instances (just like connecting multiple "nodes" on traditional clusters). This can be done by hand, but using existing HPC tools is much easier.
 
-For most of daily computing workload, it doesn't actually worth the effort to set up clusters (also consider that all HPC management tools have some initial learning curves). Using the basic EC2 is often much easier and controllable. For less than 5 simultaneous runs, just launch separate EC2 instances (pretty quick with AWSCLI) and duplicate input data (pretty quick with S3). For a single, big simulation, the "c5.18xlarge" type with 72 cores is already pretty decent. You can even run 4 simulations, each with 18 cores, on this 72-core server (just make sure that ``OMP_NUM_THREADS`` times the number of simultaneous runs do not exceed the total number of cores, otherwise all jobs will be desperately slow.).
+For most of daily computing workload, it doesn't actually worth the effort to set up clusters (also consider that all HPC management tools have some initial learning curves). Using the basic EC2 is often much easier and controllable. For a single simulation, the "c5.18xlarge" type with 36 CPU cores is already pretty decent. For a few simultaneous runs, just launch separate EC2 instances (pretty quick with AWSCLI) and duplicate input data (pretty quick with S3).
 
 So, when do you actually need an HPC environment?
 

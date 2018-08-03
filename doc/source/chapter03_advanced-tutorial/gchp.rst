@@ -6,7 +6,7 @@ We've successfully made GCHP running on the cloud. **It is functioning correctly
 - GCHP compiles with gfortran, but the overall performance is ~20% slower than with ifort. The major slow down comes from the new advection module (GFDL-FV3).
 - The initial I/O takes a long time (does not affect long-term simulations).
 - The data analysis pipeline is not fully documented. We do have some `preliminary scripts <http://ftp.as.harvard.edu/pub/exchange/elundgren/CSCI29/ipynb/>`_ to process and regrid cubed-sphere data, though.
-- It is only set up to run in a single node, with at most 72 CPUs (c5.18xlarge).
+- It is only set up to run in a single node, with at most 36 CPUs (c5.18xlarge).
 
 Right now it is pretty good for learning and for small experiments. We will make a major update after the formal release of v11-02.
 
