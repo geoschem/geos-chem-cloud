@@ -1,0 +1,3 @@
+Pull GEOS-Chem input data in a traditional way (from Harvard FTP)
+On the AWS, the data should be pulled from S3 for optimal bandwidth. See ../from_S3/
+Scripts here are just for reference.
