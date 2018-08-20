@@ -14,5 +14,4 @@ wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/GEOS_NATIVE/Olson
 wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/GEOS_NATIVE/TOMAS_201402"
 wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/GEOS_NATIVE/UCX_201403"
 
-# Not on FTP yet
-# wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/GEOS_NATIVE/MODIS_LAI_201707"
+wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/ExtData/CHEM_INPUTS/MODIS_LAI_201707"

@@ -10,4 +10,4 @@ cd /home/ubuntu/gcdata/ExtData/
 wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP/2011/01/"
 
 # GEOSFP 4x5 1-month
-wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP/2013/07/"
+wget -r -nH --cut-dirs=3 "ftp://ftp.as.harvard.edu/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP/2016/07/"

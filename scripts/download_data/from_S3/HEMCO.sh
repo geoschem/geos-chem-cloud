@@ -7,6 +7,6 @@ time aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/HEMCO/ ./HEMCO \
 --exclude "NEI2011/v2015-03/*" \
 --exclude "NEI2011ek/v2018-04/*" \
-# --exclude "CEDS/*" \
+--exclude "CEDS/*" \
 --exclude "QFED/*" \
 --exclude "OFFLINE*"
