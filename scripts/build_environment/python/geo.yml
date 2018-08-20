@@ -2,7 +2,6 @@ name: geo
 channels:
     - defaults
     - conda-forge
-    - nesii/label/dev-esmf # for ESMPy only
 dependencies:
     - python=3.6    # Python version 3.6
     - bottleneck    # C-optimized array functions for NumPy
