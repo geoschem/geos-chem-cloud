@@ -7,8 +7,8 @@ See :ref:`motivation-label` for the motivation of this project. See :ref:`quick-
 
 This project is supported by the AWS Public Data Set Program and the NASA Atmospheric Composition Modeling and Analysis Program (ACMAP).
 
-.. warning::
-  *GEOSChem-on-cloud* is at initial development and things are moving very fast. Please use the `GitHub issue tracker <https://github.com/JiaweiZhuang/cloud_GC/issues>`_ to request new functionalities, report bugs, or just discuss general issues.
+.. note::
+  *GEOSChem-on-cloud* is at early development and things are moving fast. Please use the `GitHub issue tracker <https://github.com/JiaweiZhuang/cloud_GC/issues>`_ to request new functionalities, report bugs, or just discuss general issues.
 
 How to use this documentation
 -----------------------------
