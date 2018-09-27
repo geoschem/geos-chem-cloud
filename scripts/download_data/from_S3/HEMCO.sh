@@ -3,6 +3,8 @@
 # ~210 GB in total, CEDS takes 140 GB. To reduce data size for quick testing,
 # can disable CEDS in HEMCO_Config.rc and use EDGAR instead
 
+# Inside Extdata/
+
 time aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/HEMCO/ ./HEMCO \
 --exclude "NEI2011/v2015-03/*" \

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Inside Extdata/
+
 time aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/GEOS_NATIVE ./CHEM_INPUTS  \
 --exclude "*" \

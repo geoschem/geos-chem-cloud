@@ -24,3 +24,6 @@ sudo apt-get update
 sudo apt-get install -y docker-ce
 
 sudo docker run --rm hello-world
+
+# for CharlieCloud
+sudo apt-get install -y gcc make python
