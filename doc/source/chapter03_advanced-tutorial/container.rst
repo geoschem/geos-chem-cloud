@@ -24,24 +24,27 @@ For more information about containers, read this `Singularity article <http://jo
 Install Singularity container
 -----------------------------
 
-Follow the `official docs <http://singularity.lbl.gov/docs-installation>`_ for installation on different platforms. On our tutorial AMI (based on Ubuntu), the full commands are::
+Follow the `official docs <https://www.sylabs.io/guides/2.6/user-guide/installation.html>`_ for installation on different platforms. On our tutorial AMI (based on Ubuntu), the full commands are::
   
   sudo apt-get update && \
-      sudo apt-get install \
-      python \
-      dh-autoreconf \
-      build-essential
-
-  git clone https://github.com/singularityware/singularity.git
+   sudo apt-get install \
+     python \
+     dh-autoreconf \
+     build-essential \
+     libarchive-dev
+     
+  git clone https://github.com/sylabs/singularity.git
   cd singularity
+  git fetch --all
+  git checkout 2.6.0
   ./autogen.sh
-  ./configure --prefix=/usr/local --sysconfdir=/etc
+  ./configure --prefix=/usr/local
   make
   sudo make install
 
-We deliberately do not include pre-installed Singularity in the tutorial AMI, to let you go through the installation process on your own -- you will see that installation is very easy and quick. On your own machine, the installation process is the same, and you will be able to use exactly the same environment on your own machine as on the cloud. On shared HPC clusters, you need to `ask the cluster administrator <http://singularity.lbl.gov/install-request>`_ to install Singularity for you if it is not there already.
+We deliberately do not include pre-installed Singularity in the tutorial AMI, to let you go through the installation process on your own -- you will see that installation is very easy and quick. On your own machine, the installation process is the same, and you will be able to use exactly the same environment on your own machine as on the cloud. On shared HPC clusters, you need to `ask the cluster administrator <https://www.sylabs.io/guides/2.6/user-guide/installation.html#requesting-an-installation>`_ to install Singularity for you if it is not there already.
 
-Do some basic tests like in the `official start guide <http://singularity.lbl.gov/quickstart>`_::
+Do some basic tests like in the `official start guide <https://www.sylabs.io/guides/2.6/user-guide/quick_start.html#download-pre-built-images>`_::
 
   $ which singularity
   /usr/local/bin/singularity
