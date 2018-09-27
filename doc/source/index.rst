@@ -5,10 +5,10 @@ GEOS-Chem on cloud computing platforms
 
 See :ref:`motivation-label` for the motivation of this project. See :ref:`quick-start-label` to start your first GEOS-Chem simulation on the `Amazon Web Services (AWS) <https://aws.amazon.com/>`_ cloud within 10 minutes (and within seconds for the next time).
 
-This project is supported by the AWS Public Data Set Program and the NASA Atmospheric Composition Modeling and Analysis Program (ACMAP).
+This project is supported by the `AWS Public Data Set Program <https://registry.opendata.aws/geoschem-input-data/>`_ and the NASA Atmospheric Composition Modeling and Analysis Program (ACMAP).
 
 .. note::
-  *GEOSChem-on-cloud* is at early development and things are moving fast. Please use the `GitHub issue tracker <https://github.com/JiaweiZhuang/cloud_GC/issues>`_ to request new functionalities, report bugs, or just discuss general issues.
+  For any questions, bug reports, or functionality requests, please raise a new issue on the `GitHub issue tracker <https://github.com/geoschem/cloud_GC/issues>`_.
 
 How to use this documentation
 -----------------------------
