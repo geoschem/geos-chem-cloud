@@ -4,8 +4,8 @@ Quick start guide for new users
 ===============================
 
 
-Step 1: Sign up an Amazon Web Service(AWS) account
---------------------------------------------------
+Step 1: Sign up an Amazon Web Service (AWS) account
+---------------------------------------------------
 
 Go to http://aws.amazon.com, click on "Create an AWS account" on the upper-right corner:
 
@@ -33,7 +33,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 .. figure:: img/region_list.png
   :width: 300 px
 
-In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-ab925cd6** or **GEOSChem_tutorial_20180316** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-08c83a8b3ebd20b63** or **GEOSChem_tutorial_20180926** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
@@ -41,7 +41,7 @@ In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the 
 
 You have already specified your operating system, or the "software" side of the virtual server. Then it's time to specify the "hardware" side, mostly about CPUs.
 
-In this toy example, choose "Memory optimized"-"r4.large" to test GEOS-Chem with the minimum fee.
+In this toy example, choose "Memory optimized"-"r5.large" to test GEOS-Chem with the minimum fee.
 
 .. figure:: img/choose_instance_type.png
 
@@ -107,20 +107,21 @@ Or you can re-compile the model on your own::
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up your own server, configuring software environment, and preparing model input data!
 
-The default simulation length is only 20 minutes, for demonstration purpose. The "r4.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
+The default simulation length is only 20 minutes, for demonstration purpose. The "r5.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
 
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
 
-Note that this system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. It uses `v11-02d <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v11-02#v11-02d>`_, which might not be the version you want for a serious scientific analysis. You can easily :doc:`switch to other versions <../chapter06_appendix/gc-version>`.
+Note that this system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. It uses `12.0.1 <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_12#12.0.1>`_, but it is can easily :doc:`switched to other versions <../chapter06_appendix/gc-version>` if you need.
 
 Step 4: Analyze output data with Python (Optional)
 --------------------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.inst.20130701.nc4``. There is also a pre-generated ``GEOSChem.inst.20130701_backup.nc4`` in the run directory, ready for you to analyze::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20130701.nc4``. To save time, you can also cancel the simulation and use the pre-generated file with the same name::
 
-  $ ncdump -h GEOSChem.inst.20130701_backup.nc4
-  netcdf GEOSChem.inst.20130701_backup {
+  $ cd OutputDir/
+  $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
+  netcdf GEOSChem.SpeciesConc.20160701_0000z {
   dimensions:
   	time = UNLIMITED ; // (1 currently)
   	lev = 72 ;
@@ -130,9 +131,10 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
   variables:
   	double time(time) ;
   		time:long_name = "Time" ;
-  		time:units = "minutes since 2013-07-01 00:00:00 UTC" ;
+      time:units = "minutes since 2016-07-01 00:00:00 UTC" ;
   		time:calendar = "gregorian" ;
   		time:axis = "T" ;
+  ...
 
 `Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/JiaweiZhuang/GEOSChem-python-tutorial>`_.
 
@@ -140,13 +142,13 @@ Activate the pre-installed `geoscientific Python environment <https://github.com
 
   $ source activate geo  # I also set a `act geo` alias
   $ ipython
-  Python 3.6.4 |Anaconda, Inc.| (default, Jan 16 2018, 18:10:19)
+  Python 3.6.6 |Anaconda, Inc.| (default, Jun 28 2018, 17:14:51)
   Type 'copyright', 'credits' or 'license' for more information
-  IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
+  IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
 
   In [1]: import xarray as xr
 
-  In [2]: ds = xr.open_dataset("GEOSChem.inst.20130701_backup.nc4")
+  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0000z.nc4')
 
   In [3]: ds
   Out[3]:
@@ -167,6 +169,7 @@ To use Jupyter on remote servers, re-login to the server with port-forwarding op
 
 Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
 
+  $ source activate geo
   $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
   [I 21:11:41.503 NotebookApp] Writing notebook server cookie secret to /run/user/1000/jupyter/notebook_cookie_secret
   [W 21:11:41.986 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
@@ -178,9 +181,9 @@ Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=89
 
 Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` that you can just execute. It is located at::
 
-  ~/tutorial/python_example/plot_GC_data.ipynb
+  ~/tutorial/python_example/sample-python-code.ipynb
 
-Besides being a data analysis environment, Jupyter can also be used as a graphical text editor on remote servers so you don't have to use ``vim``/``emacs``/``nano``. The Jupyter console also allows you to download/upload data without using ``scp``.
+Besides being a data analysis environment, Jupyter can also be used as a graphical text editor on remote servers so you don't have to use ``vim``/``emacs``/``nano``. The Jupyter console also allows you to download/upload data without using ``scp``. The next generation of notebooks, namely `Jupyter Lab <https://jupyterlab.readthedocs.io>`_, is also installed. Just change the launching command from ``jupyter notebook ...`` to ``jupyter lab ...`` if you want to have a try.
 
 .. note::
   There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.

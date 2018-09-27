@@ -3,10 +3,11 @@ List of public AWS resources for GEOS-Chem
 
 Currently all resources are in us-east-1 (N. Virginia).
 
+Latest resources:
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Tutorial AMI     | ami-ab925cd6           | 70 GB    |                                  |
+|| Tutorial AMI     | ami-08c83a8b3ebd20b63  | 100 GB   |                                  |
 |                   |                        |          | 1. gfortran 5.4.0,               |
 |                   |                        |          |    netCDF-Fortran 4.4.3          |
 |                   |                        |          | 2. GC environment variables      |
@@ -24,4 +25,12 @@ Currently all resources are in us-east-1 (N. Virginia).
 +-------------------+------------------------+----------+----------------------------------+
 || S3 bucket for    | s3://gcgrid            | ~30 TB   | All current GEOS-Chem input data |
 || all GC data      | (requester-pay)        |          |                                  |
++-------------------+------------------------+----------+----------------------------------+
+
+Historical resources (for record):
++-------------------+------------------------+----------+----------------------------------+
+| Resource          | ID/name                | Size     | Content                          |
++===================+========================+==========+==================================+
+|| Older tutorial   | ami-ab925cd6           | 70 GB    | Same as tutorial AMI             |
+|| AMI              |                        |          | but uses v11-02d                 |
 +-------------------+------------------------+----------+----------------------------------+
