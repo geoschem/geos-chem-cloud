@@ -8,7 +8,7 @@ I just put essential steps here for reference. Existing GEOS-Chem users should f
 Get source code and checkout model version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After v11-02 formal release, you might want to clone from the main repository::
+You can obtain the latest copy of the code from `GEOS-Chem's GitHub repo <https://github.com/geoschem>`_::
 
   git clone https://github.com/geoschem/geos-chem Code.12.0.1
   git clone https://github.com/geoschem/geos-chem-unittest.git UT

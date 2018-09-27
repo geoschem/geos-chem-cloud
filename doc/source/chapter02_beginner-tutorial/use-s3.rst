@@ -168,18 +168,17 @@ List our bucket by::
   
 GEOS-Chem input data bucket uses `requester-pay mode <https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html>`_. Transferring data from S3 to EC2 (in the same region) has no cost. But you do need to pay for the :ref:`egress fee <data-egress-label>` if you download data to local machines.
 
-The tutorial AMI only has 4x5 GEOS-FP metfield for 1-month (2013/07). You can get other metfields from that S3 bucket, to support simulations with any configurations.
+The tutorial AMI only has 4x5 GEOS-FP metfield for 1-month (2016/07). You can get other metfields from that S3 bucket, to support simulations with any configurations.
 
-For example, download the 4x5 GEOS-FP data over the next month (2013/08)
+For example, download the 4x5 GEOS-FP data over the next month (2016/08)
 
 ::
   
   $ aws s3 cp --request-payer=requester --recursive \
-    s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/ \
-    ~/gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/
+    s3://gcgrid/GEOS_4x5/GEOS_FP/2016/08/ \
+    ~/ExtData/GEOS_4x5/GEOS_FP/2016/08/
 
-  download: s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A1.4x5.nc to gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A1.4x5.nc
-  download: s3://gcgrid/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A3mstC.4x5.nc to gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/08/GEOSFP.20130801.A3mstC.4x5.nc
+  download: s3://gcgrid/GEOS_4x5/GEOS_FP/2016/08/GEOSFP.20160801.A3mstC.4x5.nc to ExtData/GEOS_4x5/GEOS_FP/2016/08/GEOSFP.20160801.A3mstC.4x5.nc
   ...
 
 Downloading this ~2.5 GB data should just take 10~20s.
@@ -189,22 +188,22 @@ To download more months (but not the entire year), consider simple bash "for" lo
   for month in 09 10
   do
   aws s3 cp --request-payer=requester --recursive \
-    s3://gcgrid/GEOS_4x5/GEOS_FP/2013/$month \
-    ~/gcdata/ExtData/GEOS_4x5/GEOS_FP/2013/$month
+    s3://gcgrid/GEOS_4x5/GEOS_FP/2016/$month \
+    ~/ExtData/GEOS_4x5/GEOS_FP/2016/$month
   done
 
 `Wildcards are also supported <https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters>`_, but it feels pretty different from common Linux wildcards. I often find writing bash scripts a lot quicker. 
 
 Then you may want to change the simulation date in ``input.geo`` to test the new data. For example, change to next month::
 
-  Start YYYYMMDD, hhmmss  : 20130801 000000
-  End   YYYYMMDD, hhmmss  : 20130901 000000
+  Start YYYYMMDD, hhmmss  : 20160801 000000
+  End   YYYYMMDD, hhmmss  : 20160901 000000
   Run directory           : ./
-  Input restart file      : GEOSChem_restart.201307010000.nc
+  Input restart file      : GEOSChem_restart.201607010000.nc
 
 (Note that the restart file is still at 2013/07 in this case.)
 
-The EC2 instance launched from the tutorial AMI only has 70 GB disk by default, so the disk will be full very soon. You will learn how to increase the disk size, right in the next tutorial.
+The EC2 instance launched from the tutorial AMI only has limited disk by default, so the disk will be full very soon. You will learn how to increase the disk size, right in the next tutorial.
 
 .. note::
 

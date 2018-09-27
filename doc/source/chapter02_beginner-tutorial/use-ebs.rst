@@ -6,7 +6,7 @@ In the previous tutorial you've learned S3, which is independent of any EC2 inst
 Viewing existing EBS volumes
 ----------------------------
 
-The EC2 instance launched from the tutorial AMI has 70 GB of disk storage by default::
+The EC2 instance launched from the tutorial AMI has a limited disk storage by default::
 
   ubuntu@ip-172-31-46-2:~$ df -h
   Filesystem      Size  Used Avail Use% Mounted on
@@ -28,7 +28,7 @@ The easiest way to increase your EC2 instance's disk size is during launching. I
 
 (we will gradually cover other configuration details throughout the rest of tutorials)
 
-The default number is the minimum storage requirement of the AMI. For a fresh operating system, the requirement is 8 GB. My tutorial AMI contains input data so I require it to be at least 70 GB. If you need a larger disk to host more output data, just enter a larger number. The maximum size of a single volume is `16 TB <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_. You don't need to change Volume Type in most cases.
+The default number is the minimum storage requirement of the AMI. For a fresh operating system, the requirement is 8 GB. My tutorial AMI contains input data so I require it to be at least 70~100 GB. If you need a larger disk to host more output data, just enter a larger number. The maximum size of a single volume is `16 TB <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_. You don't need to change ```Volume Type`` in most cases.
 
 But you might already have an EC2 instance running and don't want to start over. Another way to add disk storage is creating additional volumes, as detailed below.
 
