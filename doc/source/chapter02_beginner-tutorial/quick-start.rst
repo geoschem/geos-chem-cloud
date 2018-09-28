@@ -39,15 +39,11 @@ In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the 
 
 .. figure:: img/search_ami.png
 
-**This is one of the game-changing features of cloud computing.** An AMI means a saved system. I started with a brand new Linux system and built GEOS-Chem on it. After that, everyone is able to get a perfect clone of my system, with everything installed correctly. This magic can hardly happen on traditional machines! You can make any modifications you like to your copy, such as changing the model code, downloading more data or installing additional software. If you screw things up (e.g. install some bad software, delete important files…), you can simply launch again and start over.
+An AMI full specifies the "software" side of your virtual server, including the operating system, software libraries, and default data files. Then it's time to specify the "hardware" side, mostly about CPUs.
 
-You have already specified your operating system, or the "software" side of the virtual server. Then it's time to specify the "hardware" side, mostly about CPUs.
-
-In this toy example, choose "Memory optimized"-"r5.large" to test GEOS-Chem with the minimum fee.
+You can select from a large number of CPU types at "Step 2: Choose an Instance Type". In this toy example, choose "Memory optimized"-"r5.large" which meets the minimal hardware requirement for GEOS-Chem:
 
 .. figure:: img/choose_instance_type.png
-
-There are many CPU options, including numbers and types. AWS free tier also gives you 750 free hours of "t2.micro", which is the tiniest CPU. Its memory is too small to run GEOS-Chem, but it is good for testing software installation if you need to.
 
 .. _skip-ec2-config-label:
 
@@ -55,9 +51,9 @@ There are many CPU options, including numbers and types. AWS free tier also give
 
 .. _keypair-label:
 
-For the first time of using EC2, you need to create and download a "Key Pair". This is equivalent to the password you enter to ssh to your local server, but much safer than a normal password. Here, such "password" is a file, being stored in your own computer. The only way to share your server password with others is to share that file.
+For the first time of using EC2, you will be asked to create and download a file called "Key Pair". It is equivalent to the password you enter to ``ssh`` to your local server, but much more secure.
 
-Give your KeyPair a name, click on "Download Key Pair", and finally click on "Launch Instances". (for the next time, you can simply select "Choose an existing Key Pair" and launch).
+Give your "Key Pair" a name, click on "Download Key Pair", and finally click on "Launch Instances". (for the next time, you can simply select "Choose an existing Key Pair" and launch).
 
 .. figure:: img/key_pair.png
   :width: 500 px
@@ -73,7 +69,7 @@ You now have your own server running on the cloud!
 Step 3: Log into the server and run GEOS-Chem
 ---------------------------------------------
 
-Select your instance, click on the "Connect" button near the blue "Launch Instance" button, then you should see this page:
+Select your instance, click on the "Connect" button (shown in the above figure) near the blue "Launch Instance" button, then you should see this instruction page:
 
 .. figure:: img/connect_instruction.png
   :width: 500 px
@@ -84,7 +80,7 @@ Select your instance, click on the "Connect" button near the blue "Launch Instan
   (1) ``cd`` to the directory where store your Key Pair (preferably ``$HOME/.ssh``)
   (2) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
   (3) Change the user name in that command from ``root`` to ``ubuntu``. (You'll be asked to use ``ubuntu`` if you keep ``root``).
-- On Windows, please refer to the guide for `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_ and `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_ (Your life would probably be easier with MobaXterm).
+- On Windows, please refer to the guide for `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_ and `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_ (MobaXterm should be a lot easier). Alternatively, you can `use the Windows Subsystem for Linux <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ and then simply follow the above steps for Mac/Linux.
 
 Your terminal should look like this:
 
@@ -116,14 +112,15 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
 
-Note that this system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. It uses `12.0.1 <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_12#12.0.1>`_, but it is can easily :doc:`switched to other versions <../chapter06_appendix/gc-version>` if you need.
+.. note::
+  This system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. :doc:`Later tutorials <research-workflow>` will show you how to set up custom versions and configurations.
 
 Step 4: Analyze output data with Python (Optional)
 --------------------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20130701.nc4``. To save time, you can also cancel the simulation and use the pre-generated file with the same name::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation and use the pre-generated file with the same name::
 
-  $ cd OutputDir/
+  $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
   netcdf GEOSChem.SpeciesConc.20160701_0000z {
   dimensions:
@@ -208,7 +205,7 @@ Right-click on the instance in your console to get this menu:
 There are two different ways to stop being charged:
 
 - "Stop" will make the system inactive, so that you'll not be charged by the CPU time,
-  and only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved.
+  but only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved.
 - "Terminate" will completely remove that virtual server so you won't be charged at all after that.
   Unless you save your system as an AMI or transfer the data to other storage services,
   you will lose all your data and software.

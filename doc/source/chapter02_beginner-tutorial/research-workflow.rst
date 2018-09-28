@@ -46,7 +46,7 @@ You typically only touch very few options, as listed in order below.
 
 - At "Step 3, Configure Instance Details", select "Request Spot instances". :doc:`See here to review spot instances configuration <spot-instances>`. (At this step you also have the chance to select an "IAM role" to simplify AWSCLI configuration for S3, as :doc:`explained in advanced tutorial <../chapter03_advanced-tutorial/iam-role>`.)
 
-* At "Step 4: Add Storage", increase the size to 400~500 GB to host more input/output data. :doc:`See here to review EBS volume configuration <use-ebs>`.
+* At "Step 4: Add Storage", **increase the size to 400~500 GB** to host more input/output data. :doc:`See here to review EBS volume configuration <use-ebs>`.
 
 - Nothing to do for "Step 5: Add Tags". Just go to the next step. You can always add `resource tags <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html>`_ (just convenient labels) anytime later.
 
@@ -91,7 +91,7 @@ You may list all versions (they are just `git tags <https://git-scm.com/book/en/
     $ git checkout 12.0.0  # just the name of the tag
     $ git branch
     * (HEAD detached at 12.0.0)
-    $ # git checkout master  # restore the latest version if you want
+    $ git checkout master  # restore the latest version if you want
 
 You need to do version checkout for both source code and unit tester.
 
