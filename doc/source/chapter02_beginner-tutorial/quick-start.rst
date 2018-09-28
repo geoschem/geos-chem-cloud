@@ -33,6 +33,8 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 .. figure:: img/region_list.png
   :width: 300 px
 
+.. _choose_ami-label:
+
 In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-08c83a8b3ebd20b63** or **GEOSChem_tutorial_20180926** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
@@ -65,6 +67,8 @@ You can monitor your server in the EC2-Instance console. Within < 1min of initia
 .. figure:: img/running_instance.png
 
 You now have your own server running on the cloud!
+
+.. _login_ec2-label:
 
 Step 3: Log into the server and run GEOS-Chem
 ---------------------------------------------
@@ -191,6 +195,8 @@ Besides being a data analysis environment, Jupyter can also be used as a graphic
 We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you want to. Just compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is pre-installed in the ``geo`` environment. My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed, which can fulfill almost all horizontal regridding needs for GEOS-Chem data (and most of Earth science data).
 
 Also, you could indeed download the output data and use old tools like IDL & MATLAB to analyze them, but we highly recommend the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
+
+.. _terminate-label:
 
 Step 5: Shut down the server (Very important!!)
 -----------------------------------------------

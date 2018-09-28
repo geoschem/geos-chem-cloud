@@ -19,6 +19,8 @@ The S3 console is convenient for viewing files, but most of time you will use AW
 - To transfer data between S3 and EC2, you have to use AWSCLI since there is no graphical console on EC2 instances.
 - To work with public data set, AWSCLI is almost the only way you can use. Recall that in the previous chapter you use ``aws s3 ls s3://nasanex/`` to list the NASA-NEX data. But you cannot see the "s3://nasanex/" bucket in S3 console, since it doesn't belong to you.
 
+.. _s3-awscli_label:
+
 Working with S3 using AWSCLI
 ----------------------------
 
@@ -201,7 +203,7 @@ Then you may want to change the simulation date in ``input.geo`` to test the new
   Run directory           : ./
   Input restart file      : GEOSChem_restart.201607010000.nc
 
-(Note that the restart file is still at 2013/07 in this case.)
+(Note that the restart file is still at 2016/07 in this case.)
 
 The EC2 instance launched from the tutorial AMI only has limited disk by default, so the disk will be full very soon. You will learn how to increase the disk size, right in the next tutorial.
 

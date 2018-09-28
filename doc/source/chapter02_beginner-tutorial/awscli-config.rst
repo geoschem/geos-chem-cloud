@@ -40,6 +40,8 @@ Running ``aws configure``, you will be asked 4 questions::
 
 "Access Key ID" and "Secret Access Key" are just like your AWS account name and password. For security reasons they are not the one you use to log into the console. You can obtain them in the "My Security Credentials" console. 
 
+.. _credentials-label:
+
 Obtaining security credentials
 ------------------------------
 
