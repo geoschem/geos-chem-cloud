@@ -80,7 +80,7 @@ Select your instance, click on the "Connect" button (shown in the above figure) 
   (1) ``cd`` to the directory where store your Key Pair (preferably ``$HOME/.ssh``)
   (2) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
   (3) Change the user name in that command from ``root`` to ``ubuntu``. (You'll be asked to use ``ubuntu`` if you keep ``root``).
-- On Windows, please refer to the guide for `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_ and `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_ (MobaXterm should be a lot easier). Alternatively, you can `use the Windows Subsystem for Linux <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ and then simply follow the above steps for Mac/Linux.
+- On Windows, I highly recommend using `Git-BASH <https://gitforwindows.org>`_ to emulate a Linux terminal. During the installation of Git-BASH, you can simply accept all default options for Git, as our main goal here is just to use Bash, not Git. Then, you can use exactly the same ``ssh -i "xx.pem" ubuntu@xxx.com`` command as on Mac/Linux to log into the server, assuming that you are in the directory where the Key Pair ``xx.pem`` is stored. This is also mentioned in the `official AWS tutorial <https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine>`_, "Step 3: Connect to your Instance". (Alternatively, you can use `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_, `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_, `Linux Subsystem <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ or `PowerShell with OpenSSH <https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/>`_. But the Git-BASH solution should be the most painless and will also work smoothly in later steps where we add port-forwarding options to connect to Jupyter.)
 
 Your terminal should look like this:
 
@@ -115,8 +115,8 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 .. note::
   This system is a **general environment** for GEOS-Chem, **not just a specific version of the model**. This pre-configured run directory in the "tutorial" folder is only for demonstration purpose. :doc:`Later tutorials <research-workflow>` will show you how to set up custom versions and configurations.
 
-Step 4: Analyze output data with Python (Optional)
---------------------------------------------------
+Step 4: Analyze output data with Python
+---------------------------------------
 
 If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation and use the pre-generated file with the same name::
 
