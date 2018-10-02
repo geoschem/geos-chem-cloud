@@ -12,14 +12,14 @@ Go to http://aws.amazon.com, click on "Create an AWS account" on the upper-right
 .. figure:: img/create_aws_account.png
   :width: 400 px
 
-(the button will become "Sign In to the Console" for the next time)
+(The button might become "Sign In to the Console" for the next time)
 
 After entering some basic information, you will be required to enter your credit card number. Don't worry, this beginner tutorial will only cost you $0.1.
 
 .. note::
   If you are a student, check out the $100 educational credit (can be renewed every year!) at https://aws.amazon.com/education/awseducate/. I haven't used up my credit for after playing with AWS for a whole year, so haven't actually paid any money to them 😉
 
-Now you should have an AWS account! It's time to run the model in cloud. (You can skip Step 1 for the next time, of course)
+Your AWS account should be available in a few minutes. (Occasionally, the account verification process might take longer. Just come back later if that happens.)
 
 Step 2: Launch a server with GEOS-Chem pre-installed
 ----------------------------------------------------
@@ -63,6 +63,9 @@ You can monitor your server in the EC2-Instance console. Within < 1min of initia
 .. figure:: img/running_instance.png
 
 You now have your own server running on the cloud!
+
+.. warning::
+  If you need to leave this tutorial in the middle, remember to do the :ref:`last step: terminate the server <terminate-label>` to avoid being charged continuously.
 
 .. _login_ec2-label:
 
@@ -164,11 +167,11 @@ Activate the pre-installed `geoscientific Python environment <https://github.com
 
 A much better data-analysis environment is `Jupyter notebooks <http://jupyter.org>`_. If you have been using Jupyter on your local machine, the user experience on the cloud would be exactly the same.
 
-To use Jupyter on remote servers, re-login to the server with port-forwarding option ``-L 8999:localhost:8999``::
+Quit IPython (``Ctrl+d``), and log out of the server (``Ctrl+d`` again). You need to re-login to the server with port-forwarding option ``-L 8999:localhost:8999`` in order to use Jupyter on remote servers::
 
   $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
 
-Then simply run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
+Re-activate the Python environment and run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
 
   $ source activate geo
   $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
