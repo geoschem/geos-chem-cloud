@@ -58,7 +58,7 @@ Give your "Key Pair" a name, click on "Download Key Pair", and finally click on 
 .. figure:: img/key_pair.png
   :width: 500 px
 
-You can monitor your server in the EC2-Instance console. Within < 1min of initialization, "Instance State" should become "running":
+You can monitor your server in the EC2-Instance console. Within < 1min of initialization, "Instance State" should become "running" (refresh the page if the status stays "pending"):
 
 .. figure:: img/running_instance.png
 
@@ -171,10 +171,10 @@ Quit IPython (``Ctrl+d``), and log out of the server (``Ctrl+d`` again). You nee
 
   $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
 
-Re-activate the Python environment and run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999``::
+Re-activate the Python environment and run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/``::
 
   $ source activate geo
-  $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999
+  $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/
   [I 21:11:41.503 NotebookApp] Writing notebook server cookie secret to /run/user/1000/jupyter/notebook_cookie_secret
   [W 21:11:41.986 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
   [I 21:11:42.046 NotebookApp] Serving notebooks from local directory: /home/ubuntu
