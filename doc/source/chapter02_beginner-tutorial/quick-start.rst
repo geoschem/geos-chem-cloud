@@ -35,7 +35,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMI" (Amazon Machine Image) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-08c83a8b3ebd20b63** or **GEOSChem_tutorial_20180926** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-08c83a8b3ebd20b63** or **GEOSChem_tutorial_20180926** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
