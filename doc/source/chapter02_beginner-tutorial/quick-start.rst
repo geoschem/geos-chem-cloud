@@ -78,12 +78,12 @@ Select your instance, click on the "Connect" button (shown in the above figure) 
 .. figure:: img/connect_instruction.png
   :width: 500 px
 
-- On Mac or Linux, copy the ``ssh -i "xx.pem" root@xxx.com`` command under "Example".
-  Before using that command to ssh to your server, do some minor stuff:
+- On Mac or Linux, use the ``ssh -i ...`` command under "Example" to connect to the server in the terminal. Some minor changes are needed:
 
-  (1) ``cd`` to the directory where store your Key Pair (preferably ``$HOME/.ssh``)
-  (2) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
-  (3) Change the user name in that command from ``root`` to ``ubuntu``. (You'll be asked to use ``ubuntu`` if you keep ``root``).
+  (1) Change the user name in that command from ``root`` to ``ubuntu``, so the full command will be like ``ssh -i "xx.pem" ubuntu@xxx.com``
+  (2) ``cd`` to the directory where your Key Pair is stored (people often put the key in ``~/.ssh/`` but any directory is fine.)
+  (3) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
+
 - On Windows, I highly recommend using `Git-BASH <https://gitforwindows.org>`_ to emulate a Linux terminal. During the installation of Git-BASH, you can simply accept all default options for Git, as our main goal here is just to use Bash, not Git. Then, you can use exactly the same ``ssh -i "xx.pem" ubuntu@xxx.com`` command as on Mac/Linux to log into the server, assuming that you are in the directory where the Key Pair ``xx.pem`` is stored. This is also mentioned in the `official AWS tutorial <https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine>`_, "Step 3: Connect to your Instance". (Alternatively, you can use `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_, `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_, `Linux Subsystem <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ or `PowerShell with OpenSSH <https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/>`_. But the Git-BASH solution should be the most painless and will also work smoothly in later steps where we add port-forwarding options to connect to Jupyter.)
 
 Your terminal should look like this:
@@ -94,7 +94,7 @@ That's a system with GEOS-Chem already built!
 
 .. note::
 
-  **Trouble shooting**: if you have trouble ``ssh`` to the server, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
+  **Trouble shooting**: if the ``ssh`` commands hangs for a long time, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
 
 Go to the pre-generated run directory::
 
@@ -122,7 +122,7 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 Step 4: Analyze output data with Python
 ---------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation and use the pre-generated file with the same name::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation (``Ctrl+c``) and use the pre-generated file with the same name::
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
