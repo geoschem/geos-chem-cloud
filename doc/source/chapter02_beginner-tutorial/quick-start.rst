@@ -143,7 +143,7 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
 
 `Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/JiaweiZhuang/GEOSChem-python-tutorial>`_.
 
-Activate the pre-installed `geoscientific Python environment <https://github.com/geoschem/cloud_GC/blob/master/scripts/build_environment/python/geo.yml>`_ by ``source activate geo`` (it is generally a bad idea to directly install things into the root Python environment), and then start ``ipython`` from the command line::
+Activate the pre-installed `geoscientific Python environment <https://github.com/geoschem/cloud_GC/blob/master/scripts/build_environment/python/geo.yml>`_ by ``source activate geo`` (it is generally a bad idea to directly install things into the root Python environment), start ``ipython`` from the command line, and type some Python code to open the data::
 
   $ source activate geo  # I also set a `act geo` alias
   $ ipython
@@ -172,7 +172,7 @@ Quit IPython (``Ctrl+d``), and log out of the server (``Ctrl+d`` again). You nee
 
   $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
 
-Re-activate the Python environment and run ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/``::
+Re-activate the Python environment (``source activate geo``) and start Jupyter by ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/``::
 
   $ source activate geo
   $ jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/
