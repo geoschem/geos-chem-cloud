@@ -10,6 +10,7 @@ Step 1: Sign up an Amazon Web Service (AWS) account
 Go to http://aws.amazon.com, click on "Create an AWS account" on the upper-right corner:
 
 .. figure:: img/create_aws_account.png
+  :target: https://aws.amazon.com
   :width: 400 px
 
 (The button might become "Sign In to the Console" for the next time)
