@@ -59,7 +59,9 @@ Give your "Key Pair" a name, click on "Download Key Pair", and finally click on 
 .. figure:: img/key_pair.png
   :width: 500 px
 
-You can monitor your server in the EC2-Instance console. Within < 1min of initialization, "Instance State" should become "running" (refresh the page if the status stays "pending"):
+For a newly created account you might get "Your account is currently being verified..." error. Wait for 10~20 minutes and retry, then it should work.
+
+Once launched, you can monitor the server in the EC2-Instance console as shown below. Within < 1min of initialization, "Instance State" should become "running" (refresh the page if the status stays "pending"):
 
 .. figure:: img/running_instance.png
 
@@ -80,11 +82,11 @@ Select your instance, click on the "Connect" button (shown in the above figure) 
 
 - On Mac or Linux, use the ``ssh -i ...`` command under "Example" to connect to the server in the terminal. Some minor changes are needed:
 
-  (1) Change the user name in that command from ``root`` to ``ubuntu``, so the full command will be like ``ssh -i "xx.pem" ubuntu@xxx.com``
-  (2) ``cd`` to the directory where your Key Pair is stored (people often put the key in ``~/.ssh/`` but any directory is fine.)
-  (3) Use ``chmod 400 xx.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
+  (1) ``cd`` to the directory where your Key Pair is stored (people often put the key in ``~/.ssh/`` but any directory is fine.)
+  (2) Use ``chmod 400 your-key-name.pem`` to change the key pair's permission (also mentioned in the above figure; only need to do this at the first time).
+  (3) Change the user name in that command from ``root`` to ``ubuntu``, so the full command will be like ``ssh -i "your-key-name.pem" ubuntu@xxx.amazonaws.com``
 
-- On Windows, I highly recommend using `Git-BASH <https://gitforwindows.org>`_ to emulate a Linux terminal. During the installation of Git-BASH, you can simply accept all default options for Git, as our main goal here is just to use Bash, not Git. Then, you can use exactly the same ``ssh -i "xx.pem" ubuntu@xxx.com`` command as on Mac/Linux to log into the server, assuming that you are in the directory where the Key Pair ``xx.pem`` is stored. This is also mentioned in the `official AWS tutorial <https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine>`_, "Step 3: Connect to your Instance". (Alternatively, you can use `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_, `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_, `Linux Subsystem <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ or `PowerShell with OpenSSH <https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/>`_. But the Git-BASH solution should be the most painless and will also work smoothly in later steps where we add port-forwarding options to connect to Jupyter.)
+- On Windows, I highly recommend installing `Git-BASH <https://gitforwindows.org>`_ to emulate a Linux terminal, so you can follow exactly the same steps as on Mac/Linux. Simply accept all default options during installation, as the goal here is just to use Bash, not Git. Alternatively, you can use `MobaXterm <http://angus.readthedocs.io/en/2016/amazon/log-in-with-mobaxterm-win.html>`_, `Putty <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>`_, `Linux Subsystem <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html>`_ or `PowerShell with OpenSSH <https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/>`_. But the Git-BASH solution should be the most painless and will also work smoothly in later steps where we add port-forwarding options to connect to Jupyter.
 
 Your terminal should look like this:
 
@@ -109,7 +111,7 @@ Or you can re-compile the model on your own::
   $ make realclean
   $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
 
-Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up your own server, configuring software environment, and preparing model input data!
+Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, and preparing model input data!
 
 The default simulation length is only 20 minutes, for demonstration purpose. The "r5.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
 
@@ -170,7 +172,7 @@ A much better data-analysis environment is `Jupyter notebooks <http://jupyter.or
 
 Quit IPython (``Ctrl+d``), and log out of the server (``Ctrl+d`` again). You need to re-login to the server with port-forwarding option ``-L 8999:localhost:8999`` in order to use Jupyter on remote servers::
 
-  $ ssh -i "xx.pem" ubuntu@xxx.com -L 8999:localhost:8999
+  $ ssh -i "your-key-name.pem" ubuntu@xxx.amazonaws.com -L 8999:localhost:8999
 
 Re-activate the Python environment (``source activate geo``) and start Jupyter by ``jupyter notebook --NotebookApp.token='' --no-browser --port=8999 --notebook-dir ~/``::
 
