@@ -8,6 +8,8 @@ See :ref:`motivation-label` for the motivation of this project. See :ref:`quick-
 This project is supported by the `AWS Public Data Set Program <https://registry.opendata.aws/geoschem-input-data/>`_ and the NASA Atmospheric Composition Modeling and Analysis Program (ACMAP).
 
 .. note::
+  You are invited to attend the user survey! Please `click here <https://github.com/geoschem/cloud_GC/issues/15>`_ to see the instruction.
+
   For any questions, bug reports, or functionality requests, please raise a new issue on the `GitHub issue tracker <https://github.com/geoschem/cloud_GC/issues>`_. It is a much better approach than sending emails, because all discussions are public and can be easily found by anyone with similar problems.
 
 How to use this documentation
