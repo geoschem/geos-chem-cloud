@@ -57,11 +57,11 @@ For spot instances, simply add ``--instance-market-options '{"MarketType":"Spot"
       --security-group-ids $SG --count $COUNT \
       --instance-type $TYPE --key-name $KEY \
       --iam-instance-profile Name=$IAM \
-      --instance-market-options '{"MarketType":"Spot"}'
+      --instance-market-options '{"MarketType":"spot"}'
 
 By default, the `on-demand pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ will be used as the spot price limit. You can further set a custom limit (generally not necessary)::
 
-  --instance-market-options '{"MarketType":"Spot", "SpotOptions": {"SpotPrice": "0.68"}}'
+  --instance-market-options '{"MarketType":"spot", "SpotOptions": {"MaxPrice": "0.68"}}'
 
 The command ``aws ec2 request-spot-instances`` (`doc <https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html>`_) can also launch spot instances, but its syntax is slightly more complicated.
 
