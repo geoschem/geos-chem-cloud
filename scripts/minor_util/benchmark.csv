@@ -1,0 +1,7 @@
+     cpu	timing	hourly_cost	total_cost	hourly_spot_cost	total_spot_cost
+c5.4xlarge	8	5441	0.68	1.027744444	0.29	0.438302778
+c5.9xlarge	18	4050	1.53	1.72125	0.58	0.6525
+c4.4xlarge	8	6743	0.796	1.490952222	0.25	0.468263889
+m5.4xlarge	8	6398	0.768	1.364906667	0.27	0.47985
+Pleiades Haswell	24	6813	0.5344	1.011352	--	--
+Pleiades Ivybridge	16	9373	0.2912	0.758171556	--	--
