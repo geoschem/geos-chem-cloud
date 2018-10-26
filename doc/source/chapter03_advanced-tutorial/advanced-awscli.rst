@@ -21,12 +21,14 @@ Use this bash script to launch an on-demand instance::
   KEY=xxx-key     # EC2 key pair name
   COUNT=1         # how many instances to launch
   IAM=xxxxx       # EC2 IAM role name
+  EBS_SIZE=200    # root EBS volume size (GB)
 
   # == almost never change; just leave it as-is ==
   aws ec2 run-instances --image-id $AMI \
       --security-group-ids $SG --count $COUNT \
       --instance-type $TYPE --key-name $KEY \
-      --iam-instance-profile Name=$IAM
+      --iam-instance-profile Name=$IAM \
+      --block-device-mapping DeviceName=/dev/sda1,Ebs={VolumeSize=$EBS_SIZE}
 
 - **TYPE**: `EC2 instance type <https://aws.amazon.com/ec2/instance-types/>`_.
 - **AMI**: The AMI you want to launch from, such as :doc:`our tutorial AMI <../chapter06_appendix/aws-resources-for-gc>`.
@@ -34,11 +36,12 @@ Use this bash script to launch an on-demand instance::
 - **KEY**: The EC2 Key Pair for ``ssh``. For example, in the quick start demo I used :ref:`my-aws-key <keypair-label>`.
 - **COUNT**: You can launch multiple instances with exactly the same configurations
 - **IAM**: The :doc:`IAM role <./iam-role>` for your EC2 instance. Primarily for granting S3 access.
+- **EBS_SIZE**: The size of disk (:doc:`EBS volume <../chapter02_beginner-tutorial/use-ebs>`).
 
 Request spot instances
 ----------------------
 
-For spot instances, simply add ``--instance-market-options '{"MarketType":"Spot"}`` option to ``aws ec2 run-instances``. Other options are exactly the same as the on-demand case::
+For spot instances, simply add ``--instance-market-options '{"MarketType":"spot"}`` option to ``aws ec2 run-instances``. Other options are exactly the same as the on-demand case::
 
   #!/bin/bash
 
@@ -51,12 +54,14 @@ For spot instances, simply add ``--instance-market-options '{"MarketType":"Spot"
   KEY=xxx-key     # EC2 key pair name
   COUNT=1         # how many instances to launch
   IAM=xxxxx       # EC2 IAM role name
+  EBS_SIZE=200    # root EBS volume size (GB)
 
   # == almost never change; just leave it as-is ==
   aws ec2 run-instances --image-id $AMI \
       --security-group-ids $SG --count $COUNT \
       --instance-type $TYPE --key-name $KEY \
       --iam-instance-profile Name=$IAM \
+      --block-device-mapping DeviceName=/dev/sda1,Ebs={VolumeSize=$EBS_SIZE} \
       --instance-market-options '{"MarketType":"spot"}'
 
 By default, the `on-demand pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ will be used as the spot price limit. You can further set a custom limit (generally not necessary)::
