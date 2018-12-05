@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# Inside Extdata/
+DATA_ROOT=~/ExtData
 
 aws s3 cp --request-payer=requester --recursive \
-s3://gcgrid/SPC_RESTARTS/ ./SPC_RESTARTS  \
+s3://gcgrid/GEOSCHEM_RESTARTS/ $DATA_ROOT/GEOSCHEM_RESTARTS  \
 --exclude "*" \
---include "initial_GEOSChem_rst.4x5_standard.nc"
-
-
-aws s3 cp --request-payer=requester --recursive \
-s3://gcgrid/SPC_RESTARTS/ ./SPC_RESTARTS  \
---exclude "*" \
---include "initial_GEOSChem_rst.2x25_standard.nc"
+--include "v2018-11/initial_GEOSChem_rst.4x5_standard.nc"

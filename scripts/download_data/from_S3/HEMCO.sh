@@ -1,14 +1,22 @@
 #!/bin/bash
-# exclude huge data directories that are in use by default
-# ~210 GB in total, CEDS takes 140 GB. To reduce data size for quick testing,
-# can disable CEDS in HEMCO_Config.rc and use EDGAR instead
 
-# Inside Extdata/
+DATA_ROOT=~/ExtData
 
+# exclude huge data directories that are not in use by default
+# for CEDS, only get the most recent year
 time aws s3 cp --request-payer=requester --recursive \
-s3://gcgrid/HEMCO/ ./HEMCO \
+s3://gcgrid/HEMCO/ $DATA_ROOT/HEMCO \
 --exclude "NEI2011/v2015-03/*" \
 --exclude "NEI2011ek/v2018-04/*" \
---exclude "CEDS/*" \
+--exclude "NEI2008/*" \
+--exclude "EDGARv42/*" \
+--exclude "EDGARv43/*" \
+--exclude "CH4/*" \
 --exclude "QFED/*" \
---exclude "OFFLINE*"
+--exclude "GFAS/*" \
+--exclude "OFFLINE*" \
+--exclude "CEDS/*" \
+--include "CEDS/v2018-08/2014/*" \
+
+# TODO: if there are too many big directories to exclude, consider using --include instead.
+# They are many directories, so shoud probably read from HEMCO_Config.rc?
