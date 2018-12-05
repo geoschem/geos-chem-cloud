@@ -25,5 +25,7 @@ sudo apt-get install -y docker-ce
 
 sudo docker run --rm hello-world
 
+sudo usermod -aG docker $USER  # re-login, no need to use `sudo` before docker commands
+
 # for CharlieCloud
 sudo apt-get install -y gcc make python
