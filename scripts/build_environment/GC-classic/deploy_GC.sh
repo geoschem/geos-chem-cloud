@@ -13,8 +13,9 @@ cd ~/tutorial
 
 # Source code
 git clone https://github.com/geoschem/geos-chem Code.$GC_VERSION
-cd Code.GC
+cd Code.$GC_VERSION
 git checkout -b $GC_VERSION
+cd ..
 
 # Unit Tester to create run directory
 git clone https://github.com/geoschem/geos-chem-unittest.git UT
