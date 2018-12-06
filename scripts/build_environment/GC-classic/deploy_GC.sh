@@ -1,7 +1,10 @@
 #!/bin/bash
 
-GC_VERSION=12.1.0 
-UT_VERSION=12.1.0 
+GC_VERSION=12.1.0
+UT_VERSION=12.1.0
+
+# Subsequent shell commands like `sed` are only tested with version 12.1.0
+# If the configure steps are changed in future versions, need to fix those shell commands
 
 # Input data path as required by UT
 # Need to pull real data later
@@ -14,13 +17,13 @@ cd ~/tutorial
 # Source code
 git clone https://github.com/geoschem/geos-chem Code.$GC_VERSION
 cd Code.$GC_VERSION
-git checkout -b $GC_VERSION
+git checkout $GC_VERSION
 cd ..
 
 # Unit Tester to create run directory
 git clone https://github.com/geoschem/geos-chem-unittest.git UT
 cd UT
-git checkout -b $UT_VERSION
+git checkout $UT_VERSION
 
 # Configure UT
 
