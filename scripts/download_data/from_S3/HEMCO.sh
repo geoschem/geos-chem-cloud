@@ -9,8 +9,6 @@ s3://gcgrid/HEMCO/ $DATA_ROOT/HEMCO \
 --exclude "NEI2011/v2015-03/*" \
 --exclude "NEI2011ek/v2018-04/*" \
 --exclude "NEI2008/*" \
---exclude "EDGARv42/*" \
---exclude "EDGARv43/*" \
 --exclude "CH4/*" \
 --exclude "QFED/*" \
 --exclude "GFAS/*" \
