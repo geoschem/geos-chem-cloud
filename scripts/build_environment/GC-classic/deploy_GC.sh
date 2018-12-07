@@ -55,8 +55,7 @@ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
 # change run-time configuration for tutorial purpose
 sed -i -e 's#End   YYYYMMDD.*#End   YYYYMMDD, hhmmss  : 20160701 002000#' input.geos
 sed -i -e 's#EXPID:  ./GEOSChem.*#EXPID: ./OutputDir/GEOSChem#' HISTORY.rc
-sed -i -e "s/#'SpeciesConc',/'SpeciesConc',/" HISTORY.rc
-modify_line "SpeciesConc'" "             'SpeciesConc'," HISTORY.rc # make sure this collection is uncommented
+sed -i -e "s/#'SpeciesConc',/'SpeciesConc',/" HISTORY.rc # make sure this collection is uncommented
 
 # reduce output size for tutorial purpose
 sed -i -e 's#SpeciesConc.frequency.*#SpeciesConc.frequency:      00000000 002000#' HISTORY.rc
