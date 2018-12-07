@@ -24,7 +24,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 
 5. Test a short model run to generate output data.
 
-6. Install Anaconda python environment. See [./build_environment/Python]
+6. Install Anaconda python environment. See [./build_environment/Python](./build_environment/Python)
 
 7. Run [sample Python code](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/sample-python-code.html) on output data.
 
