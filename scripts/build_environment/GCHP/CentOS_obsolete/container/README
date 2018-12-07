@@ -1,1 +1,0 @@
-Current dirty fix (linking *.mod to /usr/include/) requires root access, so it does not work on shared HPC clusters. Bu tested successfully on EC2 ubuntu.
