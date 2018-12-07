@@ -20,7 +20,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 - Add environment file (bashrc).
 - Get source code, compile the model.
 
-4. Pull minimum neccessary input data from S3. See [./download_data/]([./download_data/])
+4. Pull minimum neccessary input data from S3. See [./download_data/from_S3](./download_data/from_S3)
 
 5. Test a short model run to generate output data.
 
@@ -28,7 +28,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 
 7. Run [sample Python code](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/sample-python-code.html) on output data.
 
-8. **Clean-up history** (see [./minor_util/clean_history.sh](./minor_util/clean_history.sh])). Save AMI. Change AMI permission to public.
+8. **Clean-up history** (see [./minor_util/clean_history.sh](./minor_util/clean_history.sh)). Save AMI. Change AMI permission to public.
 
 9. **Using another account to test the new AMI**.
 
