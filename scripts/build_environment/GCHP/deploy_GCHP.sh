@@ -31,7 +31,7 @@ printf "$HOME/ExtData \n 2 \n 1 \n $HOME/tutorial \n gchp_standard \n n" | ./cre
 
 # compile source code
 cd ~/tutorial/gchp_standard
-ln -s gchp.env  ~/gchp.ubuntu.env  # need to copy ubuntu/gchp.ubuntu.env
+ln -s ~/gchp.ubuntu.env gchp.env  # need to copy gchp.ubuntu.env to $HOME
 make compile_clean
 
 
