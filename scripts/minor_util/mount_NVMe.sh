@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Enable instance storage on c5d instances
+
 lsblk
 
 DEVICE_NAME="/dev/nvme1n1"
