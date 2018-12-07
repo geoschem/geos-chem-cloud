@@ -1,10 +1,10 @@
 #!/bin/bash
 
-GC_VERSION=12.1.0
+GC_VERSION=b544322
 GCHP_VERSION=12.1.0
 
 # Input data directory, need to pull real data later
-mkdir -p ~/ExtData/HEMCO
+mkdir -p $HOME/ExtData/HEMCO
 
 # Create tutorial folder for demo project
 mkdir ~/tutorial
@@ -13,31 +13,32 @@ cd ~/tutorial
 # Source code
 git clone https://github.com/geoschem/geos-chem.git Code.GCHP
 cd Code.GCHP
-git checkout -b $GC_VERSION
+git checkout $GC_VERSION
 
 # GCHP subdirectory
 git clone https://github.com/geoschem/gchp.git GCHP
 cd GCHP
-git checkout -b $GCHP_VERSION
+git checkout $GCHP_VERSION
 
+# generate run directory
 cd Run
 rm ${HOME}/.geoschem/config
-echo "$HOME/ExtData
-2
-1
-$HOME/tutorial
-gchp_standard
-n" | ./createRunDir.sh
+printf "$HOME/ExtData \n 2 \n 1 \n $HOME/tutorial \n gchp_standard \n n" | ./createRunDir.sh
 
+# compile source code
 cd ~/tutorial/gchp_standard
+ln -s gchp.env  ~/gchp.ubuntu.env  # need to copy ubuntu/gchp.ubuntu.env
+make compile_clean
 
-ln -sf /home/ec2-user/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.c24_standard.nc  initial_GEOSChem_rst.c24_standard.nc 
+
+# modify run-time configurations
+
+# correctly link restart file
+ln -sf $HOME/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.c24_standard.nc  initial_GEOSChem_rst.c24_standard.nc 
 
 # read low-resolution metfields to save space
-ln -sf /home/ec2-user/ExtData/GEOS_4x5/GEOS_FP MetDir
-
-# only scan the first few lines, do not modify non-metfields
-sed -i -e 1,120s/025x03125.nc/4x5.nc/g ExtData.rc
+ln -sf $HOME/ExtData/GEOS_4x5/GEOS_FP MetDir 
+sed -i -e 1,120s/025x03125.nc/4x5.nc/g ExtData.rc # only scan the first few lines, do not modify non-metfields
 
 # hard to see why simulation crashes with default debug level 0
 sed -i -e "s#DEBUG_LEVEL.*#DEBUG_LEVEL: 5#" CAP.rc
