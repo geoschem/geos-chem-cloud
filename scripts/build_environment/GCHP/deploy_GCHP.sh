@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GC_VERSION=b544322
+GC_VERSION=b544322  # fix HEMCO dependency issue in 12.1.0
 GCHP_VERSION=12.1.0
 
 # Input data directory, need to pull real data later
@@ -14,6 +14,10 @@ cd ~/tutorial
 git clone https://github.com/geoschem/geos-chem.git Code.GCHP
 cd Code.GCHP
 git checkout $GC_VERSION
+
+# Temporary fix for https://github.com/geoschem/gchp/issues/5
+# Might not needed for future versions.
+sed -i -e '/@$(MAKE) exe/d' HEMCO/Makefile
 
 # GCHP subdirectory
 git clone https://github.com/geoschem/gchp.git GCHP
