@@ -15,5 +15,5 @@ aws s3 cp --request-payer=requester --recursive s3://gcgrid/GCHP/TileFiles/ $DAT
 aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/HEMCO/ $DATA_ROOT/HEMCO \
 --exclude "*" \
---include "OFFLINE*"
+--include "OFFLINE*" \
 --exclude "OFFLINE/OFFLINE_LNOX/v2018-11/*"
