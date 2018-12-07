@@ -1,5 +1,6 @@
-# clean history for
-# https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/building-shared-amis.html
+# /bin/bash
+# Clean history before creating public AMI
+# See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/building-shared-amis.html
 
 ipython history clear
 
