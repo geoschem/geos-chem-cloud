@@ -64,5 +64,5 @@ sed -i -e 's#SpeciesConc.duration.*#SpeciesConc.duration:       00000000 002000#
 sed -i -e "s#SpeciesConc.mode.*#SpeciesConc.mode:           'instantaneous'#" HISTORY.rc
 sed -i -e "s#SpeciesConc.fields.*#SpeciesConc.fields:         'SpeciesConc_NO             ', 'GIGCchem',\n                              'SpeciesConc_CO             ', 'GIGCchem',\n                              'SpeciesConc_O3             ', 'GIGCchem',#" HISTORY.rc
 
-# run the model
-./geos.mp
+# Run model, need to have input data.
+# ./geos.mp

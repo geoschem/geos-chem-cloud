@@ -46,3 +46,6 @@ sed -i -e "s#DEBUG_LEVEL.*#DEBUG_LEVEL: 5#" CAP.rc
 # Turn off CEDS as GCHP 12.1.0 still reads the old, large file.
 sed -i -e "s#.--> CEDS.*# --> CEDS                   :       false#" HEMCO_Config.rc
 sed -i -e "s#.--> CEDS_SHIP.*# --> CEDS                   :       false#" HEMCO_Config.rc
+
+# Run model, need to have input data.
+# mpirun -np 6 ./geos
