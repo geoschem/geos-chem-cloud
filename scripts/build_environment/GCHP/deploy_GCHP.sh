@@ -45,7 +45,7 @@ ln -sf $HOME/ExtData/GEOS_4x5/GEOS_FP MetDir
 sed -i -e 1,120s/025x03125.nc/4x5.nc/g ExtData.rc # only scan the first few lines, do not modify non-metfields
 
 # hard to see why simulation crashes with default debug level 0
-sed -i -e "s#DEBUG_LEVEL.*#DEBUG_LEVEL: 5#" CAP.rc
+# sed -i -e "s#DEBUG_LEVEL.*#DEBUG_LEVEL: 5#" CAP.rc
 
 # Turn off CEDS as GCHP 12.1.0 still reads the old, large file.
 sed -i -e "s#.--> CEDS.*# --> CEDS                   :       false#" HEMCO_Config.rc
