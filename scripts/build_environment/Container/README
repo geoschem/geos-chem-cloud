@@ -1,1 +1,3 @@
-For installing the container software itself, not building images.
+Scripts to install the container software itself, not building images.
+
+See Dockerfiles at https://github.com/geoschem/geos-chem-docker
