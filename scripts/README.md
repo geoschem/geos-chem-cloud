@@ -9,9 +9,9 @@
 
 2. Launch a fresh EC2 instance
 - Step 1 Choose AMI: Select Ubuntu Server 18.04 LTS (ami-0ac019f4fcb7cb7e6)
-- Step 2 Choose an Instance Type: r5.large ~ r5.xlarge are good for build & testing. GCHP might need r5.2xlarge. This can be changed after launch.
+- Step 2 Choose an Instance Type: r5.large ~ r5.xlarge are good for build & testing. Running GCHP needs r5.2xlarge. This can be changed after launch.
 - Step 3 Configure Instance Details: Turn on [IAM role to access S3](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/iam-role.html) to avoid using AWS credientials on EC2. **Do not leave AWS credientials on public AMI**
-- Step 4 Add Storage: [Increase EBS volume size](https://cloud-gc.readthedocs.io/en/latest/chapter02_beginner-tutorial/use-ebs.html#) to 80 GB (for GC-classic) or 120 GB (for GCHP) to host sample input data.
+- Step 4 Add Storage: [Increase EBS volume size](https://cloud-gc.readthedocs.io/en/latest/chapter02_beginner-tutorial/use-ebs.html#) to 100 GB (for GC-classic) or 150 GB (for GCHP) to host sample input data.
 
 Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/advanced-awscli.html). It needs account-specific information so I don't put the script here.
 
