@@ -38,7 +38,7 @@ make compile_clean
 # modify run-time configurations
 
 # correctly link restart file
-ln -sf $HOME/ExtData/GEOSCHEM_RESTARTS/v2016-07/initial_GEOSChem_rst.c24_standard.nc  initial_GEOSChem_rst.c24_standard.nc
+ln -sf $HOME/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.c24_standard.nc  initial_GEOSChem_rst.c24_standard.nc
 
 # read low-resolution metfields to save space
 ln -sf $HOME/ExtData/GEOS_4x5/GEOS_FP MetDir 
