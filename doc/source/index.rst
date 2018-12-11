@@ -8,7 +8,7 @@ See :ref:`Quick start guide <quick-start-label>` to start your first GEOS-Chem s
 This project is supported by the `AWS Public Data Set Program <https://aws.amazon.com/opendata/public-datasets/>`_ and the `NASA Atmospheric Composition Modeling and Analysis Program (ACMAP) <https://science.nasa.gov/earth-science/focus-areas/atmospheric-composition>`_.
 
 .. note::
-  **How to request support**: For any questions, bug reports, or functionality requests, please post your issue on the `GitHub issue tracker <https://github.com/geoschem/geos-chem-cloud/issues>`_. All you need is `a free GitHub account <https://github.com/join>`_ Alternatively, you can contact Jiawei Zhuang (jiaweizhuang@g.harvard.edu) and Bob Yantosca (yantosca@seas.harvard.edu). Using the GitHub issue tracker is the preferred approach because all discussions are public and can be easily found by anyone with similar problems.
+  **How to request support**: For any questions, bug reports, or functionality requests, please post your issue on the `GitHub issue tracker <https://github.com/geoschem/geos-chem-cloud/issues>`_. All you need is `a free GitHub account <https://github.com/join>`_. Alternatively, you can contact Jiawei Zhuang (jiaweizhuang@g.harvard.edu) and Bob Yantosca (yantosca@seas.harvard.edu). Using the GitHub issue tracker is the preferred approach because all discussions are public and can be easily found by anyone with similar problems.
 
   **Help us improving the user experience**: You are invited to attend our `user survey <https://github.com/geoschem/geos-chem-cloud/issues/15>`_!
 
