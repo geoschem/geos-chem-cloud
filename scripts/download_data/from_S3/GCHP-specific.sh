@@ -7,7 +7,8 @@ DATA_ROOT=~/ExtData
 aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/GEOSCHEM_RESTARTS/ $DATA_ROOT/GEOSCHEM_RESTARTS  \
 --exclude "*" \
---include "v2016-07/initial_GEOSChem_rst.c24_standard.nc"
+--include "v2016-07/initial_GEOSChem_rst.c24_standard.nc" \
+--include "v2018-11/initial_GEOSChem_rst.c24_standard.nc"
 
 mkdir -p $DATA_ROOT/GCHP/TileFiles/
 aws s3 cp --request-payer=requester --recursive s3://gcgrid/GCHP/TileFiles/ $DATA_ROOT/GCHP/TileFiles/
