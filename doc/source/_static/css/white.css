@@ -1,0 +1,9 @@
+/* sidebar header background color */
+.wy-side-nav-search {
+    background-color: #FFFFFF;
+}
+
+/* Fixes for mobile */
+.wy-nav-top {
+    background-color: #FFFFFF;
+}
