@@ -6,19 +6,18 @@ In the :ref:`quick start guide <quick-start-label>`, you have used **EC2 (Elasti
 AWS has hundreds of services (shown in the main console; see the figure below), and EC2 is just one of them. Fortunately, a tiny subset of services is enough for scientific computing. The most important services are **EC2** for compute and **S3** for storage. Tons of other services are targeted at IT/Business applications that scientists can safely ignore:
 
 .. image:: img/aws_services.png
+  :width: 600 px
 
 Core AWS concepts for scientific computing
 ------------------------------------------
 
 In this section you will familiarize yourself with the following concepts and their costs: EC2, Spot Instances, AMI, EBS, S3, and Data egress charge.
 
-- `EC2 (Elastic Compute Cloud) <https://aws.amazon.com/ec2/>`_ is the major computing service. You can create any number of servers (called "EC2 instances" in AWS context). They are just like normal servers that you can ``ssh`` to, to perform various computing tasks. Unlike local servers that have fixed hardware capacity and static software environment, EC2 instances are highly-customizable. For hardware, there are tons of `EC2 instances types <https://aws.amazon.com/ec2/instance-types/>`_ with different capacities in CPUs, memory, and disk storage. For software, you can start with a brand new operating system, or use other people's system images as you did in the quick start guide. `The price of EC2 <https://aws.amazon.com/ec2/pricing/>`_ is roughly $0.01 /CPU/hour.
+- `EC2 (Elastic Compute Cloud) <https://aws.amazon.com/ec2/>`_ is the major computing service. You can create any number of servers (called "EC2 instances" in AWS context). They are just like normal servers that you can ``ssh`` to, to perform various computing tasks. Unlike local servers that have fixed hardware capacity and static software environment, EC2 instances are highly-customizable. For hardware, there are tons of `EC2 instances types <https://aws.amazon.com/ec2/instance-types/>`_ with different capacities in CPUs, memory, and disk storage. For software, you can start with a brand new operating system, or use other people's system images as you did in the quick start guide. `The price of EC2 <https://aws.amazon.com/ec2/pricing/>`_ is roughly $0.01 /CPU/hour. The cost can be reduced by ~70% with `spot pricing <https://aws.amazon.com/ec2/spot/>`_ (but with some caveats as :ref:`detailed later <spot-label>`).
 
 .. note::
   
   EC2 used to charge by hours but it now uses `per-second billing <https://aws.amazon.com/blogs/aws/new-per-second-billing-for-ec2-instances-and-ebs-volumes/>`_. That's a great saving for short simulations -- a 10-min simulation is only charged as 1/6 hour.
-
-- `Spot instances <https://aws.amazon.com/ec2/spot/>`_ are a special pricing model for EC2 that is `particularly suitable for scientific computing <https://aws.amazon.com/ec2/spot/spot-and-science/>`_. It can reduce EC2 cost by ~70%. You will learn how to use it later in this tutorial. 
 
 * `AMI (Amazon Machine Image) <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`_ is a frozen system image of an EC2 instance. It contains the operating system, the software libraries, and all the files on a server. An AMI can be used to create any number of EC2 instances. Once a model is configured and saved as an AMI, any researchers can replicate the same environment and start using the model instantly. Some good examples are the `Deep Learning AMI <https://aws.amazon.com/marketplace/pp/B077GCH38C>`_ and the `OpenFOAM AMI <https://aws.amazon.com/marketplace/pp/B017AHYO16>`_.
 

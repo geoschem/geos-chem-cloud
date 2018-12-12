@@ -25,9 +25,10 @@ Your AWS account should be available in a few minutes. (Occasionally, the accoun
 Step 2: Launch a server with GEOS-Chem pre-installed
 ----------------------------------------------------
 
-Log in to AWS console, and click on EC2 (Elastic Compute Cloud), which is the most basic cloud computing service.
+Log in to AWS console, and click on EC2 (Elastic Compute Cloud), which is the most fundamental cloud computing service.
 
 .. figure:: img/main_console.png
+  :width: 600 px
 
 In the EC2 console, make sure you are in the **US East (N. Virginia)** region as shown in the upper-right corner of your console. Choosing a region closer to your physical location will give you better network. To keep this tutorial minimal, I built the system in only one region. But working across regions is not hard.
 
