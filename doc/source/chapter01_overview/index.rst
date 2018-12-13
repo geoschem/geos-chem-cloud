@@ -7,5 +7,4 @@ This chapter provides a high-level overview of cloud computing.
    :maxdepth: 2
 
    why-cloud
-   status-of-cloud
    external-resources
