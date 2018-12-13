@@ -88,16 +88,14 @@ todo_include_todos = False
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'display_version': False,
-    'logo_only': True,
     'collapse_navigation': False,
 }
 html_title = project
 
-html_logo = '_static/img/gc_logo.png'
 
 # change background color
 def setup(app):
-    app.add_stylesheet('css/white.css')
+    app.add_stylesheet('css/crimson.css')
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
