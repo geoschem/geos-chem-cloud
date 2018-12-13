@@ -35,4 +35,4 @@ go get -d github.com/sylabs/singularity
     make -C ./builddir && \
     sudo make -C ./builddir install
 
-echo '. /usr/local/etc/bash_completion.d/singularity' >> ~/.bashrc
+# echo '. /usr/local/etc/bash_completion.d/singularity' >> ~/.bashrc

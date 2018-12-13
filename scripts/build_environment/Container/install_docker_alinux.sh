@@ -1,4 +1,5 @@
 # /bin/bash
+# Tested on Amazon Linux 2 AMI ami-009d6802948d06e52
 # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
 
 sudo yum update -y
