@@ -6,32 +6,43 @@
 # =========================
 sudo apt-get update
 
-# All libraries need for GCHP. f2py and mpich are new libraries in addition to GC-classic.
+# dependencies for GC-classic and GCHP
 sudo apt-get install -y bc gcc gfortran \
     libnetcdf-dev libnetcdff-dev netcdf-bin \
-    python-numpy mpich
+    python-numpy  # MAPL needs f2py
 
-# Ubuntu AMI has vim and nano but no emacs
-sudo apt-get install -y emacs
-
-# Pull S3 data without installing anaconda Python
-sudo apt-get install -y awscli
+# additional utils
+sudo apt-get install -y emacs git-gui gitk awscli
 
 # clean up cache
 sudo apt-get clean
 sudo rm -rf /var/lib/apt/lists/*
 
 # =========================
-# Additional fixes for GCHP
+# OpenMPI 3
+# =========================
+# https://www.open-mpi.org/software/ompi/v3.1/
+cd $HOME
+wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.3.tar.gz
+tar zxf openmpi-3.1.3.tar.gz
+rm openmpi-3.1.3.tar.gz
+cd openmpi-3.1.3
+./configure prefix=/usr/local/
+make -j4
+sudo make install
+
+# Fix library linking
+# https://askubuntu.com/a/1100000
+sudo ldconfig
+
+cd ..
+rm -rf openmpi-3.1.3
 # =========================
 
-# so that MAPL can find header files
-sudo ln -s /usr/include/mpich/* /usr/include/ 
+# =========================
+# Additional fixes for GCHP
+# =========================
 
 # GCHP directly uses `gmake` command, which is not available on ubuntu
 # https://ubuntuforums.org/showthread.php?t=1811030
 sudo ln -s /usr/bin/make /usr/bin/gmake
-
-# hemco_standalone.x and geos both links -lmpichf90 which doesn't exist.
-sudo ln -s /usr/lib/mpich/lib/libmpichfort.so /usr/lib/mpich/lib/libmpichf90.so
-sudo ln -s /usr/lib/mpich/lib/libmpichfort.a /usr/lib/mpich/lib/libmpichf90.a
