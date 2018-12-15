@@ -30,6 +30,7 @@ dependencies:
     - pip:
         # These are additional libraries to search for on PyPI
         - xesmf    # Regridding xarray and numpy data
+        - "git+https://github.com/JiaweiZhuang/cubedsphere.git@v0.1.1"  # plot GCHP data
         - h5netcdf # allow HDF5-backend for xarray
         - graphviz # visualize dask graph (python package)
         - awscli   # AWS command line interface
