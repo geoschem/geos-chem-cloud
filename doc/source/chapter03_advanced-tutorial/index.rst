@@ -10,4 +10,3 @@ This chapter provides advanced tutorials to improve your research workflow. Make
    advanced-awscli
    container
    hpc-overview
-   gchp
