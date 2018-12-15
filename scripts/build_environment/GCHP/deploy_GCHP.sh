@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GC_VERSION=b544322  # fix HEMCO dependency issue in 12.1.0
-GCHP_VERSION=12.1.0
+GC_VERSION="12.1.1"
+GCHP_VERSION="bugfix/GCHP_issues"  # Fix GCHP run-time problems. See https://github.com/geoschem/gchp/issues/6#issuecomment-447475255
 
 # Input data directory, need to pull real data later
 mkdir -p $HOME/ExtData/HEMCO
@@ -15,10 +15,6 @@ git clone https://github.com/geoschem/geos-chem.git Code.GCHP
 cd Code.GCHP
 git checkout $GC_VERSION
 
-# Temporary fix for https://github.com/geoschem/gchp/issues/5
-# Might not needed for future versions.
-sed -i -e '/@$(MAKE) exe/d' HEMCO/Makefile
-
 # GCHP subdirectory
 git clone https://github.com/geoschem/gchp.git GCHP
 cd GCHP
@@ -31,9 +27,8 @@ printf "$HOME/ExtData \n 2 \n 1 \n $HOME/tutorial \n gchp_standard \n n" | ./cre
 
 # compile source code
 cd ~/tutorial/gchp_standard
-ln -s ~/gchp.ubuntu.env gchp.env  # need to copy gchp.ubuntu.env to $HOME
+ln -sf ~/gchp.ubuntu.env gchp.env  # need to copy gchp.ubuntu.env to $HOME
 make compile_clean
-
 
 # modify run-time configurations
 
