@@ -10,7 +10,7 @@
 2. Launch a fresh EC2 instance
 - Step 1 Choose AMI: Select Ubuntu Server 18.04 LTS (ami-0ac019f4fcb7cb7e6)
 - Step 2 Choose an Instance Type: r5.large ~ r5.xlarge are good for build & testing. Running GCHP needs r5.2xlarge. This can be changed after launch.
-- Step 3 Configure Instance Details: Turn on [IAM role to access S3](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/iam-role.html) to avoid using AWS credientials on EC2. **Do not leave AWS credientials on public AMI**
+- Step 3 Configure Instance Details: Turn on [IAM role to access S3](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/iam-role.html) to avoid using AWS credentials on EC2. **Do not leave AWS credentials on public AMI**
 - Step 4 Add Storage: [Increase EBS volume size](https://cloud-gc.readthedocs.io/en/latest/chapter02_beginner-tutorial/use-ebs.html#) to 100 GB (for GC-classic) or 150 GB (for GCHP) to host sample input data.
 
 Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/advanced-awscli.html). It needs account-specific information so I don't put the script here.
@@ -22,7 +22,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 
 4. Pull minimum neccessary input data from S3. See [./download_data/from_S3](./download_data/from_S3)
 
-5. Test a short model run to generate output data.
+5. Test a short model run to generate output data. Remember to remove cap_restart for a successfully GCHP run so it won't affect the next run.
 
 6. Install Anaconda python environment. See [./build_environment/python](./build_environment/python)
 
@@ -38,4 +38,4 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 - [Resources list](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/aws-resources-for-gc.html)
 
 Final remarks:
-- This process is semi-automated. Each step is automated (just run a few scripts), but the entire process still needs some manual operations. It is possible to automate the entire process using AWSCLI but that can be hard to debug. This only needs to be done after every major version release (12.1.0, 12.2.0) so hopefully the maintainence burden is minimal.
+- This process is semi-automated. Each step is automated (just run a few scripts), but the entire process still needs some manual operations. It is possible to automate the entire process using AWSCLI but that can be hard to debug. This only needs to be done after every major version release (12.1.0, 12.2.0) so hopefully the maintenance burden is minimal.
