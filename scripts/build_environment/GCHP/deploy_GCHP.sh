@@ -46,5 +46,9 @@ sed -i -e 1,120s/025x03125.nc/4x5.nc/g ExtData.rc # only scan the first few line
 sed -i -e "s#.--> CEDS.*# --> CEDS                   :       false#" HEMCO_Config.rc
 sed -i -e "s#.--> CEDS_SHIP.*# --> CEDS                   :       false#" HEMCO_Config.rc
 
+# Turn off StateMet diagnostics to prevent error in https://github.com/geoschem/gchp/issues/12
+sed -i -e "s/'StateMet_avg',/#'StateMet_avg',/" HISTORY.rc
+sed -i -e "s/'StateMet_inst',/#'StateMet_inst',/" HISTORY.rc
+
 # Run model, need to have input data.
 # mpirun -np 6 ./geos
