@@ -32,7 +32,7 @@ git checkout $UT_VERSION
 # Use '#' as delimiter so the line can contain '/' and ':'
 # Use .* to match the rest of the line
 
-sed -i -e "s#CODE_DIR    :=.*#CODE_DIR    :=$(HOME)/tutorial/Code.GC-classic#" runs/shared_inputs/Makefiles/Makefile
+sed -i -e 's#CODE_DIR    :=.*#CODE_DIR    :=$(HOME)/tutorial/Code.GC-classic#' runs/shared_inputs/Makefiles/Makefile
 
 cd perl
 sed -i -e 's#GCGRID_ROOT    :.*#GCGRID_ROOT    : /home/ubuntu#' CopyRunDirs.input
