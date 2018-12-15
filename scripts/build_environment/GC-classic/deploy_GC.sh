@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GC_VERSION=12.1.0
-UT_VERSION=12.1.0
+GC_VERSION=12.1.1
+UT_VERSION=12.1.1
 
 # Subsequent shell commands like `sed` are only tested with version 12.1.0
 # If the configure steps are changed in future versions, need to fix those shell commands
