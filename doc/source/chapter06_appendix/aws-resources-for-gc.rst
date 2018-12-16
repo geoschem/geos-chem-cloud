@@ -8,21 +8,21 @@ Latest resources:
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Tutorial AMI     | ami-08c83a8b3ebd20b63  | 100 GB   |                                  |
-|                   |                        |          | 1. gfortran 5.4.0,               |
-|                   |                        |          |    netCDF-Fortran 4.4.3          |
-|                   |                        |          | 2. GC environment variables      |
-|                   |                        |          | 3. GC source code and Unit Tester|
-|                   |                        |          | 4. 4x5 geosfp run directory      |
-|                   |                        |          | 5. Pre-compiled executable       |
-|                   |                        |          |    in rundir                     |
-|                   |                        |          | 6. Geoscientific Python          |
+|| Standard tutorial| ami-06f4d4afd350f6e4c  | 200 GB   | 0. Ubuntu 18.04                  |
+|  AMI              |                        |          | 1. gfortran 7.3.0,               |
+|                   |                        |          |    netCDF-Fortran 4.4.4,         |
+|                   |                        |          |    OpenMPI 3.1.3                 |
+|                   |                        |          | 2. Geoscientific Python          |
 |                   |                        |          |    environment                   |
-|                   |                        |          | 7. Sample gcdata directory       |
+|                   |                        |          | 3. Pre-compiled GC-classic and   |
+|                   |                        |          |    GCHP 12.1.1                   |
+|                   |                        |          | 4. Minimum GEOS-Chem input data  |
 +-------------------+------------------------+----------+----------------------------------+
-|| GCHP             | ami-21f37a5e           | 100 GB   | 1. Pre-configured GCHP rundir    |
-|| experimental     |                        |          | 2. Sample GCHP input data        |
-|| AMI              |                        |          | 3. GCHP container environment    |
+|| Container        | ami-040f96ea8f5a0973e  | 200 GB   | 0. Amazon Linux 2 AMI            |
+|  tutorial AMI     |                        |          | 1. Docker 18.06.1-ce,            |
+|                   |                        |          |    Singularity 3.0.1,            |
+|                   |                        |          |    CharlieCloud 0.9.7            |
+|                   |                        |          | 2. Minimum GEOS-Chem input data  |
 +-------------------+------------------------+----------+----------------------------------+
 || S3 bucket for    | s3://gcgrid            | ~30 TB   | All current GEOS-Chem input data |
 || all GC data      | (requester-pay)        |          |                                  |
@@ -33,6 +33,11 @@ Old resources (for record):
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Older tutorial   | ami-ab925cd6           | 70 GB    | Same as tutorial AMI             |
-|| AMI              |                        |          | but uses v11-02d                 |
+|| Old tutorial     | ami-08c83a8b3ebd20b63  | 100 GB   | 0. Ubuntu 16.04                  |
+|  AMI              |                        |          | 1. gfortran 5.4.0,               |
+|                   |                        |          |    netCDF-Fortran 4.4.3          |
+|                   |                        |          | 2. Geoscientific Python          |
+|                   |                        |          |    environment                   |
+|                   |                        |          | 3. Pre-compiled GC-classic 12.0.0|
+|                   |                        |          | 4. Minimum GEOS-Chem input data  |
 +-------------------+------------------------+----------+----------------------------------+
