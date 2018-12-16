@@ -1,6 +1,11 @@
 #!/bin/bash
 
-DATA_ROOT=~/ExtData
+if [ "$1" ]; then
+  DATA_ROOT=$1
+else
+  echo 'Must specify path to ExtData/ directory'
+  exit 1
+fi
 
 # GEOSFP 4x5 CN field
 aws s3 cp --request-payer=requester --recursive \

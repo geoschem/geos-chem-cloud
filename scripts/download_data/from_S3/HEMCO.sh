@@ -1,6 +1,11 @@
 #!/bin/bash
 
-DATA_ROOT=~/ExtData
+if [ "$1" ]; then
+  DATA_ROOT=$1
+else
+  echo 'Must specify path to ExtData/ directory'
+  exit 1
+fi
 
 # exclude huge data directories that are not in use by default
 # for CEDS, only get the most recent year

@@ -1,7 +1,12 @@
 #!/bin/bash
 # HEMCO/GMI has some softlinks that are ignored by S3
 
-DATA_ROOT=~/ExtData
+if [ "$1" ]; then
+  DATA_ROOT=$1
+else
+  echo 'Must specify path to ExtData/ directory'
+  exit 1
+fi
 
 cd $DATA_ROOT/HEMCO/GMI/v2015-02
 
