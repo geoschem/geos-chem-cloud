@@ -7,6 +7,8 @@ AWSCLI must be installed & configured.
 
 For example, to download GCHP data to local ~/ExtData directory, simply:
 
+    git clone https://github.com/geoschem/geos-chem-cloud.git
+    cd geos-chem-cloud/scripts/download_data/from_S3
     ./all_input_GCHP.sh ~/ExtData
 
 ## Note for maintainers & developers
