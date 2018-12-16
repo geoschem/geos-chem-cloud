@@ -58,6 +58,8 @@ Occasionally you might `hit EC2 instance limit <https://docs.aws.amazon.com/AWSE
 
 Advanced tutorial will show you how to :doc:`use AWSCLI to simply the above process to one shell command <../chapter03_advanced-tutorial/advanced-awscli>`.
 
+.. _custom-gc-label:
+
 Set up your own model configuration
 -----------------------------------
 
