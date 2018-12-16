@@ -37,13 +37,13 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for **ami-08c83a8b3ebd20b63** or **GEOSChem_tutorial_20180926** – that's the system with GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-06f4d4afd350f6e4c`` or ``GEOSChem_with_GCHP_12.1.1_tutorial_20181216`` – that's the system with both the classic and the `High-Performance <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP>`_ versions of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
-An AMI full specifies the "software" side of your virtual server, including the operating system, software libraries, and default data files. Then it's time to specify the "hardware" side, mostly about CPUs.
+An AMI fully specifies the "software" side of your virtual server, including the operating system, software libraries, and default data files. Then it's time to specify the "hardware" side, mostly about CPUs.
 
-You can select from a large number of CPU types at "Step 2: Choose an Instance Type". In this toy example, choose "Memory optimized"-"r5.large" which meets the minimal hardware requirement for GEOS-Chem:
+You can select from a large number of CPU types at "Step 2: Choose an Instance Type". In this toy example, choose ``Memory optimized``-``r5.large`` which meets the minimal hardware requirement for GEOS-Chem (To also test GCHP, use at least ``r5.2xlarge`` to provide enough memory):
 
 .. figure:: img/choose_instance_type.png
 
@@ -99,7 +99,7 @@ That's a system with GEOS-Chem already built!
 
   **Trouble shooting**: if the ``ssh`` commands hangs for a long time, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
 
-Go to the pre-generated run directory::
+Go to the pre-configured run directory::
 
   $ cd ~/tutorial/geosfp_4x5_standard
 
@@ -114,7 +114,7 @@ Or you can re-compile the model on your own::
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, and preparing model input data!
 
-The default simulation length is only 20 minutes, for demonstration purpose. The "r5.large" instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as "c5.4xlarge".
+The default simulation length is only 20 minutes, for demonstration purpose. The ``r5.large`` instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as ``c5.4xlarge``.
 
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
@@ -125,10 +125,10 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 Step 4: Analyze output data with Python
 ---------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation (``Ctrl+c``) and use the pre-generated file with the same name::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0020z.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation (``Ctrl+c``) and use the pre-generated file with the same name::
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
-  $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
+  $ ncdump -h GEOSChem.SpeciesConc.20160701_0020z.nc4
   netcdf GEOSChem.SpeciesConc.20160701_0000z {
   dimensions:
   	time = UNLIMITED ; // (1 currently)
@@ -144,19 +144,19 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
   		time:axis = "T" ;
   ...
 
-`Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/JiaweiZhuang/GEOSChem-python-tutorial>`_.
+`Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/geoschem/GEOSChem-python-tutorial>`_.
 
 Activate the pre-installed `geoscientific Python environment <https://github.com/geoschem/cloud_GC/blob/master/scripts/build_environment/python/geo.yml>`_ by ``source activate geo`` (it is generally a bad idea to directly install things into the root Python environment), start ``ipython`` from the command line, and type some Python code to open the data::
 
   $ source activate geo  # I also set a `act geo` alias
   $ ipython
-  Python 3.6.6 |Anaconda, Inc.| (default, Jun 28 2018, 17:14:51)
+  Python 3.6.7 |Anaconda, Inc.| (default, Oct 23 2018, 19:16:44)
   Type 'copyright', 'credits' or 'license' for more information
-  IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
+  IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
 
   In [1]: import xarray as xr
 
-  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0000z.nc4')
+  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0020z.nc4')
 
   In [3]: ds
   Out[3]:
@@ -187,18 +187,44 @@ Re-activate the Python environment (``source activate geo``) and start Jupyter b
   [I 21:11:42.046 NotebookApp] http://localhost:8999/
   [I 21:11:42.046 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
-Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/sample-python-code>` that you can just execute. It is located at::
+Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter environment just like on local machines. The server contains an :doc:`example notebook <../chapter06_appendix/plot_GC-classic_data>` that you can just execute. It is located at::
 
-  ~/tutorial/python_example/sample-python-code.ipynb
+  ~/tutorial/python_example/plot_GC-classic_data.ipynb
 
 Besides being a data analysis environment, Jupyter can also be used as a graphical text editor on remote servers so you don't have to use ``vim``/``emacs``/``nano``. The Jupyter console also allows you to download/upload data without using ``scp``. The next generation of notebooks, namely `Jupyter Lab <https://jupyterlab.readthedocs.io>`_, is also installed. Just change the launching command from ``jupyter notebook ...`` to ``jupyter lab ...`` if you want to have a try.
 
 .. note::
   There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
 
-We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you want to. Just compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is pre-installed in the ``geo`` environment. My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed, which can fulfill almost all horizontal regridding needs for GEOS-Chem data (and most of Earth science data).
+We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you really want to. Just re-compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is pre-installed in the ``geo`` environment. My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed, which can fulfill almost all horizontal regridding needs for GEOS-Chem data (and most of Earth science data).
 
 Also, you could indeed download the output data and use old tools like IDL & MATLAB to analyze them, but we highly recommend the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
+
+
+Bonus: Running GEOS-Chem High Performance (GCHP)
+------------------------------------------------
+
+GCHP is also fully functioning on the cloud. Running it on a single EC2 instance (equivalent to a single node on HPC clusters) is extremely easy. The biggest instance on AWS is ``x1.32xlarge`` with `64 physical cores <https://aws.amazon.com/ec2/physicalcores/>`_ and 2 TB memory. (Multi-node setup is quite cumbersome right now and we are actively looking into this.)
+
+Go to the pre-configured run directory::
+
+  $ cd ~/tutorial/gchp_standard
+
+Just run the pre-compiled the model by::
+
+  $ mpirun -np 6 -oversubscribe ./geos
+
+``-oversubscribe`` is needed when the number of physical cores is less than the number of MPI processes (6 here). No need for this option on bigger instances.
+
+.. warning::
+  Make sure that the geoscience Python environment is **deactivated** (``source deactivate geo``) before calling ``mpirun``. Otherwise the incorrect ``mpirun`` coming with Anaconda will be used. Use ``which mpirun`` and ``mpirun --version`` to make sure the correct executable is called. It should be OpenMPI 3 at ``/usr/local/bin/mpirun``.
+
+  Remember to use ``r5.2xlarge`` or even bigger instances, otherwise the run will crash at the middle due to inadequate memory.
+
+After a successful run (takes ~10 min), GCHP also produces NetCDF diagnostics inside ``OutputDir/`` of the run directory. Again a pre-generated output file is already contained in the AMI. Use this :doc:`example notebook <../chapter06_appendix/plot_GCHP_data>` located at ``~/tutorial/python_example/plot_GCHP.ipynb`` to plot GCHP output data directly on the native `Cubed-Sphere grid <http://acmg.seas.harvard.edu/geos/cubed_sphere.html>`_.
+
+See https://github.com/lizziel/geoschem_data_visualization for more comprehensive examples of GCHP data analysis.
+
 
 .. _terminate-label:
 
@@ -212,7 +238,7 @@ Right-click on the instance in your console to get this menu:
 There are two different ways to stop being charged:
 
 - "Stop" will make the system inactive, so that you'll not be charged by the CPU time,
-  but only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved.
+  but only be charged by the negligible disk storage fee. You can re-start the server at any time and all files will be preserved. When an instance is stopped, you can also change its hardware type (right lick on the instance - "Instance Settings" - "Change Instance Type") 
 - "Terminate" will completely remove that virtual server so you won't be charged at all after that.
   Unless you save your system as an AMI or transfer the data to other storage services,
   you will lose all your data and software.
