@@ -112,7 +112,7 @@ Pull GEOS-Chem image::
 
   singularity build --sandbox gc_model.sand docker://geoschem/gc_model
 
-The ``--sandbox`` option to be modified. This is often required, unless you are not going to change any files and run-time configurations.
+The ``--sandbox`` option allows the container to be modified. This is often required, unless you are not going to change any files and run-time configurations.
 
 Run the container interactively::
 
