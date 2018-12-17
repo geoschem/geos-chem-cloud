@@ -182,8 +182,20 @@ Newer versions and other MPI implementations generally need to be built from sou
   $ ./configure prefix=/usr/local/
   $ make
   $ sudo make install
+  $ sudo ldconfig  # fix library linking https://askubuntu.com/a/1100000
 
 Recall that building software from source all follow the same `configure, make, make install <https://robots.thoughtbot.com/the-magic-behind-configure-make-make-install>`_ steps.
+
+New executables will be in ``{prefix}/bin`` as specified in ``./configure`` above::
+
+  $ which mpirun mpicc mpifort mpic++
+  /usr/local/bin/mpirun
+  /usr/local/bin/mpicc
+  /usr/local/bin/mpifort
+  /usr/local/bin/mpic++
+
+  $ mpirun --version
+  mpirun (Open MPI) 3.1.3
 
 Install scientific Python environment
 -------------------------------------
