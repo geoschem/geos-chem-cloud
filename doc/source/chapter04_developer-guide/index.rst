@@ -8,7 +8,5 @@ This chapter shows how to build models on the cloud from scratch. Ironically, th
 
    install-basic
    share-ami
+   manual-mpi-cluster
    gc-env
-   install-python
-   install-mpi
-   build-container

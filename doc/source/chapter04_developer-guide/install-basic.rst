@@ -1,12 +1,12 @@
-Install compilers and NetCDF libraries
-======================================
+Install compilers and commonly-used libraries
+=============================================
 
-Start with a brand new system
------------------------------
+Start with a fresh operating system
+-----------------------------------
 
-Please follow `AWS official tutorial <https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/>`_ to launch an EC2 instance with a branch new Linux system. The only difference from our :ref:`quick start guide <quick-start-label>` is in "Step 1: Choose an Amazon Machine Image (AMI)". Instead of starting with our tutorial AMI, here you will start with a basic AMI with almost nothing installed. 
+The `AWS official "10-minute" tutorial <https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/>`_ shows how to launch an EC2 instance with a fresh Linux system. The only difference from our :ref:`quick start guide <quick-start-label>` is in "Step 1: Choose an Amazon Machine Image (AMI)". Instead of starting with our tutorial AMI, here you select a basic AMI with almost nothing installed. 
 
-AWS promotes their `Amazon Linux AMI <https://aws.amazon.com/amazon-linux-ami/>`_ but there are many other options:
+AWS recommends their `Amazon Linux AMI <https://aws.amazon.com/amazon-linux-ami/>`_; many other options are also available:
 
 .. figure:: img/select-ami.png
 
@@ -16,125 +16,79 @@ So which to choose? Recall that Linux distributions fall into two big categories
 
 2. **The Red Hat family**, such as `Red Hat Enterprise Linux (RHEL) <https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux>`_ and `CentOS <https://en.wikipedia.org/wiki/CentOS>`_. Amazon Linux also belongs to this family. They use ``yum`` as the high-level package manager and ``rpm`` as the low-level one.
 
-Ubuntu tends to have the largest user base; CentOS seems to be widely used on HPC clusters; Amazon Linux has the most native AWS support. I find the model performance almost the same on different systems; but this could depend on specific programs.
+Ubuntu tends to have the largest user base; CentOS is widely used on HPC clusters and is very tolerant of legacy software code; Amazon Linux has the most native AWS support.
 
-In this guide, we use with **Ubuntu 16.04 LTS (ami-66506c1c)** as the major example. Commands for **Amazon Linux 2017.09.1 (ami-1853ac65)** are also provided for reference.
+Here we use Ubuntu 18.04 LTS ``ami-0ac019f4fcb7cb7e6`` as an example, because it has many up-to-date, pre-packaged libraries available and is most painless to work with.
 
-To test software installation, the smallest instance "t2.micro" is good enough. 
+To test software installation, a small instance like ``t2.micro`` is often good enough. 
 
-Install C and Fortran compilers
--------------------------------
+C, C++, and Fortran compilers
+-----------------------------
 
-Ubuntu
-^^^^^^
-
-On Ubuntu, first update package metadata::
+After log-in, first update the package lists::
 
   $ sudo apt-get update
 
-We use the GNU compiler family which is free and open source::
+We use the GNU compiler family which is free, open source, and easy to install::
 
-  $ sudo apt-get install gcc gfortran
+  $ sudo apt-get install gcc gfortran g++
 
-(Alternatively, you can `install Intel compilers <https://software.intel.com/en-us/articles/installing-intel-parallel-studio-xe-on-aws-linux-instances>`_ if you have the license, or `PGI compilers <http://www.pgroup.com/index.htm>`_ for CUDA Fortran and OpenACC support.)
+.. note::
+
+  Alternatively, you can `install Intel compilers <https://software.intel.com/en-us/articles/installing-intel-parallel-studio-xe-on-aws-linux-instances>`_ if you have the license, or `PGI compilers <http://www.pgroup.com/index.htm>`_ for CUDA Fortran and OpenACC support.
 
 Executables will be installed to ``/usr/bin/``::
 
-  $ which gcc gfortran
+  $ which gcc gfortran g++
   /usr/bin/gcc
   /usr/bin/gfortran
+  /usr/bin/g++
 
-By default the package manager gets 5.4.0::
-
-  $ gcc --version
-  gcc (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609
-  ...
-  $ gfortran --version
-  GNU Fortran (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609
-  ...
-
-You can also install higher versions from the `Toolchain test builds <https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test>`_, for example::
-
-  $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  Press [ENTER]
-  $ sudo apt-get update
-  $ sudo apt-get install gfortran-7
-
-Amazon Linux
-^^^^^^^^^^^^
-
-For Amazon Linux, the equivalent command is::
-
-  $ sudo yum install gcc gcc-gfortran
-
-It gets 4.8.5 by default::
+By default the package manager gets 7.3.0::
 
   $ gcc --version
-  gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
-  $ gfortran --version
-  GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
+  gcc (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
 
-Install NetCDF library with package manager
--------------------------------------------
+You can also install higher versions, for example::
 
-The `NetCDF library <https://www.unidata.ucar.edu/software/netcdf/>`_ is ubiquitously used in Earth science models. Getting it from the package manager is extremely easy and quick.
+  $ sudo apt-get install gcc-8 gfortran-8 g++-8
+  $ gcc-8 --version
+  gcc-8 (Ubuntu 8.2.0-1ubuntu2~18.04) 8.2.0
 
-Ubuntu
-^^^^^^
+NetCDF library
+--------------
 
-On Ubuntu, simply::
+Install NetCDF with package manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `NetCDF library <https://www.unidata.ucar.edu/software/netcdf/>`_ is ubiquitous in Earth science models. Getting it from the package manager is extremely easy::
 
   $ sudo apt-get install libnetcdf-dev libnetcdff-dev
 
-Note that "dev" stands for "development tool" since you are going to use it to compile models. (it is not "developing version" -- the package repository is quite mature and stable!) Also note that after version 4.2, the NetCDF-C and NetCDF-Fortran libraries are installed separately.
+Note that "dev" stands for "development tool", because it contains header files for compiling models. (It is not "developing version" -- the package repository is mature and stable!) Also note that after NetCDF version 4.2, the NetCDF-C and NetCDF-Fortran libraries are installed separately.
 
 Check NetCDF-C configuration::
 
   $ nc-config --all
 
-  This netCDF 4.4.0 has been built with the following features:
+  This netCDF 4.6.0 has been built with the following features:
   ...
 
 Check NetCDF-Fortran configuration::
 
   $ nf-config --all
 
-  This netCDF-Fortran 4.4.3 has been built with the following features:
+  This netCDF-Fortran 4.4.4 has been built with the following features:
   ...
   --prefix    -> /usr
   --includedir-> /usr/include
-  --version   -> netCDF-Fortran 4.4.3
+  --version   -> netCDF-Fortran 4.4.4
   
 ``--includedir`` will be used to include this NetCDF library when compiling Fortran code.
 
-Amazon Linux
-^^^^^^^^^^^^
-
-For Amazon Linux, NetCDF libraries are not in the default repository. You need to first enable the `Extra Packages for Enterprise Linux (EPEL) <https://fedoraproject.org/wiki/EPEL>`_::
-
-  $ sudo yum-config-manager --enable epel
-
-(See `AWS guide <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-enable-epel/>`_ for enabling EPEL on CentOS and Ret Hat).
-
-Then get NetCDF from the EPEL repo::
-
-  $ sudo yum install netcdf-devel
-
-This currently gives you 4.1.1 with C and Fortran bundled together::
-
-  $ nc-config --all
-
-  This netCDF 4.1.1 has been built with the following features:
-  ...
-
-(CentOS's package registry has a newer version of NetCDF which separates Fortran and C libraries, so you would need ``sudo yum install -y netcdf-devel netcdf-fortran-devel``)
-
-However, this NetCDF distribution seems to lack ``/usr/include/netcdf.mod`` for ``use netcdf`` statement in Fortran 90 code. The ``include 'netcdf.inc'`` statement would work fine. 
-
-CentOS will put one at ``/usr/lib64/gfortran/modules/netcdf.mod``. The include statement needs to be changed to ``-I/usr/lib64/gfortran/modules/``.
 
 Test sample NetCDF code
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Get some `sample code <https://www.unidata.ucar.edu/software/netcdf/examples/programs/>`_, such as `simple_xy_wr.f90 <https://www.unidata.ucar.edu/software/netcdf/examples/programs/simple_xy_wr.f90>`_.
 
@@ -145,9 +99,9 @@ Get some `sample code <https://www.unidata.ucar.edu/software/netcdf/examples/pro
   $ ./test_nc.exe
   *** SUCCESS writing example file simple_xy.nc!
 
-Install ``ncdump`` to check data content::
+Install ``ncdump`` to check file content::
 
-  $ sudo apt install netcdf-bin
+  $ sudo apt-get install netcdf-bin
   $ ncdump -h simple_xy.nc
   netcdf simple_xy {
   dimensions:
@@ -157,14 +111,94 @@ Install ``ncdump`` to check data content::
   	int data(x, y) ;
   }
 
-(Optional) Install NetCDF from source code
-------------------------------------------
+(Optional) Build NetCDF from source
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You might want to build NetCDF from source if:
 
-1. To install into a different directory. Package managers can only install libraries into ``/usr``.
-2. To ensure the latest version. Package managers are not necessarily up-to-date.
+1. To ensure the latest version. Package managers are not necessarily up-to-date (although Ubuntu 18.04's package repository contains a very recent NetCDF).
+2. To be compatible with other versions of compilers. The above NetCDF library got from package manager is compiled with gfortran 7, and cannot be used with gfortran 8.
+3. To install into a different directory. Package managers typically install libraries into ``/usr``.
 
-Doing so is quite tedious so we will not cover it here. Please refer to the `official guide <https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html>`_.
+Doing so is quite tedious so we will not go through it here. Please refer to `NetCDF official page <https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html>`_.
 
-For NetCDF library, you generally won't get better performance by compiling it from source with better optimized compiler settings. That's because NetCDF is just an I/O library, not for numerical computation. However, for other compute-oriented libraries, compiling from source can sometimes make a big difference in performance.
+For NetCDF library, you generally won't get better performance by compiling it from source with better optimized compiler settings, because NetCDF is just an I/O library, not for numerical computation. However, for other compute-oriented libraries, compiling from source can sometimes make a big difference in performance.
+
+
+MPI library
+-----------
+
+`Message Passing Interface (MPI) <https://computing.llnl.gov/tutorials/mpi/>`_ is also ubiquitous in Earth science models. Popular MPI implementations include:
+
+- `Open MPI <https://www.open-mpi.org>`_
+- `MPICH <https://www.mpich.org>`_
+- `MVAPICH <http://mvapich.cse.ohio-state.edu>`_
+- `Intel MPI <https://software.intel.com/en-us/mpi-library>`_
+
+Install MPI with package manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We use Open MPI as the example::
+
+  $ sudo apt-get install libopenmpi-dev
+  $ which mpirun mpicc mpifort mpic++
+  /usr/bin/mpirun
+  /usr/bin/mpicc
+  /usr/bin/mpifort
+  /usr/bin/mpic++
+
+.. note::
+  MPICH can be also installed by ``sudo apt-get install libmpich-dev``. To avoid messing up executables, do not install both. To test multiple versions&implementations of MPI, see building from source code below.
+
+Check MPI version::
+
+  $ mpirun --version
+  mpirun (Open MPI) 2.1.1
+
+Show the full command of the ``mpicc`` wrapper (OpenMPI-only feature)::
+
+  $ mpicc --show
+  gcc -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/opal/mca/event/libevent2022/libevent -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/opal/mca/event/libevent2022/libevent/include -I/usr/lib/x86_64-linux-gnu/openmpi/include -pthread -L/usr//lib -L/usr/lib/x86_64-linux-gnu/openmpi/lib -lmpi
+
+Test sample MPI code
+^^^^^^^^^^^^^^^^^^^^
+
+Get sample code like `hello.c <https://www.open-mpi.org/papers/workshop-2006/hello.c>`_::
+
+  $ wget https://www.open-mpi.org/papers/workshop-2006/hello.c
+  $ mpicc -o hello.exe hello.c
+  $ mpirun -np 2 ./hello.exe
+  Hello, World.  I am 1 of 2
+  Hello, World.  I am 0 of 2
+
+(Optional) Build MPI from source
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Newer versions and other MPI implementations generally need to be built from source. For example, getting `OpenMPI 3 <https://www.open-mpi.org/software/ompi/v3.1/>`_::
+
+  $ wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.3.tar.gz
+  $ tar zxf openmpi-3.1.3.tar.gz
+  $ cd openmpi-3.1.3
+  $ ./configure prefix=/usr/local/
+  $ make
+  $ sudo make install
+
+Recall that building software from source all follow the same `configure, make, make install <https://robots.thoughtbot.com/the-magic-behind-configure-make-make-install>`_ steps.
+
+Install scientific Python environment
+-------------------------------------
+
+Do not use the system Python installation. Just `install Anaconda/Miniconda <https://conda.io/docs/user-guide/install/index.html>`_. It doesn't require root access and can be easily installed into almost any environment (including shared HPC clusters).
+
+Scripts used for the tutorial AMI are `available for reference <https://github.com/geoschem/geos-chem-cloud/tree/master/scripts/build_environment/python>`_.
+
+Additional tools
+----------------
+
+For Emacs users::
+
+  $ sudo apt-get install emacs
+
+For git-gui users::
+
+  $ sudo apt-get install git-gui

@@ -1,16 +1,18 @@
-Set up GEOS-Chem environment
-============================
+Set up GEOS-Chem environment from scratch
+=========================================
 
-GEOS-Chem-classic only uses OpenMP parallelization so there is no need for MPI libraries. Having Fortran compiler and NetCDF library installed is sufficient for GC-classic to compile and run.
+Building GEOS-Chem AMI
+----------------------
 
-Environment variables
----------------------
+Scripts for building the GEOS-Chem tutorial AMI are all available `here <https://github.com/geoschem/geos-chem-cloud/tree/master/scripts>`_.
 
-Just follow `our wiki <http://wiki.seas.harvard.edu/geos-chem/index.php/Setting_Unix_environment_variables_for_GEOS-Chem>`_. The bashrc used for the tutorial AMI is `available for reference <https://github.com/JiaweiZhuang/cloud_GC/blob/master/build_scripts/bashrc/GEOSChem_env>`_.
+General reference (not cloud-specific) is the GEOS-Chem wiki:
 
-Source code, run directory and input data
------------------------------------------
+- `Compiling GEOS-Chem <http://acmg.seas.harvard.edu/geos/doc/man/chapter_7.html>`_
+- `Setting Unix environment variables for GEOS-Chem <http://wiki.seas.harvard.edu/geos-chem/index.php/Setting_Unix_environment_variables_for_GEOS-Chem>`_
+- `Downloading GEOS-Chem source code and data <http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data>`_
 
-Again, just follow the `wiki <http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data>`_. 
+Building GEOS-Chem Docker image
+-------------------------------
 
-Since all data are now :ref:`available on S3 <gcdata-bucket-label>`, no need to pull them from other places.
+Dockerfiles and notes are all available at https://github.com/geoschem/geos-chem-docker.
