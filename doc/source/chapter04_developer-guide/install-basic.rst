@@ -197,6 +197,8 @@ New executables will be in ``{prefix}/bin`` as specified in ``./configure`` abov
   $ mpirun --version
   mpirun (Open MPI) 3.1.3
 
+In other locations that are included in the ``$PATH`` environment variable by default, remember to add ``/xxx/bin`` to ``$PATH``.
+
 Install scientific Python environment
 -------------------------------------
 
