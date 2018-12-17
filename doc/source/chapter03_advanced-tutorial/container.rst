@@ -65,7 +65,7 @@ The usage of different containers are highly similar, all covering 3 steps:
 Using Docker
 ^^^^^^^^^^^^
 
-After login, you need to start the `"Docker daemon" <https://docs.docker.com/config/daemon/>`_ (i.e. background process)::
+After login, you need to start the `"Docker daemon" <https://docs.docker.com/config/daemon/>`_ (i.e. background process) to support other Docker commands::
 
   sudo systemctl start docker
 
