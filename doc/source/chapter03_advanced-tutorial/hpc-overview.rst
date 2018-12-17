@@ -24,29 +24,29 @@ So, when do you actually need an HPC environment?
 - You have tens or hundreds of jobs to submit, which is too inconvenient to do with basic EC2 instances.
 - When you decide that AWS should be your major working environment (i.e. "all-in on cloud"). Then it worths the effort to really get familiar with one HPC management tool. (For occasional use, the basic EC2 is more convenient.)
 
-In any case, understand basic AWS services and concepts (finish all the beginner tutorials) before trying HPC clusters.
-
-.. warning::
-  **The major caveat of HPC clusters on cloud:** Those "clusters" are built upon tons of different AWS services to behave like a traditional cluster. The underlying AWS services are abstracted away and not directly exposed to users. However, `all abstractions are leaky <https://en.wikipedia.org/wiki/Leaky_abstraction>`_. If the cluster just works as you expect, then everything is fine. However, if you encounter a bug, the solution would generally require a fix to the underlying AWS services which you might have no idea about. That's another reason why I recommend really getting used to basic AWS services before trying clusters.
+In any case, understand basic AWS services and concepts (finish all the beginner tutorials) before trying HPC clusters. All cluster management tools introduced below do not perfectly abstract away the underlying low-level AWS services. You will find them quite difficult to use and customize if you are unfamiliar with basic AWS concepts. 
 
 HPC cluster management tools
 ----------------------------
 
-Many cloud-HPC tools have been developed over the past 10+ years, but only a few have relatively large communities. They are introduced below. I personally recommend AlcesFlight, according to the current development status of these tools.
+Many cloud-HPC tools have been developed, both commercial and open-source. Here only covers open-source tools.
 
-CfnCluster
-^^^^^^^^^^
+AWS ParallelCluster
+^^^^^^^^^^^^^^^^^^^
 
-`CfnCluster <http://cfncluster.readthedocs.io>`_ is an `open-source tool <https://github.com/awslabs/cfncluster/blob/develop/LICENSE.txt>`_ developed directly by AWS. The full name "cloud formation cluster" comes from the `Cloud​Formation service <https://aws.amazon.com/cloudformation/>`_, which is for combining different AWS resources together. Understanding CloudFormation is far beyond the IT knowledge of domain scientists. Fortunately, you can just use CfnCluster with terminal commands ``cfncluster xxx`` and don't have to understand how CloudFormation works under the hood. Its official doc provides a `simple tutorial <http://cfncluster.readthedocs.io/en/latest/hello_world.html>`_ on running a 2-node MPI job.
-
-However, CfnCluster is not an official AWS service, as you cannot find it anywhere in the AWS console. Its documentaion is not as user-friendly as AlcesFlight (see below) and there is a lack of comprehensive instructions for new users.
+`AWS ParallelCluster <https://aws-parallelcluster.readthedocs.io/>`_ is a rebranding of the previous `CfnCluster <http://cfncluster.readthedocs.io>`_, developed directly by AWS. It feels the most "AWS native" among all the tools, and is updated fairly often. However, its documentation is still quite thin and the learning curve for domain scientists can be relatively steep.
 
 AlcesFlight
 ^^^^^^^^^^^
 
-`Alces Flight <https://alces-flight.com>`_ provides `free and open-source tools <http://docs.alces-flight.com/en/stable/overview/whatisit.html#how-much-does-it-cost>`_ for HPC cluster management on AWS as well as paid services for advanced tasks. The free one ("Community Version") is generally enough for common research workloads. Alces Flight has a pretty decent, comprehensive `documentation <http://docs.alces-flight.com/en/stable/index.html>`_ which keeps in mind the fact that domain scientists have very limited IT knowledge. Their `quick start guide <http://docs.alces-flight.com/en/stable/launch-aws/launching_on_aws.html>`_ teaches you how to create an HPC cluster.
+`Alces Flight <https://alces-flight.com>`_ provides `free and open-source tools <http://docs.alces-flight.com/en/stable/overview/whatisit.html#how-much-does-it-cost>`_ for HPC cluster management on AWS as well as paid services for advanced tasks. The free one ("Community Version") is generally enough for common research workloads. AlcesFlight has a pretty decent, comprehensive `documentation <http://docs.alces-flight.com/en/stable/index.html>`_ which keeps in mind the fact that domain scientists have very limited IT knowledge. Their `quick start guide <http://docs.alces-flight.com/en/stable/launch-aws/launching_on_aws.html>`_ teaches you how to create an HPC cluster on AWS.
 
-Their cluster environment contains many `pre-built software modules <http://docs.alces-flight.com/en/stable/apps/gridware.html>`_, but they are not necessarily up-to-date. Fortunately, they `support Singularity container <http://docs.alces-flight.com/en/stable/apps/singularity.html>`_ so you can :doc:`run the model inside containers <./container>`.
+Their cluster environment contains many `pre-built software modules <http://docs.alces-flight.com/en/stable/apps/gridware.html>`_, but they are not necessarily up-to-date. Fortunately, they support `Docker container <http://docs.alces-flight.com/en/stable/apps/docker.html>`_ and `Singularity container <http://docs.alces-flight.com/en/stable/apps/singularity.html>`_ so you can :doc:`run the model inside containers <./container>`.
+
+ElasticCluster
+^^^^^^^^^^^^^^
+
+`ElasticCluster <http://gc3-uzh-ch.github.io/elasticluster/>`_ is quite platform-agnostic as it can deploy clusters on AWS, Azure, and Google Cloud. It is designed for general cluster setup, not just for tightly-coupled MPI/HPC simulations. Its documentation on MPI environment is quite thin and the learning curve can be steep for domain scientists.
 
 StarCluster
 ^^^^^^^^^^^
