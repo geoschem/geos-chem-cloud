@@ -26,7 +26,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 
 6. Install Anaconda python environment. See [./build_environment/python](./build_environment/python)
 
-7. Run [sample Python code](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/sample-python-code.html) on output data.
+7. Run [sample Python code](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/) on output data.
 
 8. **Clean-up history** (see [./minor_util/clean_history.sh](./minor_util/clean_history.sh)). Save AMI. Change AMI permission to public.
 
