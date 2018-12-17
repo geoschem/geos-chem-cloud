@@ -223,7 +223,7 @@ Just run the pre-compiled the model by::
 
 After a successful run (takes ~10 min), GCHP also produces NetCDF diagnostics inside ``OutputDir/`` of the run directory. Again a pre-generated output file is already contained in the AMI. Use this :doc:`example notebook <../chapter06_appendix/plot_GCHP_data>` located at ``~/tutorial/python_example/plot_GCHP.ipynb`` to plot GCHP output data directly on the native `Cubed-Sphere grid <http://acmg.seas.harvard.edu/geos/cubed_sphere.html>`_.
 
-See https://github.com/lizziel/geoschem_data_visualization for more comprehensive examples of GCHP data analysis.
+See https://github.com/lizziel/geoschem_data_visualization for more comprehensive examples of GCHP data analysis. See `GCHP main page <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP>`_ for more tutorials on GCHP.
 
 
 .. _terminate-label:
