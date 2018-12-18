@@ -15,7 +15,7 @@ Give your AMI a meaningful name, edit "Image description" as you like. and then 
 
 .. figure:: img/config-ami.png
 
-AMI creation can take a while. For this small one it will take several minutes; bigger ones might take an hour. You will final see the new AMI in EC2 console:
+AMI creation can take a while. For this small one it will take several minutes; bigger ones might take an hour. You will finally see the new AMI in EC2 console:
 
 .. figure:: img/ami-permission.png
   :width: 550px
