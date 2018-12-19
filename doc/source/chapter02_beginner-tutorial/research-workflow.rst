@@ -168,7 +168,7 @@ Try ``aws s3 ls`` to make sure AWSCLI is working. Then retrieve data by::
   s3://gcgrid/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.2x25_standard.nc ~/ExtData/GEOSCHEM_RESTARTS/v2018-11/
   
   # fix the softlink in run directory
-  ln -s ~/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.2x25_standard.nc ~/GC/geosfp_2x25_standard/GEOSChem_restart.201607010000.nc
+  ln -s ~/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.2x25_standard.nc ~/GC/geosfp_2x25_standard/GEOSChem.Restart.20160701_0000z.nc4
 
 Now the model should run without problems.
 
