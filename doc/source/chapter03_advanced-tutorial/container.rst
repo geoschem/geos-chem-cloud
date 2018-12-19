@@ -150,9 +150,9 @@ Run the container without mounting any directories::
 
 The ``-w`` options gives write access in the container. This is usually required. ``bash`` starts a interactive bash shell, like the ``/bin/bash`` command in Docker.
 
-Rerun the container with input/output directories mounted (the ``-b`` option is equivalent to the ``-v`` option in Docker)::
+Exit the container by ``Ctrl + d``, rerun the container with input/output directories mounted (the ``-b`` option is equivalent to the ``-v`` option in Docker)::
 
-  ch-run -b $HOME/ExtData:/ExtData -b $HOME/OutputDir:/OutputDir -w geoschem.gchp_model -- bash
+  ch-run -b $HOME/ExtData:/ExtData -b $HOME/OutputDir:/OutputDir -w geoschem.gc_model -- bash
 
 Inside the container, execute the model::
 
