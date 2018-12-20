@@ -1,7 +1,7 @@
 ﻿,total time,standard hourly,spot hourly
- c4.8xlarge,5444.04,1.59,0.57
- c5.9xlarge,4030.448,1.53,0.58
- c4.4xlarge,7282.29,0.796,0.25
- c5.4xlarge,5656.195,0.68,0.27
- Pleiade Sandy Bridge,7748.75,0.29
- Pleiade Haswell,5730.25,0.53,
+ EC2 c4.8xlarge,5444.04,1.59,0.57
+ EC2 c5.9xlarge,4030.448,1.53,0.58
+ EC2 c4.4xlarge,7282.29,0.796,0.25
+ EC2 c5.4xlarge,5656.195,0.68,0.27
+ Pleiades Sandy Bridge,7748.75,0.29
+ Pleiades Haswell,5730.25,0.53,
