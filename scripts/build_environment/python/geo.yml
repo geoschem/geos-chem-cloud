@@ -34,3 +34,4 @@ dependencies:
         - h5netcdf # allow HDF5-backend for xarray
         - graphviz # visualize dask graph (python package)
         - awscli   # AWS command line interface
+        - pypdf2   # Save output to PDF (and allows for bookmarks in PDF files)
