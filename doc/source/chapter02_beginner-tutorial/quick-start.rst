@@ -201,7 +201,7 @@ We encourage users to try the new NetCDF diagnostics, but you can still use the 
 Also, you could indeed download the output data and use old tools like IDL & MATLAB to analyze them, but we highly recommend the open-source Python/Jupyter/xarray ecosystem. It will vastly improve user experience and working efficiency, and also help open science and reproducible research.
 
 
-Step 4: Shut down the server (Very important!!)
+Step 5: Shut down the server (Very important!!)
 -----------------------------------------------
 
 Right-click on the instance in your console to get this menu:
