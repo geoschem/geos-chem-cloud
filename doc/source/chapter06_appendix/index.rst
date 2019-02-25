@@ -10,5 +10,4 @@ This chapter provides additional resources that don't fit into the main tutorial
    ssh-config
    keep-running
    plot_GC-classic_data
-   plot_GCHP_data
    plot_NASANEX
