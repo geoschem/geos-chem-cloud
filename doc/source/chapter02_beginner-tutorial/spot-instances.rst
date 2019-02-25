@@ -26,14 +26,7 @@ Each ":ref:`Availability Zone <az-detail-label>`" has its own spot price. You wi
 
 Spot prices are fluctuating according to current user demand. **Once the price exceeds the on-demand price, your spot instance will be reclaimed by AWS to serve on-demand users who pay much more.** That's why they are "sloppy" and thus much cheaper than standard, on-demand instances.
 
-But from the above figure it seems like the spot prices are consistently much lower than the on-demand price, for the entire 3 months? Does the price ever exceeds on-demand price? Yes, it does. For example this GPU instance (perhaps too many people are :ref:`training neural nets <deep-learning-label>`):
-
-.. figure:: img/spot_p2.png
-
-However, in general, the chance of spot instance shut-down is pretty low, especially during a model simulation (at most takes several days, sometimes just hours). The cost saving is quite big so I recommend using spot instances for serious, compute-intensive simulations.
-
-.. note::
-  Still feel uncomfortable about the possibility of losing your server? The chance is really low and there are even people wondering `why on-demand instances are still being used <https://stackoverflow.com/a/11996798/8729698>`_ since spot instances look so sweet. Think about this: "100% stability" (on-demand) can be much more expensive than "99.5% stability" (spot). There are people who are willing to pay much more for the last 0.5%. Those people are generally not scientific researchers.
+However, in general, the chance of spot instance shut-down is pretty low, especially during a model simulation (at most takes several days, sometimes just hours). The cost saving is quite big so I recommend using spot instances for computational expensive simulations.
 
 Use spot instances for big computing
 ------------------------------------
