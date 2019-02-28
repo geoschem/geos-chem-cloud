@@ -122,16 +122,16 @@ to::
 Then un-comment the run directory you want, say for global 2x2.5 simulation::
 
   geosfp   2x25         -      standard         2016070100   2016080100     -
-  
-In ``UT/perl/Makefile``, make sure the source code path is correct::
-
-    CODE_DIR    :=$(HOME)/GC/Code.GC
  
 Finally, generate the run directory::
 
   $ ./gcCopyRunDirs
 
-Go to the run directory and compile::
+Go to the generated run directory. First make sure that the source code path in ``Makefile`` is correct::
+
+    CODE_DIR    :=$(HOME)/GC/Code.GC
+
+ And then compile the model::
 
   $ make realclean
   $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
