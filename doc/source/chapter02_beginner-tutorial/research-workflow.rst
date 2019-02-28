@@ -131,7 +131,7 @@ Go to the generated run directory. First make sure that the source code path in 
 
     CODE_DIR    :=$(HOME)/GC/Code.GC
 
- And then compile the model::
+And then compile the model::
 
   $ make realclean
   $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
