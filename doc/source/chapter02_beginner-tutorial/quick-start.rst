@@ -37,7 +37,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0ee8892ae47c31be1`` or ``GEOSChem12.2.0_tutorial_20190221`` – that's the system with both the classic version of GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0413eb49d1666c8f4`` or ``GEOSChem12.3.2_tutorial_20190503`` – that's the system with both the classic version of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
@@ -110,7 +110,7 @@ Just run the pre-compiled the model by::
 Or you can re-compile the model on your own::
 
   $ make realclean
-  $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
+  $ make -j4 mpbuild TIMERS=1
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, and preparing model input data!
 
@@ -128,7 +128,7 @@ Step 4: Analyze output data with Python
 If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0020z.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation (``Ctrl+c``) and use the pre-generated file with the same name::
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
-  $ ncdump -h GEOSChem.SpeciesConc.20160701_0020z.nc4
+  $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
   netcdf GEOSChem.SpeciesConc.20160701_0000z {
   dimensions:
   	time = UNLIMITED ; // (1 currently)
@@ -156,7 +156,7 @@ Activate the pre-installed `geoscientific Python environment <https://github.com
 
   In [1]: import xarray as xr
 
-  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0020z.nc4')
+  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0000z.nc4')
 
   In [3]: ds
   Out[3]:

@@ -8,13 +8,13 @@ Latest resources:
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Standard tutorial| ami-0ee8892ae47c31be1  | 200 GB   | 0. Ubuntu 18.04                  |
+|| Standard tutorial| ami-0413eb49d1666c8f4  | 200 GB   | 0. Ubuntu 18.04                  |
 |  AMI              |                        |          | 1. gfortran 7.3.0,               |
 |                   |                        |          |    netCDF-Fortran 4.4.4          |
 |                   |                        |          | 2. Geoscientific Python          |
 |                   |                        |          |    environment                   |
-|                   |                        |          | 3. Pre-compiled GC-classic       |
-|                   |                        |          |    12.2.0                        |
+|                   |                        |          | 3. Pre-compiled GC-classic and   |
+|                   |                        |          |    12.3.2                        |
 |                   |                        |          | 4. Minimum GEOS-Chem input data  |
 +-------------------+------------------------+----------+----------------------------------+
 || Container        | ami-040f96ea8f5a0973e  | 200 GB   | 0. Amazon Linux 2 AMI            |
@@ -32,11 +32,11 @@ Old resources (for record):
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Old tutorial     | ami-08c83a8b3ebd20b63  | 100 GB   | 0. Ubuntu 16.04                  |
+|| Old tutorial     | ami-0ee8892ae47c31be1  | 200 GB   | 0. Ubuntu 16.04                  |
 |  AMI              |                        |          | 1. gfortran 5.4.0,               |
 |                   |                        |          |    netCDF-Fortran 4.4.3          |
 |                   |                        |          | 2. Geoscientific Python          |
 |                   |                        |          |    environment                   |
-|                   |                        |          | 3. Pre-compiled GC-classic 12.0.0|
+|                   |                        |          | 3. Pre-compiled GC-classic 12.2.0|
 |                   |                        |          | 4. Minimum GEOS-Chem input data  |
 +-------------------+------------------------+----------+----------------------------------+
