@@ -43,7 +43,7 @@ In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on th
 
 An AMI fully specifies the "software" side of your virtual server, including the operating system, software libraries, and default data files. Then it's time to specify the "hardware" side, mostly about CPUs.
 
-You can select from a large number of CPU types at "Step 2: Choose an Instance Type". In this toy example, choose ``Memory optimized``-``r5.large`` which meets the minimal hardware requirement for GEOS-Chem (To also test GCHP, use at least ``r5.2xlarge`` to provide enough memory):
+You can select from a large number of CPU types at "Step 2: Choose an Instance Type". In this toy example, choose ``Memory optimized``-``r5.large`` which meets the minimal hardware requirement for GEOS-Chem:
 
 .. figure:: img/choose_instance_type.png
 
