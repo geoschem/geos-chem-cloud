@@ -125,7 +125,7 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 Step 4: Analyze output data with Python
 ---------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0020z.nc4`` inside ``OutputDir/`` of the run directory. To save time, you can also cancel the simulation (``Ctrl+c``) and use the pre-generated file with the same name::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0000z.nc4`` inside ``OutputDir/`` of the run directory.
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
@@ -194,7 +194,7 @@ Visit ``http://localhost:8999/`` in your browser, you should see a Jupyter envir
 Besides being a data analysis environment, Jupyter can also be used as a graphical text editor on remote servers so you don't have to use ``vim``/``emacs``/``nano``. The Jupyter console also allows you to download/upload data without using ``scp``. The next generation of notebooks, namely `Jupyter Lab <https://jupyterlab.readthedocs.io>`_, is also installed. Just change the launching command from ``jupyter notebook ...`` to ``jupyter lab ...`` if you want to have a try.
 
 .. note::
-  There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which has much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
+  There are many ways to connect to Jupyter on remote servers. Port-forwarding is the easiest way, and is the only way that also works on local HPC clusters (which have much stricter firewalls than cloud platforms). The port number 8999 is just my random choice, to distinguish from the default port number 8888 for local Jupyter. You can use whatever number you like as long as it doesn't conflict with `existing port numbers <https://en.wikipedia.org/wiki/Port_(computer_networking)#Common_port_numbers>`_.
 
 We encourage users to try the new NetCDF diagnostics, but you can still use the old BPCH diagnostics if you really want to. Just re-compile with ``NC_DIAG=n BPCH_DIAG=y`` instead. The Python package `xbpch <http://xbpch.readthedocs.io>`_ can read BPCH data into xarray format, so you can use very similar code for NetCDF and BPCH output. xbpch is pre-installed in the ``geo`` environment. My `xESMF <http://xesmf.readthedocs.io>`_ package is also pre-installed, which can fulfill almost all horizontal regridding needs for GEOS-Chem data (and most of Earth science data).
 
