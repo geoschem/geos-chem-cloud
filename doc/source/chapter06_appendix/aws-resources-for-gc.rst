@@ -32,9 +32,9 @@ Old resources (for record):
 +-------------------+------------------------+----------+----------------------------------+
 | Resource          | ID/name                | Size     | Content                          |
 +===================+========================+==========+==================================+
-|| Old tutorial     | ami-0ee8892ae47c31be1  | 200 GB   | 0. Ubuntu 16.04                  |
-|  AMI              |                        |          | 1. gfortran 5.4.0,               |
-|                   |                        |          |    netCDF-Fortran 4.4.3          |
+|| Old tutorial     | ami-0ee8892ae47c31be1  | 200 GB   | 0. Ubuntu 18.04                  |
+|  AMI              |                        |          | 1. gfortran 7.3.0,               |
+|                   |                        |          |    netCDF-Fortran 4.4.4          |
 |                   |                        |          | 2. Geoscientific Python          |
 |                   |                        |          |    environment                   |
 |                   |                        |          | 3. Pre-compiled GC-classic 12.2.0|
