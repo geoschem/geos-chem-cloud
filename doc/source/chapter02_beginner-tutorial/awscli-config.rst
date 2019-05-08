@@ -83,12 +83,12 @@ With IAM user account
 
 In the Security Credential console, click on "Create Access Key":
 
-.. figure:: img/iam_credential_create
+.. figure:: img/iam_credential_create.png
   :width: 500 px
 
 Then, download the csv file that contains your "Access Key ID" (like your AWS account) and "Secret Access Key" (like password, has much more digits than ID).
 
-.. figure:: img/iam_credential_download
+.. figure:: img/iam_credential_download.png
   :width: 500 px
 
 If you lose the Secret Access Key (for example, forget to download the csv file), simply delete your key in the console and create a new one.
