@@ -125,7 +125,7 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 Step 4: Analyze output data with Python
 ---------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0000z.nc4`` inside ``OutputDir/`` of the run directory.
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0000z.nc4`` inside ``OutputDir/`` of the run directory::
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
