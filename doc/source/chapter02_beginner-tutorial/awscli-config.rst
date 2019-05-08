@@ -50,7 +50,15 @@ Click on your account name on the upper right corner of AWS console to get this 
 .. figure:: img/choose_security_console.png
   :width: 500 px
 
-Then you will likely be prompted with this warning:
+Depending on the type of your AWS account, you will see slightly different interfaces, as detailed in the two subsections below.
+
+- If you sign up for the AWS account with your own credit card, your account is a "root account" with the highest privilege (such as controlling the billing information). 
+- If you obtain the AWS account from a workshop or your research group manager (without using your credit card), it is probably a `"IAM user account" <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html>`_ that is derived from a root account. It has less privileges (e.g. cannot see the billing information).
+
+With root account
+^^^^^^^^^^^^^^^^^
+
+You will likely be prompted with this warning:
 
 .. figure:: img/security_prompt.png
 
@@ -64,9 +72,26 @@ In the prompted window, click on "Download Key File". That's the only chance you
 
 .. figure:: img/download_access_key.png
 
+Keep your Key File in a safe place. Now we can answer ``aws configure`` questions.
+
 Then your new key will appear in the console. Here you can only see the "Access Key ID" (like your AWS account), but not the "Secret Access Key" (like password, has much more digits than ID, and is only visible in the downloaded Key File).
 
 .. figure:: img/created_access_key.png
+
+With IAM user account
+^^^^^^^^^^^^^^^^^^^^^
+
+In the Security Credential console, click on "Create Access Key":
+
+.. figure:: img/iam_credential_create
+  :width: 500 px
+
+Then, download the csv file that contains your "Access Key ID" (like your AWS account) and "Secret Access Key" (like password, has much more digits than ID).
+
+.. figure:: img/iam_credential_download
+  :width: 500 px
+
+If you lose the Secret Access Key (for example, forget to download the csv file), simply delete your key in the console and create a new one.
 
 Keep your Key File in a safe place. Now we can answer ``aws configure`` questions.
 
