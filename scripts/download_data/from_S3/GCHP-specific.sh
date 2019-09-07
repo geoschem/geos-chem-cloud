@@ -22,4 +22,9 @@ aws s3 cp --request-payer=requester --recursive \
 s3://gcgrid/HEMCO/ $DATA_ROOT/HEMCO \
 --exclude "*" \
 --include "OFFLINE*" \
---exclude "OFFLINE/OFFLINE_LNOX/v2018-11/*"
+--exclude "OFFLINE_LNOX/v2018-11/*" \
+--exclude "OFFLINE_BIOVOC/*" \
+--exclude "OFFLINE_DUST/*" \
+--exclude "OFFLINE_SEASALT/*" \
+--exclude "OFFLINE_SOILNOX/*"
+
