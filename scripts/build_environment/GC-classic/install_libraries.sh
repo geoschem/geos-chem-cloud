@@ -8,7 +8,7 @@ sudo apt-get update
 
 # All libraries need for GEOS-Chem classic.
 sudo apt-get install -y \
-    bc gcc gfortran \
+    gc gcc gfortran \
     libnetcdf-dev libnetcdff-dev netcdf-bin
 
 # additional utils
