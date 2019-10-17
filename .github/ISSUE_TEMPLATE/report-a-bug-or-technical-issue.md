@@ -1,13 +1,13 @@
 ---
-name: Report a bug or technical issue
+name: Report a bug or technical issue for GEOS-Chem on the AWS cloud
 about: This template allows users to report bugs and technical issues for GEOS-Chem on the AWS Cloud in the Github issue tracker.
 title: "[BUG/ISSUE]"
-labels: ''
+labels: bug
 assignees: ''
 
 ---
 
-# Report a bug or technical issue for GEOS-Chem running on the AWS cloud
+# Report a bug or technical issue for GEOS-Chem on the AWS cloud
 
 ## Describe the bug
 Include a clear and concise description of the bug or issue that you have encountered.

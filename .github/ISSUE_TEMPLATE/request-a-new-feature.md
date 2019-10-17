@@ -1,8 +1,8 @@
 ---
-name: Request a new GEOS-Chem feature
-about: Template for users to request new features in GEOS-Chem on the AWS cloud
+name: Request a new feature for GEOS-Chem on the AWS cloud
+about: Template for users to request new features for GEOS-Chem on the AWS cloud
 title: "[FEATURE REQUEST]"
-labels: ''
+labels: feature
 assignees: ''
 
 ---
