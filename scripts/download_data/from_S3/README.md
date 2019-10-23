@@ -1,7 +1,9 @@
 # Script to download GEOS-Chem input data from S3
 
-- Get minimal necessary input data for GC-classic: [./all_input_GC-classic.sh](./all_input_GC-classic.sh)
+- Get minimal GEOS-Chem data (1-day, 2016-07-01): [./download_20160701_geosfp_4x5_standard.sh](./download_20160701_geosfp_4x5_standard.sh)
+    - NOTE: This is useful when you need to create a new AMI
 - Get minimal necessary input data for GCHP: [./all_input_GCHP.sh](./all_input_GCHP.sh)
+
 
 AWSCLI must be installed & configured.
 
