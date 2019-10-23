@@ -37,5 +37,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 - [GCHP guide](https://cloud-gc.readthedocs.io/en/latest/chapter03_advanced-tutorial/gchp.html)
 - [Resources list](https://cloud-gc.readthedocs.io/en/latest/chapter06_appendix/aws-resources-for-gc.html)
 
+11. Create a new GitHub release tag, so that readthedocs can keep multiple [versions](https://docs.readthedocs.io/en/stable/versions.html). This allows users to access previous versions of docs. 
+
 Final remarks:
 - This process is semi-automated. Each step is automated (just run a few scripts), but the entire process still needs some manual operations. It is possible to automate the entire process using AWSCLI but that can be hard to debug. This only needs to be done after every major version release (12.1.0, 12.2.0) so hopefully the maintenance burden is minimal.
