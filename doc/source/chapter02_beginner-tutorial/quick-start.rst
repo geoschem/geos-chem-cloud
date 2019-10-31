@@ -110,7 +110,7 @@ Just run the pre-compiled the model by::
 Or you can re-compile the model on your own::
 
   $ make realclean
-  $ make -j4 mpbuild TIMERS=1
+  $ make -j4 build TIMERS=1
 
 Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, and preparing model input data!
 
