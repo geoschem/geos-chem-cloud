@@ -5,7 +5,7 @@ Running GEOS-Chem on AWS cloud -- it is easy!
 
 `GEOSChem-on-cloud <http://acmg.seas.harvard.edu/research.html#cloud>`_ project provides fast and easy access to the the latest, standard `GEOS-Chem <http://acmg.seas.harvard.edu/geos/>`_ model and `all its input datasets <https://registry.opendata.aws/geoschem-input-data/>`_  on the `Amazon Web Services (AWS) cloud <https://aws.amazon.com>`_.
 
-Please see `online documentation <http://cloud-gc.readthedocs.io>`_ to get started.
+Please see `online documentation <http://cloud-gc.readthedocs.io>`_ to get started, or `read our paper on BAMS <https://journals.ametsoc.org/doi/full/10.1175/BAMS-D-18-0243.1>`_!
 
 .. |docs| image:: https://readthedocs.org/projects/cloud-gc/badge/?version=latest
    :target: http://cloud-gc.readthedocs.io/en/latest/?badge=latest
