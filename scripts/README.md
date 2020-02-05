@@ -21,6 +21,7 @@ Can automate this by [AWSCLI command](https://cloud-gc.readthedocs.io/en/latest/
 - Get source code, compile the model.
 
 4. Pull minimum neccessary input data from S3. See [./download_data/from_S3](./download_data/from_S3)
+- NOTE: This step is no longer needed for GEOS-Chem 12.7.0 and later.  The deploy_GC.sh script will automatically do a GEOS-Chem dry-run and pull the required data from AWS to the EBS instance.
 
 5. Test a short model run to generate output data. Remember to remove cap_restart for a successfully GCHP run so it won't affect the next run.
 

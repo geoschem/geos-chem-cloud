@@ -1,44 +1,56 @@
 #!/bin/bash
 
-GC_VERSION=12.1.1
-UT_VERSION=12.1.1
+#==============================================================================
+# deploy_GC.sh:
+#
+# Script to create the tutorial folder (except for the
+# python example)
+#==============================================================================
 
-# Subsequent shell commands like `sed` are only tested with version 12.1.0
-# If the configure steps are changed in future versions, need to fix those shell commands
+#==============================================================================
+# Create folders
+#==============================================================================
 
 # Input data path as required by UT
 # Need to pull real data later
-mkdir -p ~/ExtData/HEMCO
+rm -rf ExtData
+mkdir -p ~/ExtData
 
 # Create tutorial folder for demo project
-mkdir ~/tutorial
+if [[ ! -d ~/tutorial ]]; then
+    mkdir ~/tutorial
+fi
 cd ~/tutorial
 
+#=============================================================================
+# Git clone
+#=============================================================================
+
 # Source code
-git clone https://github.com/geoschem/geos-chem Code.GC-classic
-cd Code.GC-classic
-git checkout $GC_VERSION
-cd ..
+git clone -b master https://github.com/geoschem/geos-chem Code.GC-classic
 
 # Unit Tester to create run directory
-git clone https://github.com/geoschem/geos-chem-unittest.git UT
-cd UT
-git checkout $UT_VERSION
+git clone -b master https://github.com/geoschem/geos-chem-unittest.git UT
 
+
+#=============================================================================
 # Configure UT
+#=============================================================================
+
+# Change to UT/perl directory
+cd UT/perl
 
 # Each sed command change one line in a text file
 # This could be trivially done by text editors by we want full automation
 # Use '#' as delimiter so the line can contain '/' and ':'
 # Use .* to match the rest of the line
-
-sed -i -e 's#CODE_DIR    :=.*#CODE_DIR    :=$(HOME)/tutorial/Code.GC-classic#' runs/shared_inputs/Makefiles/Makefile
-
-cd perl
+sed -i -e 's#CODE_DIR       :.*#CODE_DIR       : /home/ubuntu/tutorial/Code.GC-classic#' CopyRunDirs.input
 sed -i -e 's#GCGRID_ROOT    :.*#GCGRID_ROOT    : /home/ubuntu#' CopyRunDirs.input
-sed -i -e 's#DATA_ROOT      :.*#DATA_ROOT      : {GCGRIDROOT}/ExtData#' CopyRunDirs.input
-sed -i -e 's#UNIT_TEST_ROOT :.*#UNIT_TEST_ROOT : {HOME}/tutorial/UT#' CopyRunDirs.input
-sed -i -e 's#COPY_PATH      :.*#COPY_PATH      : {HOME}/tutorial#' CopyRunDirs.input
+sed -i -e 's#DATA_ROOT      :.*#DATA_ROOT      : /home/ubuntu/ExtData#' CopyRunDirs.input
+sed -i -e 's#UNIT_TEST_ROOT :.*#UNIT_TEST_ROOT : /home/ubuntu/tutorial/UT#' CopyRunDirs.input
+sed -i -e 's#RUN_ROOT       :.*#RUN_ROOT       : /home/ubuntu/tutorial/UT/runs#' CopyRunDirs.input
+sed -i -e 's#PERL_ROOT      :.*#PERL_ROOT      : /home/ubuntu/tutorial/UT/perl#' CopyRunDirs.input
+sed -i -e 's#COPY_PATH      :.*#COPY_PATH      : /home/ubuntu/tutorial#' CopyRunDirs.input
 
 # show the modifications
 git add -A
@@ -47,26 +59,47 @@ git status -v
 # create run directory
 ./gcCopyRunDirs
 
-# compile executable
+#==============================================================================
+# Modify run-time configurations
+#==============================================================================
+
+# Change to run dir
 cd ~/tutorial/geosfp_4x5_standard
-mkdir OutputDir  # to host output data
-make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
 
-# modify run-time configurations
-
-# correctly link restart file
-ln -sf $HOME/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.4x5_standard.nc  GEOSChem.Restart.20160701_0000z.nc4
-
-# Use short simulation period for tutorial purpose
+# Edit input.geos: Use short simulation period for tutorial
 sed -i -e 's#End   YYYYMMDD.*#End   YYYYMMDD, hhmmss  : 20160701 002000#' input.geos
 
-# reduce output size for tutorial purpose
-sed -i -e 's#EXPID:  ./GEOSChem.*#EXPID: ./OutputDir/GEOSChem#' HISTORY.rc
+# Edit HISTORY.rc: Reduce output size for tutorial
 sed -i -e "s/#'SpeciesConc',/'SpeciesConc',/" HISTORY.rc # make sure this collection is uncommented
 sed -i -e 's#SpeciesConc.frequency.*#SpeciesConc.frequency:      00000000 002000#' HISTORY.rc
 sed -i -e 's#SpeciesConc.duration.*#SpeciesConc.duration:       00000000 002000#' HISTORY.rc
 sed -i -e "s#SpeciesConc.mode.*#SpeciesConc.mode:           'instantaneous'#" HISTORY.rc
 sed -i -e "s#SpeciesConc.fields.*#SpeciesConc.fields:         'SpeciesConc_NO             ', 'GIGCchem',\n                              'SpeciesConc_CO             ', 'GIGCchem',\n                              'SpeciesConc_O3             ', 'GIGCchem',#" HISTORY.rc
 
+#==============================================================================
+# Compile executable
+#==============================================================================
+
+# NOTE: Need to update to Cmake in future
+make -j4 build NC_DIAG=y BPCH_DIAG=n TIMERS=1
+if [[ $? != 0 ]]; then
+    echo "Compilation failed...exiting!"
+    exit
+fi
+
+# Do a dry-run simulation to get input data
+./geos --dryrun > log.dryrun
+if [[ $? != 0 ]]; then
+    echo "Dry-run failed...exiting!"
+    exit
+fi
+
+# Download the basic data for the tutorial
+./download_data.py log.dryrun -aws
+if [[ $? != 0 ]]; then
+    echo "Data download failed...exiting!"
+    exit
+fi
+
 # Run model, need to have input data.
-# ./geos.mp
+./geos
