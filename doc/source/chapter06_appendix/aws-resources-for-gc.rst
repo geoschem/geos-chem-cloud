@@ -11,6 +11,7 @@ Latest resources:
 || Standard tutorial| ami-04751feef8546fdfe  | 200 GB   | 0. Ubuntu 18.04                     |
 |  AMI              |                        |          | 1. gfortran 8.2.0,                  |
 |                   |                        |          |    netCDF-Fortran 4.5.2             |
+|                   |                        |          |    (built through Spack)            |
 |                   |                        |          | 2. Geoscientific Python             |
 |                   |                        |          |    environment                      |
 |                   |                        |          | 3. Pre-compiled GC-classic 12.9.3   |
