@@ -81,11 +81,16 @@ sed -i -e "s#SpeciesConc.fields.*#SpeciesConc.fields:         'SpeciesConc_NO   
 #==============================================================================
 
 # NOTE: Need to update to Cmake in future
-make -j4 build NC_DIAG=y BPCH_DIAG=n TIMERS=1
+mkdir gcbuild
+cd gcbuild
+cmake ../CodeDir
+make -j install
 if [[ $? != 0 ]]; then
     echo "Compilation failed...exiting!"
     exit
 fi
+
+cd ..
 
 # Do a dry-run simulation to get input data
 ./geos --dryrun > log.dryrun
