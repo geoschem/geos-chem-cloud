@@ -37,7 +37,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-04751feef8546fdfe`` or ``GEOSChem_12.9.3_tutorial_20200807`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0908204b481f1aac2`` or ``GEOSChem_13.0.0rc_tutorial_20210106`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
@@ -97,24 +97,22 @@ That's a system with GEOS-Chem already built!
 
 .. note::
 
-  **Trouble shooting**: if the ``ssh`` commands hangs for a long time, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
+  **Troubleshooting**: if the ``ssh`` commands hangs for a long time, please :doc:`make sure you don't mess-up the "security group" configuration <security-group>`.
 
 Go to the pre-configured run directory::
 
-  $ cd ~/tutorial/geosfp_4x5_standard
+  $ cd ~/tutorial/gc_4x5_fullchem
 
-Just run the pre-compiled the model by::
+Run the pre-compiled the model using::
 
-  $ ./geos.mp
+  $ ./gcclassic
 
-Or you can re-compile the model on your own::
+Or you can `recompile the model on your own <http://wiki.seas.harvard.edu/geos-chem/index.php/Compiling_with_CMake#Building_GEOS-Chem>`_.
 
-  $ make realclean
-  $ make -j4 build TIMERS=1
 
-Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, and preparing model input data!
+Congratulations! You’ve just done a GEOS-Chem simulation on the cloud, without spending any time on setting up a physical server, configuring software libraries, or preparing model input data!
 
-The default simulation length is only 20 minutes, for demonstration purpose. The ``r5.large`` instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as ``c5.4xlarge``.
+The default simulation length is only 1 hour, for demonstration purpose. The ``r5.large`` instance type we chose has only a single, slow core (so it is cheap, just ~$0.1/hour), while its memory is large enough for GEOS-Chem to start. For serious simulations, it is recommended to use "Compute Optimized" instance types with multiple cores such as ``c5.4xlarge``.
 
 .. note::
   The first simulation on a new server will have slow I/O and library loading because the disk needs "warm-up". Subsequent simulations will be much faster.
@@ -125,11 +123,11 @@ The default simulation length is only 20 minutes, for demonstration purpose. The
 Step 4: Analyze output data with Python
 ---------------------------------------
 
-If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20160701_0000z.nc4`` inside ``OutputDir/`` of the run directory::
+If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20190701_0000z.nc4`` inside ``OutputDir/`` of the run directory::
 
   $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
-  $ ncdump -h GEOSChem.SpeciesConc.20160701_0000z.nc4
-  netcdf GEOSChem.SpeciesConc.20160701_0000z {
+  $ ncdump -h GEOSChem.SpeciesConc.20190701_0000z.nc4
+  netcdf GEOSChem.SpeciesConc.20190701_0000z {
   dimensions:
   	time = UNLIMITED ; // (1 currently)
   	lev = 72 ;
@@ -139,10 +137,12 @@ If you wait for the simulation to finish (takes 5~10 min), it will produce `NetC
   variables:
   	double time(time) ;
   		time:long_name = "Time" ;
-      time:units = "minutes since 2016-07-01 00:00:00 UTC" ;
+      time:units = "minutes since 2019-07-01 00:00:00 UTC" ;
   		time:calendar = "gregorian" ;
   		time:axis = "T" ;
   ...
+
+`GCPy <https://gcpy.readthedocs.io/en/latest/index.html>`_, GEOS-Chem's dedicated Python toolkit, is pre-installed and ready for use in the ``geo`` Conda environment. For more general data analysis, and instructions on using Jupyter and / or IPython, continue reading below.
 
 `Anaconda Python <https://www.anaconda.com/>`_ and `xarray <http://xarray.pydata.org>`_ are already installed on the server for analyzing all kinds of NetCDF files. If you are not familiar with Python and xarray, checkout my `Python/xarray tutorial for GEOS-Chem users <https://github.com/geoschem/GEOSChem-python-tutorial>`_.
 
@@ -156,7 +156,7 @@ Activate the pre-installed `geoscientific Python environment <https://github.com
 
   In [1]: import xarray as xr
 
-  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20160701_0000z.nc4')
+  In [2]: ds = xr.open_dataset('GEOSChem.SpeciesConc.20190701_0000z.nc4')
 
   In [3]: ds
   Out[3]:
