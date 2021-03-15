@@ -74,113 +74,109 @@ You can obtain the latest copy of the code from `GEOS-Chem's GitHub repo <https:
 
   $ mkdir ~/GC  # make you own folder instead using the "tutorial" folder.
   $ cd ~/GC
-  $ git clone https://github.com/geoschem/geos-chem Code.GC
-  $ git clone https://github.com/geoschem/geos-chem-unittest.git UT
+  $ git clone https://github.com/geoschem/GCClassic.git Code.GC
 
 You may list all versions (they are just `git tags <https://git-scm.com/book/en/v2/Git-Basics-Tagging>`_) in chronological order::
 
   $ cd Code.GC
   $ git log --tags --simplify-by-decoration --pretty="format:%ci %d"
-  2018-12-11 08:48:25 -0500  (HEAD -> master, tag: 12.1.1, origin/master, origin/HEAD)
-  2018-11-21 09:07:51 -0500  (tag: 12.1.0, origin/HEMCO)
-  2018-10-16 16:52:11 -0400
-  2018-10-16 11:25:42 -0400  (tag: 12.0.3)
+  2021-01-12 16:02:14 -0700  (HEAD -> main, tag: 13.0.0-rc.1, origin/main, origin/HEAD)
+  2021-01-08 11:03:08 -0500  (tag: 13.0.0-rc.0, tag: 13.0.0-beta.2)
+  2020-11-20 15:34:09 -0500  (tag: 13.0.0-beta.1)
+  2020-11-01 20:13:53 -0500  (tag: 13.0.0-beta.0, tag: 13.0.0-alpha.13)
+  2020-10-23 14:28:07 -0400  (tag: 13.0.0-alpha.12)
+
   ...
   
-**New users had better just use the default, latest version to minimize confusion**. Experienced users might want to checkout to a specific version, say ``12.1.0``::
+**New users had better just use the default, latest version to minimize confusion**. Experienced users might want to checkout to a specific version, say ``13.0.0-alpha.12``::
 
-    $ git checkout 12.1.0  # just the name of the tag
+    $ git checkout 13.0.0-alpha.12  # just the name of the tag
     $ git branch
-    * (HEAD detached at 12.1.0)
-    $ git checkout master  # restore the latest version if you want
+    * (HEAD detached at 13.0.0-alpha.12)
+    $ git checkout main  # restore the latest version if you want
 
-You need to do version checkout for both source code and unit tester.
+As of version 13.0.0, GEOS-Chem uses Git submodules to facilitate easier development and reuse of independent segments of code.
+**You must perform an extra step to fetch required submodule code**::
 
-Configure unit tester and generate run directory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  $ git submodule update --init --recursive
+  
 
-Then you need to generate run directories from unit tester:
+Generate run directory
+^^^^^^^^^^^^^^^^^^^^^^
 
-In ``UT/perl/CopyRunDirs.input``, change the default paths::
+Then you need to generate your run directory::
 
-  GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
-  DATA_ROOT      : {GCGRIDROOT}/data/ExtData
-  ...
-  UNIT_TEST_ROOT : {HOME}/UT
-  ...
-  COPY_PATH      : {HOME}/GC/rundirs
+  $ cd ~/GC/Code.GC/run
+  $ ./createRunDir.sh
 
-to::
+You'll receive a series of prompts such as the following::
 
-  GCGRID_ROOT    : /home/ubuntu
-  DATA_ROOT      : {GCGRIDROOT}/ExtData
-  ...
-  UNIT_TEST_ROOT : {HOME}/GC/UT
-  ...
-  COPY_PATH      : {HOME}/GC
+  -----------------------------------------------------------
+  Choose simulation type:
+  -----------------------------------------------------------
+     1. Full chemistry
+     2. Aerosols only
+     3. CH4
+     4. CO2
+     5. Hg
+     6. POPs
+     7. Tagged CH4
+     8. Tagged CO
+     9. Tagged O3
+     10. TransportTracers
 
-Then un-comment the run directory you want, say for global 2x2.5 simulation::
+At each prompt, type the digit corresponding to the option you want to select.
 
-  geosfp   2x25         -      standard         2016070100   2016080100     -
- 
-Finally, generate the run directory::
+When asked to input a run directory path, type ``~/GC/rundirs``.
 
-  $ ./gcCopyRunDirs
 
-Go to the generated run directory. First make sure that the source code path in ``Makefile`` is correct::
+Go to the generated run directory (the name will differ based on which options you chose and whether you chose to give the run directory
+a custom name). You'll compile the model from inside of the ``build/`` folder in your run directory::
 
-    CODE_DIR    :=$(HOME)/GC/Code.GC
+  $ cd ~/GC/rundirs/YOUR_RUN_DIRECTORY
+  $ cd build/
+  $ cmake ../CodeDir -DRUNDIR=..
+  $ make -j
+  $ make install
+  $ cd ..
+  $ ls
 
-And then compile the model::
+You should see a ``gcclassic`` executable file in your run directory now, indicating compilation was successful.
 
-  $ make realclean
-  $ make -j4 mpbuild NC_DIAG=y BPCH_DIAG=n TIMERS=1
-
-Note that you almost have to execute ``make`` command **in the run directory**. This will ensure the correct combination of compile flags for this specific run configuration. GEOS-Chem's compile flags have become so complicated that you will almost never get the right compile settings by compiling in the source code directory. See `our wiki <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure#Compiling_in_a_run_directory>`_ for more information.
 
 Tweak run-time configurations as needed
 ---------------------------------------
 
 For example, in ``input.geos``, check if the simulation length is one month::
 
-  Start YYYYMMDD, hhmmss  : 20160701 000000
-  End   YYYYMMDD, hhmmss  : 20160801 000000
+  Start YYYYMMDD, hhmmss  : 20190701 000000
+  End   YYYYMMDD, hhmmss  : 20190801 000000
 
 You might also want to tweak ``HEMCO_Config.rc`` to select emission inventories, and ``HISTORY.rc`` to select output fields.
 
 Get more input data from S3
 ---------------------------
 
-If you just run the executable ``./geos.mp``, it will probably complain about missing input data. Remember that the default ``~/ExtData`` folder only contains sample data for a demo 4x5 simulation; other data need to be retrieved from S3 using AWSCLI commands (:doc:`see here to review S3 usage <use-s3>`). In order to use AWSCLI on EC2, you need to either :ref:`configure credentials (beginner approach) <credentials-label>` or :doc:`configure IAM role (advanced approach) <../chapter03_advanced-tutorial/iam-role>`.
+You'll likely need input data beyond the fields already included for the demo 4x5 simulation. You can automatically retrieve any required files 
+using GEOS-Chem's dry-run capability. The fastest dry-run download destination on your AWS instance is from AWS S3.
+You'll need to configure AWSCLI in order to be able to fetch data from AWS S3. You can configure AWSCLI using either
+:ref:`configure credentials (beginner approach) <credentials-label>` or 
+:doc:`configure IAM role (advanced approach) <../chapter03_advanced-tutorial/iam-role>`. Then use the following commands to download all 
+required input data::
 
-Try ``aws s3 ls`` to make sure AWSCLI is working. Then retrieve data by::
+  $ ./gcclassic --dryrun | tee log.dryrun
+  $ ./download_data.py log.dryrun --aws
   
-  # GEOSFP 2x2.5 CN metfield
-  aws s3 cp --request-payer=requester --recursive \
-  s3://gcgrid/GEOS_2x2.5/GEOS_FP/2011/01/ ~/ExtData/GEOS_2x2.5/GEOS_FP/2011/01/
-  
-  # GEOSFP 2x2.5 1-month metfield
-  aws s3 cp --request-payer=requester --recursive \
-  s3://gcgrid/GEOS_2x2.5/GEOS_FP/2016/07/ ~/ExtData/GEOS_2x2.5/GEOS_FP/2016/07/
-  
-  # 2x2.5 restart file
-  aws s3 cp --request-payer=requester \
-  s3://gcgrid/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.2x25_standard.nc ~/ExtData/GEOSCHEM_RESTARTS/v2018-11/
-  
-  # fix the softlink in run directory
-  ln -s ~/ExtData/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.2x25_standard.nc ~/GC/geosfp_2x25_standard/GEOSChem.Restart.20160701_0000z.nc4
-
-Now the model should run without problems.
 
 Perform long-term simulation
 ----------------------------
 
-Such a long simulation can take about a day. :ref:`With tmux <keep-running-label>`, you can keep the program running after logging out. 
+A long simulation can take about a day. :ref:`With tmux <keep-running-label>`, you can keep the program running after logging out. 
 
 ::
 
   $ tmux
-  $ ./geos.mp | tee run.log
+  $ ./gcclassic | tee run.log
   Type `Ctrl + b`, and then type `d`, to detach from the tmux session
   
   $ tail -f run.log  # display the output message dynamically
@@ -195,11 +191,12 @@ Analyze output data
 -------------------
 
 Output data will be generated during simulation as specified by ``HISTORY.rc``. You can :ref:`use Jupyter notebooks <jupyter-label>` to analyze them, or simply ``ipython`` for a quick check.
+`GCPy <https://gcpy.readthedocs.io/en/latest/index.html>`_ (already installed on your instance in the ``geo`` conda environment) is another option for plotting and tabling GEOS-Chem data.
 
 Save your files to S3
 ---------------------
 
-Before terminate the EC2 instance, always make sure that input files are transferred to persistent storage (S3 or local). Here we push our custom files to S3 (:ref:`see here to review S3+AWSCLI usage <s3-awscli_label>`).
+Before you terminate your EC2 instance, always make sure that input files are transferred to persistent storage (S3 or local). Here we push our custom files to S3 (:ref:`see here to review S3+AWSCLI usage <s3-awscli_label>`).
 
 ::
 
@@ -224,7 +221,7 @@ Now you can safely :ref:`terminate the server <terminate-label>`. The next time 
   
   # customized code, config files, and output data
   aws s3 cp --recursive s3://my-custom-gc-files ~/GC/
-  chmod u+x ~/GC/geos.mp  # restore execution permission
+  chmod u+x ~/GC/your_rundir_name/gcclassic  # restore execution permission
   
   # standard input data from public bucket
   aws s3 cp --request-payer=requester --recursive \
