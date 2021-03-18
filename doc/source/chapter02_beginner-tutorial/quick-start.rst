@@ -37,7 +37,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-097f1b62def179f42`` or ``GEOSChem_13.0.0rc_tutorial_Update1_20210111`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0ef2c8a2d3464485c`` or ``GEOSChem_13.0.0_tutorial_20210318`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
