@@ -37,7 +37,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-097f1b62def179f42`` or ``GEOSChem_13.0.0rc_tutorial_Update1_20210111`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0ef2c8a2d3464485c`` or ``GEOSChem_13.0.0_tutorial_20210318`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 
@@ -101,7 +101,7 @@ That's a system with GEOS-Chem already built!
 
 Go to the pre-configured run directory::
 
-  $ cd ~/tutorial/gc_4x5_fullchem
+  $ cd ~/tutorial/gc_merra2_fullchem
 
 Run the pre-compiled the model using::
 
@@ -125,7 +125,7 @@ Step 4: Analyze output data with Python
 
 If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20190701_0000z.nc4`` inside ``OutputDir/`` of the run directory::
 
-  $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
+  $ cd ~/tutorial/gc_merra2_fullchem/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20190701_0000z.nc4
   netcdf GEOSChem.SpeciesConc.20190701_0000z {
   dimensions:
