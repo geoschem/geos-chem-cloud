@@ -101,7 +101,7 @@ That's a system with GEOS-Chem already built!
 
 Go to the pre-configured run directory::
 
-  $ cd ~/tutorial/gc_4x5_fullchem
+  $ cd ~/tutorial/gc_merra2_fullchem
 
 Run the pre-compiled the model using::
 
@@ -125,7 +125,7 @@ Step 4: Analyze output data with Python
 
 If you wait for the simulation to finish (takes 5~10 min), it will produce `NetCDF diagnostics <http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_diagnostics_archived_to_netCDF_format>`_ called ``GEOSChem.SpeciesConc.20190701_0000z.nc4`` inside ``OutputDir/`` of the run directory::
 
-  $ cd ~/tutorial/geosfp_4x5_standard/OutputDir/
+  $ cd ~/tutorial/gc_merra2_fullchem/OutputDir/
   $ ncdump -h GEOSChem.SpeciesConc.20190701_0000z.nc4
   netcdf GEOSChem.SpeciesConc.20190701_0000z {
   dimensions:
