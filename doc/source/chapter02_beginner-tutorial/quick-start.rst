@@ -25,7 +25,8 @@ Your AWS account should be available in a few minutes. (Occasionally, the accoun
 Step 2: Launch a server with GEOS-Chem pre-installed
 ----------------------------------------------------
 
-Log in to AWS console, and click on EC2 (Elastic Compute Cloud), which is the most fundamental cloud computing service.
+Log in to AWS console, and click on EC2 (Elasti
+c Compute Cloud), which is the most fundamental cloud computing service.
 
 .. figure:: img/main_console.png
   :width: 600 px
@@ -37,7 +38,7 @@ In the EC2 console, make sure you are in the **US East (N. Virginia)** region as
 
 .. _choose_ami-label:
 
-In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0c2e73f515de6386b`` or ``GEOSChem_13.0.2_tutorial_20210412`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
+In the EC2 console, click on "AMIs" (Amazon Machine Images) under "IMAGES" on the left navigation bar. Then select "Public images" and search for ``ami-0ec4dce44bcb05b69`` or ``GEOSChem_13.1.0_tutorial_20210621`` – that's the system with the latest classic version of GEOS-Chem installed. Select it and click on "Launch".
 
 .. figure:: img/search_ami.png
 

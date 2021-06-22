@@ -8,13 +8,14 @@ Latest resources:
 +-------------------+------------------------+----------+-------------------------------------+
 | Resource          | ID/name                | Size     | Content                             |
 +===================+========================+==========+=====================================+
-|| Standard tutorial| ami-0c2e73f515de6386b  | 200 GB   | 0. Ubuntu 18.04                     |
-|  AMI              |                        |          | 1. gfortran 8.2.0,                  |
-|                   |                        |          |    netCDF-Fortran 4.5.2             |
+|| Standard tutorial| ami-0ec4dce44bcb05b69  | 200 GB   | 0. Ubuntu 20.04 (Focal Fossa)       |
+|  AMI              |                        |          | 1. gfortran 10.2.0,                 |
+|                   |                        |          |    netCDF-Fortran 4.5.3             |
+|                   |                        |          |    netCDF-C 4.8.0                   |
 |                   |                        |          |    (built through Spack)            |
 |                   |                        |          | 2. Geoscientific Python             |
 |                   |                        |          |    environment                      |
-|                   |                        |          | 3. Pre-compiled GC-classic 13.0.2   |
+|                   |                        |          | 3. Pre-compiled GC-classic 13.1.0   |
 |                   |                        |          | 4. Minimum GEOS-Chem input data     |
 |                   |                        |          |    (use a dry-run to get more data) |
 +-------------------+------------------------+----------+-------------------------------------+
