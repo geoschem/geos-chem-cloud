@@ -1,2 +1,12 @@
+# Requirements for building the geos-chem-cloud documentation
+#
+# NOTE: There are issues with sphinx 4.0.0+ and sphinx-rtd-theme 1.0.0
+# so we'll use older versions (Bob Yantosca, 28 Feb 2022)
+#
+sphinx<4.0.0
+sphinx_rtd_theme<1.0.0
+sphinxcontrib-bibtex==2.2.0
+recommonmark
+docutils==0.16
 ipython
 nbsphinx
