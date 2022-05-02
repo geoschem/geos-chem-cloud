@@ -3,6 +3,10 @@
 # NOTE: There are issues with sphinx 4.0.0+ and sphinx-rtd-theme 1.0.0
 # so we'll use older versions (Bob Yantosca, 28 Feb 2022)
 #
+# Also note: a recent update to jinja2 has broken backwards
+# compatibility with the older ReadTheDocs package, so we need to
+# use a version of jinja2 prior to 3.1.0. (Bob Yantosca, 02 May 2022)
+#
 sphinx<4.0.0
 sphinx_rtd_theme<1.0.0
 sphinxcontrib-bibtex==2.2.0
@@ -10,3 +14,4 @@ recommonmark
 docutils==0.16
 ipython
 nbsphinx
+jinja2<3.1.0
