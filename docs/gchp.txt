@@ -1,0 +1,26 @@
+Bonus: Running GEOS-Chem High Performance (GCHP)
+------------------------------------------------
+
+GCHP is also fully functioning on the cloud. Running it on a single EC2 instance (equivalent to a single node on HPC clusters) is extremely easy. The biggest instance on AWS is ``x1.32xlarge`` with `64 physical cores <https://aws.amazon.com/ec2/physicalcores/>`_ and 2 TB memory. (Multi-node setup is quite cumbersome right now and we are actively looking into this.)
+
+Go to the pre-configured run directory::
+
+  $ cd ~/tutorial/gchp_standard
+
+Just run the pre-compiled the model by::
+
+  $ mpirun -np 6 -oversubscribe ./geos
+
+``-oversubscribe`` is needed when the number of physical cores is less than the number of MPI processes (6 here). No need for this option on bigger instances.
+
+.. warning::
+  Make sure that the geoscience Python environment is **deactivated** (``source deactivate geo``) before calling ``mpirun``. Otherwise the incorrect ``mpirun`` coming with Anaconda will be used. Use ``which mpirun`` and ``mpirun --version`` to make sure the correct executable is called. It should be OpenMPI 3 at ``/usr/local/bin/mpirun``.
+
+  Remember to use ``r5.2xlarge`` or even bigger instances, otherwise the run will crash at the middle due to inadequate memory.
+
+After a successful run (takes ~10 min), GCHP also produces NetCDF diagnostics inside ``OutputDir/`` of the run directory. Again a pre-generated output file is already contained in the AMI. Use this :doc:`example notebook <../chapter06_appendix/plot_GCHP_data>` located at ``~/tutorial/python_example/plot_GCHP.ipynb`` to plot GCHP output data directly on the native `Cubed-Sphere grid <http://acmg.seas.harvard.edu/geos/cubed_sphere.html>`_.
+
+See https://github.com/lizziel/geoschem_data_visualization for more comprehensive examples of GCHP data analysis. See `GCHP main page <http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP>`_ for more tutorials on GCHP.
+
+
+.. _terminate-label:
