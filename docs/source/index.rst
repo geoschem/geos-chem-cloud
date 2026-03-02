@@ -14,10 +14,10 @@ simulating atmospheric chemical compositions. It has been developed
 over 30 years and is used by `more than 100 research groups worldwide
 <https://geoschem.github.io/users.html>`_. The program is mainly
 written in Fortran 90. `All model source code
-<https://github.com/geoschem>`_ is `distributed freely under the MIT license
-<http://acmg.seas.harvard.edu/geos/geos_licensing.html>`_. GEOS-Chem
-reads and writes data in the netCDF data format, which can be analyzed
-easily by most languages such as Python, R and MATLAB.
+<https://github.com/geoschem>`_ is distributed freely under the `MIT
+license <https://geoschem.github.io/license.html>`_. GEOS-Chem reads and
+writes data in the netCDF data format, which can be analyzed easily by
+most languages such as Python, R and MATLAB.
 
 We are pleased to announce that this project is part of the `AWS Open
 Data Sponsorship Program
