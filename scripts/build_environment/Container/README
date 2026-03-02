@@ -1,5 +1,0 @@
-Scripts to install the container software itself, not building images.
-
-Used for teaching users to use containers on AWS cloud
-
-See Dockerfiles for building GEOS-Chem at https://github.com/geoschem/geos-chem-docker
