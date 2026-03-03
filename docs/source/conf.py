@@ -71,7 +71,7 @@ register_plugin('pybtex.style.formatting', 'gcrefstyle', GCRefStyle)
 bibtex_bibliography_header = ".. rubric:: References"
 bibtex_footbibliography_header = bibtex_bibliography_header
 
-bibtex_bibfiles = []
+bibtex_bibfiles = ["reference/geos-chem-cloud.bib"]
 
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []

@@ -26,14 +26,23 @@ a result, **GEOS-Chem input data hosted on AWS is completely free to
 use**.
 
 
-.. toctree:: 
+.. toctree::
    :maxdepth: 2
-   :caption: GC-Classic on AWS cloud	      
-      
+   :caption: GC-Classic on AWS cloud
+
    gcclassic-on-aws/overview
-	     
-.. toctree:: 
+
+.. toctree::
    :maxdepth: 2
-   :caption: GCHP on AWS cloud	      
+   :caption: GCHP on AWS cloud
 
    gchp-on-aws/overview
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Help and Reference
+
+   reference/key-references
+   reference/CONTRIBUTING.md
+   reference/SUPPORT.md
+   reference/editing-these-docs
