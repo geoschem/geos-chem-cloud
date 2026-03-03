@@ -45,4 +45,5 @@ use**.
    reference/key-references
    reference/CONTRIBUTING.md
    reference/SUPPORT.md
+   reference/related-docs
    reference/editing-these-docs
