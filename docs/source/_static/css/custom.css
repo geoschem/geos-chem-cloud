@@ -1,0 +1,4 @@
+/* Make glossary terms italic */
+span.std-term {
+    text-decoration: underline;
+}

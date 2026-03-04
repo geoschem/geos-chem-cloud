@@ -1,5 +1,5 @@
 ==========================
-AWS Reference: AWS Terminology
+Reference: AWS Terminology
 ==========================
 
 .. _term-pcluster:

@@ -1,6 +1,6 @@
 .. _using_aws_parallelcluster:
 
-AWS Guide II: Set up AWS ParallelCluster
+Quickstart II: Set up AWS ParallelCluster
 ==========================
 
 .. important::
@@ -230,12 +230,119 @@ Now you can create a run directory by running the :literal:`createRunDir.sh` com
 .. _running_gchp_on_parallelcluster:
 
 4. Running GCHP on ParallelCluster
---------------------------------------------
+----------------------------------
 
-AWS ParallelCluster supports Slurm and AWS Batch job schedulers. Your cluster is set to use Slurm scheduler according to the configuration file.
-It might require the root permission to run Slurm commands or restart Slurm.
-Before you submit your job, you can start a shell as superuser by running :literal:`sudo -s`.
+AWS ParallelCluster supports various job schedulers, and your cluster is configured to use **Slurm**. 
 
-You can follow :ref:`running_gchp` to run GCHP with Slurm scheduler. 
+Generally, you do not need root privileges to submit or manage your own jobs. You can submit your run script using the standard ``sbatch`` command. 
+However, if you need to perform administrative tasks (such as restarting the Slurm daemon), you can start a superuser shell by running ``sudo -s``.
 
-Sample run scripts can also be found at your **<GCHP_source_dir>/run/runScriptSamples/operational_examples/aws_pcluster**.
+For comprehensive instructions on configuring and running the model, please follow the official guide: :ref:`gchp:running_gchp`. 
+
+Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.sh** is the main Slurm submission script, and the second **execute.sh** is a wrapper script executed on each compute node.
+
+.. code-block:: bash
+   :caption: gchp_aws_run.sh
+
+   #!/bin/bash
+   #
+   #SBATCH --ntasks-per-node <core-per-node>
+   #SBATCH -N <node-number>
+   #SBATCH -t <HH-MM-SS>
+   #SBATCH -p <queue-name>
+   #SBATCH --job-name=<job-name>
+
+   #################################################################
+   #
+   # ADDITIONAL PRE-RUN CONFIGURATION
+   #
+   # If a subsequent command fails, treat it as fatal (don't continue)
+   set -e
+
+   # Alternatively you can put this in your environment file.
+   ulimit -c 0                  # coredumpsize
+   ulimit -l unlimited          # memorylocked
+   ulimit -u 50000              # maxproc
+   ulimit -v unlimited          # vmemoryuse
+   ulimit -s unlimited          # stacksize
+   
+   #################################################################
+   #
+   # PRE-RUN COMMANDS
+   # You need to build your gchp environment using spack
+   spack env activate gchp
+
+   # For remainder of script, echo commands to the job's log file
+   set -x
+
+   # Define log name to include simulation start date
+   start_str=$(sed 's/ /_/g' cap_restart)
+   log=gchp.${start_str:0:13}z.log
+
+   # Update config files, set restart symlink, and do sanity checks
+   source setCommonRunSettings.sh
+   source setRestartLink.sh
+   source checkRunSettings.sh
+
+   # OpenMPI networking optimizations for AWS
+   export OMPI_MCA_btl=^ofi
+   export OMPI_MCA_btl_tcp_if_exclude="lo,docker0,virbr0"
+   export OMPI_MCA_btl_if_exclude="lo,docker0,virbr0"
+
+   mpirun --map-by core --bind-to core -np ${SLURM_NTASKS} ./execute.sh &> ${log}
+
+   #################################################################
+   #
+   # POST-RUN COMMANDS
+   #
+   # (Optional) Uncomment the lines below to rename mid-run checkpoint files 
+   # and manage restart symlinks after the run completes.
+
+   # chkpnts=$(ls Restarts)
+   # N=$(grep "CS_RES=" setCommonRunSettings.sh | cut -c 8- | xargs )
+   # for chkpnt in ${chkpnts}
+   # do
+   #     if [[ "$chkpnt" == *"gcchem_internal_checkpoint."* ]]; then
+   #        chkpnt_time=${chkpnt:27:13}
+   #        if [[ "${chkpnt_time}" = "${start_str:0:13}" ]]; then
+   #            rm ./Restarts/${chkpnt}
+   #        else
+   #            new_chkpnt=./Restarts/GEOSChem.Restart.${chkpnt_time}z.c${N}.nc4
+   #            mv ./Restarts/${chkpnt} ${new_chkpnt}
+   #        fi
+   #     fi
+   # done
+
+   # # If new start time in cap_restart is okay, rename restart file
+   # # and update restart symlink
+   # new_start_str=$(sed 's/ /_/g' cap_restart)
+   # if [[ "${new_start_str}" = "${start_str}" || "${new_start_str}" = "" ]]; then
+   #     echo "ERROR: GCHP failed to run to completion. Check the log file for more information."
+   #     rm -f Restarts/gcchem_internal_checkpoint
+   #     exit 1
+   # else
+   #     mv Restarts/gcchem_internal_checkpoint Restarts/gcchem_internal_checkpoint.${new_start_str:0:13}z.nc4
+   #     # source setRestartLink.sh
+   # fi
+   
+   exit 0
+
+* **Interface Exclusion:** ``OMPI_MCA_btl_tcp_if_exclude="lo,docker0,virbr0"`` prevents OpenMPI from attempting to route MPI traffic through local loopback or virtual docker interfaces. On AWS EC2 instances, failing to exclude these can cause the model to hang indefinitely during initialization.
+
+.. code-block:: bash
+   :caption: execute.sh
+
+   #!/bin/bash
+
+   if [[ $( cat /proc/sys/kernel/yama/ptrace_scope ) == "0" ]]; then
+           echo "PTrace Correct for EFA"
+   else
+           echo "PTrace Override"
+           sysctl -w kernel.yama.ptrace_scope=0
+   fi
+
+   # Execute gchp
+   ./gchp
+
+
+

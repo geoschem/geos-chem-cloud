@@ -100,6 +100,7 @@ html_static_path = [
 # CSS files that will override sphinx-rtd-theme default settings
 # (paths are relative to _static, which is specified above)
 html_css_files = [
+    'css/custom.css',
     'css/icon_home.css',
     'css/theme_overrides.css',
 ]
