@@ -30,13 +30,15 @@ use**.
    :maxdepth: 2
    :caption: GC-Classic on AWS cloud
 
-   gcclassic-on-aws/overview
+   gcclassic-on-aws/gcc-AWS
 
 .. toctree::
    :maxdepth: 2
    :caption: GCHP on AWS cloud
 
-   gchp-on-aws/overview
+   gchp-on-aws/prepare-aws-environment
+   gchp-on-aws/setup-aws-parallelcluster
+   gchp-on-aws/AWS_terminology
 
 .. toctree::
    :maxdepth: 2
