@@ -37,7 +37,7 @@ use**.
    :caption: GCHP on AWS cloud
 
    gchp-on-aws/prepare-AWS-environment
-   gchp-on-aws/setup-AWS-parallelcluster
+   gchp-on-aws/set-up-AWS-pcluster
    gchp-on-aws/AWS_terminology
 
 .. seealso::
