@@ -33,7 +33,14 @@ extensions = [
     "sphinx_rtd_theme",   
     "sphinxcontrib.bibtex",
     "recommonmark",
+    "sphinx.ext.intersphinx",
 ]
+
+Intersphinx_mapping = {
+    'gchp': ('https://gchp.readthedocs.io/en/latest/', None),
+    'gcclassic': ('https://geos-chem.readthedocs.io/en/latest/', None),
+}
+
 bibtex_default_style = 'gcrefstyle'
 bibtex_reference_style = "author_year"
 
