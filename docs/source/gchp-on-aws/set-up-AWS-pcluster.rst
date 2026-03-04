@@ -237,7 +237,7 @@ AWS ParallelCluster supports various job schedulers, and your cluster is configu
 Generally, you do not need root privileges to submit or manage your own jobs. You can submit your run script using the standard ``sbatch`` command. 
 However, if you need to perform administrative tasks (such as restarting the Slurm daemon), you can start a superuser shell by running ``sudo -s``.
 
-For comprehensive instructions on configuring and running the model, please follow the official guide: :ref:`Running GCHP <gchp:running_gchp>`. 
+For comprehensive instructions on configuring and running the model, please follow the official guide: `Running GCHP <https://gchp.readthedocs.io/en/latest/user-guide/running.html#running-gchp>`. 
 
 Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.sh** is the main Slurm submission script, and the second **execute.sh** is a wrapper script executed on each compute node.
 
