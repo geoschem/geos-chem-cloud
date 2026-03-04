@@ -36,9 +36,15 @@ use**.
    :maxdepth: 2
    :caption: GCHP on AWS cloud
 
-   gchp-on-aws/prepare-aws-environment
-   gchp-on-aws/setup-aws-parallelcluster
+   gchp-on-aws/prepare-AWS-environment
+   gchp-on-aws/setup-AWS-parallelcluster
    gchp-on-aws/AWS_terminology
+
+.. seealso::
+   This site focuses on cloud infrastructure. For comprehensive instructions on model configuration, compiling, and science updates, please refer to the other GEOS-Chem user manuals:
+
+   * `GCHP Documentation <https://gchp.readthedocs.io/en/latest/index.html>`_
+   * `GEOS-Chem Classic Documentation <https://geos-chem.readthedocs.io/en/latest/index.html>`_
 
 .. toctree::
    :maxdepth: 2
