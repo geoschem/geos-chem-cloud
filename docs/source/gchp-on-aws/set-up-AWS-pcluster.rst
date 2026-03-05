@@ -1,133 +1,211 @@
+.. |br| raw:: html
+
+   <br />
+
 .. _using_aws_parallelcluster:
 
+#########################################
 Quickstart II: Set up AWS ParallelCluster
-==========================
+#########################################
 
 .. important::
 
-    AWS ParallelCluster and (:ref:`FSx for Lustre <term-fsx-lustre>`) costs hundreds or thousands of dollars per month.
-    Please review `FSx for Lustre Pricing <https://aws.amazon.com/fsx/lustre/pricing/>`_ and
-    `EC2 Pricing <https://aws.amazon.com/ec2/pricing/on-demand/>`_ for details.
+    AWS ParallelCluster and (:ref:`FSx for Lustre <term-fsx-lustre>`)
+    costs hundreds or thousands of dollars per month.  Please review
+    `FSx for Lustre Pricing
+    <https://aws.amazon.com/fsx/lustre/pricing/>`_ and  `EC2 Pricing
+    <https://aws.amazon.com/ec2/pricing/on-demand/>`_ for details.
 
+AWS ParallelCluster is a service that allows you to deploy and manage
+your own HPC cluster in the cloud. Running GCHP on AWS ParallelCluster
+is similar to using GCHP on any other HPC. We offer up-to-date Amazon
+Machine Images (AMIs) with GCHP's built dependencies. The available
+AMIs are listed below:
 
-AWS ParallelCluster is a service that allows you to deploy and manage your own HPC cluster in the cloud. Running GCHP on AWS ParallelCluster is similar to using GCHP on any other HPC.
-We offer up-to-date Amazon Machine Images (AMIs) with GCHP's built dependencies. The available AMIs are listed below:
+.. list-table:: Available AMIs for ParallelCluster
+   :header-rows: 1
+   :align: center
 
-=========================   ============    ===================      ===================
-AMI ID                      OS              architecture             pcluster version
-=========================   ============    ===================      ===================
-ami-061ca4ddb4e1ebd63       alinux2023      x86_64                   3.13.0
-=========================   ============    ===================      ===================
+   * - AMI ID
+     - OS
+     - Architecture
+     - Pcluster version
+   * - ami-061ca4ddb4e1ebd63
+     - alinux2023
+     - x86_64
+     - 3.13.0
 
-
-The image contains pre-built tools for creating a GCHP run directory and compiling the model. 
+The image contains pre-built tools for creating a GCHP run directory
+and compiling the model.
 
 .. important::
 
    **Spack Environment Required**
-   
-   This AMI uses Spack to manage software dependencies. You must activate the GCHP environment 
-   before compiling or running the model:
+
+   This AMI uses Spack to manage software dependencies. You must
+   activate the GCHP environment before compiling or running the model:
 
    .. code-block:: console
 
       $ spack env activate gchp
 
-This page has instructions on using the AMIs to create your own ParallelCluster.
-You may also choose to set up AWS ParallelCluster manually, and the other GCHP documentation like :ref:`Build GCHP's dependencies <spackguide>`, :ref:`downloading_gchp`, :ref:`building_gchp`, :ref:`downloading_input_data`, and :ref:`running_gchp` is applicable for using GCHP on AWS ParallelCluster.
+This page has instructions on using the AMIs to create your own
+ParallelCluster. You may also choose to set up AWS ParallelCluster
+manually, and the other GCHP documentation like `building GCHP's
+dependencies
+<https://gchp.readthedocs.io/en/stable/geos-chem-shared-docs/supplemental-guides/spack-guide.html>`_,
+`downloading GCHP
+<https://gchp.readthedocs.io/en/stable/user-guide/downloading.html>`_,
+`Building GCHP
+<https://gchp.readthedocs.io/en/stable/user-guide/compiling.html>`_,
+and `running GCHP
+<https://gchp.readthedocs.io/en/stable/user-guide/running.html>`_ is
+applicable for using GCHP on AWS ParallelCluster.
 
-**Workflow for getting started with GCHP simulations on AWS ParallelCluster using our public AMIs:**
+.. _workflow:
 
-#. Create an FSx for Lustre file system for input data (:ref:`described here <create_fsx_for_lustre>`)
-#. Configure AWS CLI (:ref:`described here <aws_cli_setup>`)
-#. Configure AWS ParallelCluster (:ref:`described here <creating_your_pcluster>`)
-#. Create AWS ParallelCluster with GCHP public AMIs (:ref:`described here <creating_your_pcluster>`)
-#. Follow the normal GCHP User Guide
+========
+Workflow
+========
 
-   a. :ref:`creating_a_run_directory`
-   #. :ref:`downloading_input_data`
+The workflow for running GCHP simulations on AWS ParallelCluster using
+our public AMIs is outlined below:
 
-#. Running GCHP on ParallelCluster (:ref:`described here <create_fsx_for_lustre>`)
+#. :ref:`Create an FSx for Lustre file system
+   <create_fsx_for_lustre>`.
+
+   - This is where you will place input data
+     (meteorology, emisisons, etc) for your GCHP simulation.
+
+#. :ref:`Configure the AWS Command Line Interface (AWSCLI) <aws_cli_setup>`.
+#. :ref:`Configure AWS ParallelCluster <configure_your_pcluster>`.
+#. :ref:`Create AWS ParallelCluster with GCHP public AMIs
+   <create_your_pcluster>`.
+#. :ref:`Run GCHP on ParallelCluster <running_gchp_on_parallelcluster>`.
 
 These instructions were tested using AWS ParallelCluster 3.13.0.
 
 .. _create_fsx_for_lustre:
 
+=======================================
 1. Create an FSx for Lustre file system
----------------------------------------
+=======================================
 
 Start by creating an FSx for Lustre file system.
 This is persistent storage that will be mounted to your AWS ParallelCluster cluster.
-This file system will be used for storing GEOS-Chem input data as well as housing your GEOS-Chem run directories.
+This file system will be used for storing GEOS-Chem input data as well
+as housing your GEOS-Chem run directories.
 
-Refer to the official `FSx for Lustre Instructions <https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html>`_ for instructions on creating the file system.
-Only Step 1, *Create your Amazon FSx for Lustre file system*, is necessary.
-Step 2, *Install the Lustre client*, and subsequent steps have instructions for mounting your file system to EC2 instances, but AWS ParallelCluster automates this for us.
+Refer to the official `FSx for Lustre Instructions
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html>`_
+for instructions on creating the file system. Only
 
-Record the following details about your new file system for later steps:
+`Step 1: Create your FSx for Lustre file system
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step1>`_
+is necessary. `Step 2: Install and configure the Lustre Client
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step2>`_
+and subsequent steps have instructions for mounting your file system
+to EC2 instances, but AWS ParallelCluster automates this for
+us. Record the following details about your new file system for later
+steps:
 
-* its ID (:literal:`fs-XXXXXXXXXXXXXXXXX`)
-* its subnet (:literal:`subnet-YYYYYYYYYYYYYYYYY`)
-* its security group that has the inbound network rules (:literal:`sg-ZZZZZZZZZZZZZZZZZ`).
+.. list-table::
+   :header-rows: 1
+   :align: center
+
+   * - Filesystem parameter
+     - Example
+   * - ID
+     - :literal:`fs-XXXXXXXXXXXXXXXXX`
+   * - subnet
+     - :literal:`subnet-YYYYYYYYYYYYYYYYY`
+   * - Security group that has the inbound network rules
+     - :literal:`sg-ZZZZZZZZZZZZZZZZZ`
 
 Once you have created the file system, proceed with :ref:`aws_cli_setup`.
 
 .. _aws_cli_setup:
 
+============================================
 2. AWS CLI Installation and First-Time Setup
---------------------------------------------
+============================================
 
-Ensure you have the AWS CLI installed and configured.
-The AWS CLI is a terminal command, :literal:`aws`, for working with AWS services.
-If you have already installed and configured the AWS CLI previously, continue to :ref:`creating_your_pcluster`.
+Ensure you have the AWS CLI installed and configured. The AWS CLI is a
+terminal command, :literal:`aws`, for working with AWS services. If
+you have already installed and configured the AWS CLI previously,
+continue to :ref:`creating_your_pcluster`.
 
-Install the :literal:`aws` command: `Official AWS CLI Install Instructions <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_.
-Once you have installed the :literal:`aws` command, you need to configure it with the credentials for your AWS account:
+Install the :literal:`aws` command: `Official AWS CLI Install
+Instructions
+<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_.
+Once you have installed the :literal:`aws` command, you need to
+configure it with the credentials for your AWS account:
 
 .. code-block:: console
 
    $ aws configure
 
-For instructions on :literal:`aws configure`, refer to the `Official AWS Instructions <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_ or `this YouTube tutorial <https://www.youtube.com/watch?v=Rp-A84oh4G8>`_.
+For instructions on :literal:`aws configure`, refer to the `Official
+AWS Instructions
+<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_
+or `this YouTube tutorial
+<https://www.youtube.com/watch?v=Rp-A84oh4G8>`_.
 
-.. _creating_your_pcluster:
+.. _configure_your_pcluster:
 
-3. Create your AWS ParallelCluster
-----------------------------------
+=====================================
+3. Configure your AWS ParallelCluster
+=====================================
 
 .. note::
-  We recommend referring to the official AWS documentation on `Configuring AWS ParallelCluster <https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
-  Those instructions will have the latest information on using AWS ParallelCluster.
-  The instructions on this page are meant to supplement the official instructions, and point out the important parts of the configuration for use with GCHP.
 
-**Step 3a: Create a Key Pair**
+   We recommend referring to the official AWS documentation on
+   `Configuring AWS ParallelCluster
+   <https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
+   Those instructions will have the latest information on using AWS
+   ParallelCluster.  The instructions on this page are meant to
+   supplement the official instructions, and  point out the important
+   parts of the configuration for use with GCHP.
 
-Make sure you already have a key pair before moving on.
-A key pair is needed as your secure identity credential to access your cluster's head node.
-You can create the key pair using the AWS Management Console or the AWS CLI:
+3a. Create a Key Pair
+---------------------
+
+Make sure you already have a `key pair
+<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_
+before moving on. A key pair is needed as your secure identity
+credential to access your cluster's head node. You can create the key
+pair using the AWS Management Console or the AWS CLI:
 
 .. code-block:: console
 
     $ aws ec2 create-key-pair --key-name <your-keypair-name> --query 'KeyMaterial' --output text > <your-keypair-name>.pem
 
-If you lose the private key, you will need to create a new key pair. Set strict permissions for your keypair:
+If you lose the private key, you will need to create a new key
+pair. Set strict permissions for your keypair:
 
 .. code-block:: console
 
     $ chmod 400 <your-keypair-name>.pem
 
-**Step 3b: Install AWS ParallelCluster**
+3b. Install AWS ParallelCluster
+-------------------------------
 
-Install `AWS ParallelCluster <https://docs.aws.amazon.com/parallelcluster/latest/ug/parallelcluster-version-3.html>`_ using :literal:`pip` (requires Python 3).
-If you are using an AMI, make sure the parallelcluster version matches your AMI.
+Install `AWS ParallelCluster
+<https://docs.aws.amazon.com/parallelcluster/latest/ug/parallelcluster-version-3.html>`_
+using :literal:`pip` (requires Python 3).
+If you are using an AMI, make sure the parallelcluster version matches
+your AMI.
 
 .. code-block:: console
 
    $ pip install "aws-parallelcluster==3.13.0"
 
-You can use the :literal:`pcluster` command to performs actions like: creating a cluster, shutting your cluster down (temporarily), destroying a cluster, etc.
+You can use the :literal:`pcluster` command to performs actions like:
+creating a cluster, shutting your cluster down (temporarily),
+destroying a cluster, etc.
 
-**Step 3c: Configure Your Cluster**
+3c. Configure Your Cluster
+--------------------------
 
 Generate a configuration file:
 
@@ -135,25 +213,43 @@ Generate a configuration file:
 
    $ pcluster configure --config cluster-config.yaml
 
-For instructions on :literal:`pcluster configure`, refer to the official instructions `Configuring AWS ParallelCluster <https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
+For instructions on :literal:`pcluster configure`, refer to the
+official instructions `Configuring AWS ParallelCluster
+<https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
 
 When prompted, we recommend the following settings:
 
-* **Scheduler:** slurm
-* **Operating System:** alinux2023
-* **Head node instance type:** c5n.large
-* **Number of queues:** 1
-* **Compute instance type:** c5n.18xlarge
-* **Maximum instance count:** [Your Choice] (This sets the limit for concurrent execution nodes).
-  Execution nodes automatically spinup and shutdown according when there are jobs in your queue.
+.. list-table::
+   :header-columns: 1
+   :caption: Recommended settings for ParallelCluster
+   :widths: 50 50
 
-**Step 3d: Customize Configuration**
+   * - Scheduler
+     - slurm
+   * - Operating System
+     - alinux2023
+   * - Head node instance type
+     - c5n.large
+   * - Number of queues
+     - 1
+   * - Compute instance type
+     - c5n.18xlarge
+   * - Maximum instance count
+     - [Your Choice] (This sets the limit for concurrent execution nodes).
+
+Execution nodes automatically spinup and shutdown according when there
+are jobs in your queue.
+
+3d. Customize your configuration
+---------------------------------
 
 Now you should have a file name :file:`cluster-config.yaml`.
 This is the configuration file with setting for a cluster.
 
-Modify the generated :file:`cluster-config.yaml` to use the GCHP AMI and mount your FSx for Lustre file system.
-Use the template below, ensuring you replace the placeholder values (e.g., `subnet-YYYY...`) with your specific IDs from Step 1.
+Modify the generated :file:`cluster-config.yaml` to use the GCHP AMI
+and mount your FSx for Lustre file system. Use the template below,
+ensuring you replace the placeholder values (e.g., `subnet-YYYY...`)
+with your specific IDs from Step 1.
 
 .. code-block:: yaml
 
@@ -202,7 +298,12 @@ Use the template below, ensuring you replace the placeholder values (e.g., `subn
            RootVolume:
              VolumeType: gp3
 
-**Step 3e: Create the Cluster**
+
+.. _create_your_pcluster:
+
+==============================
+4. Create your ParallelCluster
+==============================
 
 When you are ready, run the :command:`pcluster create-cluster` command.
 
@@ -210,36 +311,51 @@ When you are ready, run the :command:`pcluster create-cluster` command.
 
    $ pcluster create-cluster --cluster-name pcluster --cluster-configuration cluster-config.yaml
 
-It may take several minutes up to an hour for your cluster's status to change to :literal:`CREATE_COMPLETE`.
-You can check the status of you cluster with the following command.
+It may take several minutes up to an hour for your cluster's status to
+change to :literal:`CREATE_COMPLETE`. You can check the status of you
+cluster with the following command.
 
 .. code-block:: console
 
    $ pcluster describe-cluster --cluster-name pcluster
 
-Once your cluster's status is :literal:`CREATE_COMPLETE`, run the :command:`pcluster ssh` command to ssh into it.
+Once your cluster's status is :literal:`CREATE_COMPLETE`, run the
+:command:`pcluster ssh` command to ssh into it.
 
 .. code-block:: console
 
    $ pcluster ssh --cluster-name pcluster -i ~/path/to/keyfile.pem
 
-
 At this point, your cluster is set up and you can use it like any other HPC.
-Now you can create a run directory by running the :literal:`createRunDir.sh` command. Your next steps will be following the normal instructions found in the User Guide.
+Now you can create a run directory by running the
+:file:`createRunDir.sh` command. Your next steps will be following
+the normal instructions found in the User Guide.
 
 .. _running_gchp_on_parallelcluster:
 
-4. Running GCHP on ParallelCluster
-----------------------------------
+==================================
+5. Running GCHP on ParallelCluster
+==================================
 
-AWS ParallelCluster supports various job schedulers, and your cluster is configured to use **Slurm**. 
+AWS ParallelCluster supports various job schedulers, and your cluster
+is configured to use **Slurm**.
 
-Generally, you do not need root privileges to submit or manage your own jobs. You can submit your run script using the standard ``sbatch`` command. 
-However, if you need to perform administrative tasks (such as restarting the Slurm daemon), you can start a superuser shell by running ``sudo -s``.
+Generally, you do not need root privileges to submit or manage your
+own jobs. You can submit your run script using the standard
+:command:`sbatch` command. However, if you need to perform
+administrative tasks (such as restarting the Slurm daemon), you can
+start a superuser shell by running :command:`sudo -s`.
 
-For comprehensive instructions on configuring and running the model, please follow the official guide: `Running GCHP <https://gchp.readthedocs.io/en/latest/user-guide/running.html#running-gchp>`. 
+For comprehensive instructions on configuring and running the model
+and downloading the necessary input data, please follow the
+instructions in the `GCHP User Guide
+<https://gchp.readthedocs.io/en/stable/>`_ or the `GCHP Quick Start Guide
+<https://gchp.readthedocs.io/en/stable/getting-started/quick-start.html>`_.
 
-Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.sh** is the main Slurm submission script, and the second **execute.sh** is a wrapper script executed on each compute node.
+Below are two scripts you can use to run GCHP on AWS. The first
+**gchp_aws_run.sh** is the main Slurm submission script, and the
+second **execute.sh** is a wrapper script executed on each compute
+node.
 
 .. code-block:: bash
    :caption: gchp_aws_run.sh
@@ -265,7 +381,7 @@ Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.s
    ulimit -u 50000              # maxproc
    ulimit -v unlimited          # vmemoryuse
    ulimit -s unlimited          # stacksize
-   
+
    #################################################################
    #
    # PRE-RUN COMMANDS
@@ -295,7 +411,7 @@ Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.s
    #
    # POST-RUN COMMANDS
    #
-   # (Optional) Uncomment the lines below to rename mid-run checkpoint files 
+   # (Optional) Uncomment the lines below to rename mid-run checkpoint files
    # and manage restart symlinks after the run completes.
 
    # chkpnts=$(ls Restarts)
@@ -324,10 +440,10 @@ Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.s
    #     mv Restarts/gcchem_internal_checkpoint Restarts/gcchem_internal_checkpoint.${new_start_str:0:13}z.nc4
    #     # source setRestartLink.sh
    # fi
-   
+
    exit 0
 
-* **Interface Exclusion:** ``OMPI_MCA_btl_tcp_if_exclude="lo,docker0,virbr0"`` prevents OpenMPI from attempting to route MPI traffic through local loopback or virtual docker interfaces. On AWS EC2 instances, failing to exclude these can cause the model to hang indefinitely during initialization.
+**Interface Exclusion:** ``OMPI_MCA_btl_tcp_if_exclude="lo,docker0,virbr0"`` prevents OpenMPI from attempting to route MPI traffic through local loopback or virtual docker interfaces. On AWS EC2 instances, failing to exclude these can cause the model to hang indefinitely during initialization.
 
 .. code-block:: bash
    :caption: execute.sh
@@ -343,6 +459,3 @@ Below are two scripts you can use to run GCHP on AWS. The first **gchp_aws_run.s
 
    # Execute gchp
    ./gchp
-
-
-

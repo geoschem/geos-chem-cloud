@@ -25,26 +25,34 @@ Data Sponsorship Program
 a result, **GEOS-Chem input data hosted on AWS is completely free to
 use**.
 
+.. seealso::
+   
+   This site focuses on cloud infrastructure. For comprehensive
+   instructions on model configuration, compiling, and science
+   updates, please refer to the other GEOS-Chem user manuals: 
+
+   * `GCHP Documentation <https://gchp.readthedocs.io/en/latest/index.html>`_
+   * `GEOS-Chem Classic Documentation <https://geos-chem.readthedocs.io/en/latest/index.html>`_
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+   :caption: Initial setup
+
+   the-basics/getting-started
+
+.. toctree::
+   :maxdepth: 3
    :caption: GC-Classic on AWS cloud
 
    gcclassic-on-aws/gcc-AWS
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: GCHP on AWS cloud
 
    gchp-on-aws/prepare-AWS-environment
    gchp-on-aws/set-up-AWS-pcluster
    gchp-on-aws/AWS_terminology
-
-.. seealso::
-   This site focuses on cloud infrastructure. For comprehensive instructions on model configuration, compiling, and science updates, please refer to the other GEOS-Chem user manuals:
-
-   * `GCHP Documentation <https://gchp.readthedocs.io/en/latest/index.html>`_
-   * `GEOS-Chem Classic Documentation <https://geos-chem.readthedocs.io/en/latest/index.html>`_
 
 .. toctree::
    :maxdepth: 2

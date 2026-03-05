@@ -10,9 +10,10 @@ Run GEOS-Chem Classic on AWS EC2
 
 `GEOS-Chem Classic <https://geos-chem.readthedocs.io>`_  is an `OpenMP
 <https://www.openmp.org/>`_ application, meaning it runs on a single
-node. Therefore, you do not need a complex cluster scheduler (like AWS
-ParallelCluster). You can simply launch a single, powerful EC2
-instance using our provided Amazon Machine Image (AMI).
+node. Therefore, you do not need a complex cluster scheduler (like
+:ref:`AWS ParallelCluster <using_aws_parallelcluster>`). You can
+simply launch a single, powerful Elastic Cloud Compute (EC2) instance
+using our provided  Amazon Machine Image (AMI).
 
 .. list-table:: Available AMIs
    :align: center
@@ -38,25 +39,27 @@ a GEOS-Chem Classic run directory and compiling the model.
 Launch your EC2 instance
 ========================
 
-#. Log in to the **AWS Console** and navigate to **EC2**. |br|
+#. Log in to the **AWS Console** and navigate to `EC2
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/console.html>`_. |br|
    |br|
 
-#. Click **Launch Instance**. |br|
+#. Click **Launch Instance**.
+   |br|
    |br|
 
-#. **Name**: Give your instance a unique name s (e.g.,
+#. Give your instance a **unique name** (e.g.,
    :literal:`GCC14.7-Simulation`) so that you can easily identify it
-   in the list of instances in the AWS Console. |br|
+   in the list of instances in the EC2 Console. |br|
    |br|
 
-#. **Application and OS Images (AMI)**: Search for the AMI ID from the
-   table above in **Community AMIs**. |br|
+#. Look under **Application and OS Images (AMI)** and search for the
+   AMI ID listed above in **Community AMIs**. |br|
    |br|
 
-#. **Instance Type**: We recommend that you create a **Spot
-   Instance** with one of the instance types listed below:
+#. We recommend that you create a **Spot Instance** with one of the
+   **instance types**  listed below:
 
-   .. list-table:: Recommended AWS EC2 instance types
+   .. list-table:: Suggested AWS EC2 instance types
       :align: center
       :header-rows: 1
 
@@ -86,22 +89,28 @@ Launch your EC2 instance
    type that is selected.  For example, the :literal:`c7i.16xlarge`
    instance type has more memory and double the network speed of the
    :literal:`c5.12xlarge` instance type, and thus will be more
-   expensive to use.
+   expensive to use.  You may, of course, select another instance type
+   that is more cost-effective for your situation.  But the two listed
+   above have proven to be very sufficient for running GEOS-Chem
+   simulations.
 
-   Spot instances cost less than **On-Demand Instances** (which have
-   the highest priority), but may be pre-empted by an on-demand
-   instance at any time. Nevertheless, we find that it is routinely
-   possible to run GEOS-Chem simulations for several hours on a spot
-   instance without the instance being terminated.
+   Spot instances cost less than **On-Demand Instances**, which are
+   guaranteed to execute with the highest priority.  Spot instances
+   may therefore be pre-empted by an on-demand instance at any
+   time. Nevertheless, we find that we can routinely run GEOS-Chem
+   simulations for several hours on a spot instance without the
+   instance being pre-empted.
 
    Be sure to check the latest `pricing for spot instances
    <https://aws.amazon.com/ec2/spot/pricing/>`_ vs. `pricing for
    on-demand instances
-   <https://aws.amazon.com/ec2/pricing/on-demand/>`_. |br|
+   <https://aws.amazon.com/ec2/pricing/on-demand/>`_ for each instance
+   type.  This information changes frequently, so be sure to check
+   back periodically. |br|
    |br|
 
 
-#. **Key Pair**: Select your SSH key pair or `create a new key pair
+#. Select your **SSH key pair** or `create a new key pair
    <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_
    if you don't have one.  The private key should end with the
    :file:`.pem` extension and be placed in your :file:`~/.ssh` folder.
@@ -109,9 +118,10 @@ Launch your EC2 instance
    :literal:`chmod 600` permission. |br|
    |br|
 
-#. **Configure Security Group**: Ensure the security group allows SSH
-   access (port 22) and any other required ports for your simulation
-   (e.g., 80, 443). |br|
+#. Ensure that your `security group
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html>`_
+   allows SSH access (port 22) and any other required ports for your
+   simulation (e.g., 80, 443). |br|
    |br|
 
 #. **Configure storage**:
@@ -120,17 +130,20 @@ Launch your EC2 instance
      AMI):
 
      - **Root volume (30 GB)**: The operating system. Do not save
-	simulation data here.
+       simulation data here.
 
-     - **EBS volume (100 GB minimum)**: Mounted at
+     - **Elastic Block Storage (EBS) volume (100 GB minimum)**: Mounted at
        :literal:`/data`. Use this directory for everything.
 
-   - **Tip**: You should increase the size of the second volume (the
-     :literal:`/data` volume) as you demand for your simulation.
-     |br|
+   .. tip::
 
-#. **Launch the instance**. You should see your instance in the EC2
-   console with a status of "running".
+      You should increase the size of the :literal:`/data` volume as
+      accordingly for your simulation.
+
+#. `Launch your EC2 instance
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html>`_.
+   You should see your instance listed in the EC2 Console with a
+   status of "Running".
 
 .. _connecting_and_setup:
 
@@ -144,7 +157,7 @@ Connect to your instance via SSH:
 
     $ ssh -YA -i ~/.ssh/your-private-key.pem ec2-user@<instance-ip>
 
-You can get the :literal:<instance-ip>` from the AWS console.
+You can get the :literal:<instance-ip>` from the EC2 Console.
 
 ======================
 Verify the environment

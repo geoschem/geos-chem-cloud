@@ -10,12 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `.readthedocs.yaml` to the root folder
 - Added the "Help & Reference" section (Contributing guidelines, Support Guidelines, Editing these docs, Key References)
 - Added "View related documentation"
+- Added `the-basics/getting-started.rst` page with documentation links
+  to AWS cloud
+- Added `.gitignore` in the root-level folder
 
 ### Changed
 - Updated `AUTHORS.txt` and `LICENSE.txt` as of Feb 2026 (GEOS-Chem 14.7.0)
-- Updated `index.rst` 
+- Updated `index.rst`
 - Updated `environment.yml` and `requirements.rst` with the same Python packages as used by other GC repos
+- Added formatting updates and new content about spot instances to the GC-Classic guide
+- Added formatting updates (and other updates for consistency) to the GCHP guide
 
 ### Removed
 - Removed all previous documentation pages, as they are out of date
-
