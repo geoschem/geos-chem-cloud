@@ -27,13 +27,19 @@ AMIs are listed below:
    :align: center
 
    * - AMI ID
+     - AMI Name
      - OS
      - Architecture
      - Pcluster version
-   * - ami-061ca4ddb4e1ebd63
+   * - ami-0d2605d70d024b2df
+     - GCHP
      - alinux2023
      - x86_64
      - 3.13.0
+
+.. note::
+
+   This AMI is free to use and available at all regions. It is also available on the AWS Marketplace: `GCHP <https://aws.amazon.com/marketplace/pp/prodview-25uihnrrtcbc4?sr=0-1&ref_=beagle&applicationId=AWSMPContessa>`_. 
 
 The image contains pre-built tools for creating a GCHP run directory
 and compiling the model.
