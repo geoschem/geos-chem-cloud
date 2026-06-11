@@ -131,7 +131,7 @@ placeholders are sensible defaults you can leave alone.
          machine_type: h4d-standard-192
          bandwidth_tier: tier_1_enabled
          instance_image:
-           family: gchp-h4d-rocky8                # the published GCHP image
+           family: gchp1470-full                  # the published GCHP image
            project: eece-acag                     # the ACAG project that hosts it
          maintenance_policy: TERMINATE            # H4D doesn't support live-migration
 
@@ -245,7 +245,7 @@ Then attach the second NIC to your H4D nodeset by editing the
        machine_type: h4d-standard-192
        bandwidth_tier: tier_1_enabled
        instance_image:
-         family: gchp-h4d-rocky8
+         family: gchp1470-full
          project: eece-acag
        maintenance_policy: TERMINATE
        additional_networks:
@@ -264,7 +264,7 @@ Re-apply:
    terraform apply
 
 The next bursted H4D node will have both gVNIC (eth0) and IRDMA
-(rdma0) NICs. The ``gchp-h4d-rocky8`` image already loads the
+(rdma0) NICs. The ``gchp1470-full`` image already loads the
 ``idpf`` and ``irdma`` kernel modules at boot, so no further
 configuration is required.
 
@@ -310,7 +310,7 @@ Once inside the compute node, confirm everything works:
 
 If ``ibv_devinfo`` returns ``Failed to open device``, the iRDMA
 provider swap (see :ref:`falcon-rdma-image`) was not applied. The
-published ``gchp-h4d-rocky8`` image handles this for you; if you
+published ``gchp1470-full`` image handles this for you; if you
 built your own image, see that page.
 
 
@@ -318,44 +318,62 @@ built your own image, see that page.
 5. Build GCHP on the cluster
 ================================================================================
 
-GCHP is **not** pre-installed in the published image - only the
-system dependencies and kernel module setup are baked in. You build
-GCHP once into ``/shared`` (Filestore), and every burst compute node
-sees the same binary over NFS.
+The compute image ships the full MPI and library stack under
+``/opt/gchp``, so you do not need to install Spack, UCX, OpenMPI,
+HDF5, netCDF, or ESMF yourself. What you do need to build is the
+GCHP binary itself, configured for your meteorology and chemistry
+choices.
 
-The full build sequence (Spack + UCX + OpenMPI + HDF5/NetCDF/ESMF +
-GCHP) is documented in :ref:`falcon-rdma-image`. Briefly:
+Grab an H4D node interactively:
 
 .. code-block:: bash
 
-   # On a compute node (the login node is too small)
    srun -p h4d -N 1 -n 1 --pty bash
 
-   source /shared/spack/share/spack/setup-env.sh
-   spack env create gchp-env
-   spack env activate gchp-env
-   # Author /shared/spack/var/spack/environments/gchp-env/spack.yaml
-   # (full content shown in falcon-rdma-image)
-   spack -e gchp-env install --fail-fast -j 80      # ~30 min
+then bring the stack onto PATH and build GCHP into a fresh rundir.
+The example below uses GCHP 14.7.0 with fullchem; substitute the
+configuration appropriate to your work:
 
-   # Then build GCHP
-   git clone --recurse-submodules https://github.com/geoschem/GCHP /shared/GCHP
-   cd /shared/rundir-test/build
-   cmake -DRUNDIR=/shared/rundir-test \
+.. code-block:: bash
+
+   source /opt/gchp/env.sh
+
+   # Source tree (one time per cluster)
+   cd /shared
+   git clone --recurse-submodules https://github.com/geoschem/GCHP
+   cd GCHP && git checkout 14.7.0
+
+   # Rundir
+   cd /shared/GCHP/run
+   ./createRunDir.sh                       # follow the prompts
+
+   # Build
+   cd /shared/rundir-<your-name>
+   mkdir -p build && cd build
+   cmake -DRUNDIR=.. \
          -DCMAKE_C_COMPILER=mpicc \
          -DCMAKE_CXX_COMPILER=mpicxx \
          -DCMAKE_Fortran_COMPILER=mpifort \
          /shared/GCHP
    make -j 30 && make install
 
+The ``gchp`` binary appears at the top of the rundir, ready for
+``sbatch``. Confirm it picked up the right libraries:
+
+.. code-block:: bash
+
+   ldd ../gchp | grep -E "openmpi|esmf|netcdf|hdf5"
+   # all paths under /opt/gchp/spack/opt/spack/linux-zen4/...
+
 
 ================================================================================
 6. Running GCHP on the cluster
 ================================================================================
 
-Save the following as ``run-gchp.sh`` in your rundir. This is the
-multi-node template that uses Falcon RDMA. Replace the Spack hashes
-with the ones from your build (use ``spack find -lv`` to list them).
+Save the following as ``run-gchp.sh`` in your rundir. It is the
+multi-node template that uses Falcon RDMA. The ``/opt/gchp/env.sh``
+sourcing replaces all the per-library Spack loads you would normally
+need.
 
 .. code-block:: bash
 
@@ -367,22 +385,11 @@ with the ones from your build (use ``spack find -lv`` to list them).
    #SBATCH --time=04:00:00
    #SBATCH --chdir=/shared/rundir-c90-360
 
-   source /shared/spack/share/spack/setup-env.sh
-   spack env activate gchp-env
-   for h in /<hdf5> /<netcdf-c> /<netcdf-f> /<esmf> /<parallelio> udunits /<openmpi>; do
-       spack load $h >/dev/null
-   done
+   source /opt/gchp/env.sh
 
-   OMPI=$(spack location -i /<openmpi-hash>)
-   export PATH=$OMPI/bin:$PATH
-   export OMPI_MCA_pml=ucx
-   export OMPI_MCA_osc=^pt2pt
-   export OMPI_MCA_pml_ucx_tls=any
-   export OMPI_MCA_pml_ucx_devices=any
-   export OMPI_MCA_osc_ucx_tls=any
-   export OMPI_MCA_osc_ucx_devices=any
-   export UCX_TLS=rc,ud,self,sm,sysv,posix       # rc,ud = Falcon RDMA
-   export OMP_NUM_THREADS=1
+   # /opt/gchp/env.sh already sets OMPI_MCA_pml, UCX_TLS, etc.
+   # Override per-job if you want, for example to disable RDMA:
+   # export UCX_TLS=self,sm,sysv,posix,tcp
 
    echo "20190701 000000" > cap_restart
    source setCommonRunSettings.sh
