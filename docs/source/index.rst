@@ -6,7 +6,7 @@ The **GEOS-Chem on cloud computing platforms**  project provides fast
 and easy access to the latest, standard `GEOS-Chem
 <http://geoschem.github.io>`_ model and `all its input datasets
 <https://registry.opendata.aws/geoschem-input-data/>`_ on Amazon
-Web Services (and perhaps in future, Google) cloud computing plaforms.
+Web Services and Google Cloud Platform.
 
 GEOS-Chem is a `Chemical Transport Model
 <https://en.wikipedia.org/wiki/Chemical_transport_model>`_ for
@@ -53,6 +53,15 @@ use**.
    gchp-on-aws/prepare-AWS-environment
    gchp-on-aws/set-up-AWS-pcluster
    gchp-on-aws/AWS_terminology
+
+.. toctree::
+   :maxdepth: 3
+   :caption: GCHP on Google Cloud
+
+   gchp-on-gcp/prepare-GCP-environment
+   gchp-on-gcp/set-up-GCP-cluster
+   gchp-on-gcp/falcon-rdma-image
+   gchp-on-gcp/GCP_terminology
 
 .. toctree::
    :maxdepth: 2
