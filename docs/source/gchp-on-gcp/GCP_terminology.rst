@@ -181,7 +181,7 @@ What is a GCP Image?
 ^^^^^^^^^^^^^^^^^^^^
 
 A snapshot of a VM's boot disk that can be used to launch new VMs.
-The ``gchp-h4d-rocky8-v2`` image (this guide) has the kernel
+The ``gchp1470-full-v2`` image (this guide) has the kernel
 modules, system packages, and first-boot scripts required to run
 GCHP on H4D. See :ref:`falcon-rdma-image` for details.
 
@@ -285,7 +285,7 @@ What is OS Login?
 
 Google's recommended SSH access mechanism. Instead of putting
 public keys into instance metadata, OS Login lets users SSH with
-their GCP IAM identity. The published ``gchp-h4d-rocky8`` image
+their GCP IAM identity. The published ``gchp1470-full`` image
 works with both approaches.
 
 

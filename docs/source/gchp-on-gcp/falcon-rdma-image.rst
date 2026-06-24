@@ -8,7 +8,7 @@
 The GCHP compute image and Falcon RDMA
 ######################################
 
-A pre-built compute image, ``gchp1470-full-v1``, lets you skip the
+A pre-built compute image, ``gchp1470-full-v2``, lets you skip the
 multi-hour Spack and library compile on every new cluster. Boot an
 H4D node from it and ``mpicc``, ``mpifort``, ``cmake``, plus the
 HDF5/netCDF/ESMF/ParallelIO/udunits stack are immediately available
@@ -30,7 +30,7 @@ roll your own when a new GCHP release calls for it.
    * - Field
      - Value
    * - Image name
-     - ``gchp1470-full-v1``
+     - ``gchp1470-full-v2``
    * - Image family
      - ``gchp1470-full``
    * - Hosting project
@@ -172,6 +172,14 @@ A single ``source`` puts the whole stack on PATH:
    # /opt/gchp/spack/opt/spack/linux-zen4/openmpi-4.1.6-.../bin/mpicc
    # /opt/gchp/spack/opt/spack/linux-zen4/openmpi-4.1.6-.../bin/mpifort
    # /opt/gchp/spack/opt/spack/linux-zen4/cmake-3.31.11-.../bin/cmake
+
+``env.sh`` also enables ``gcc-toolset-11`` so the toolchain's
+``binutils`` 2.36 is on PATH ahead of the older system
+``/usr/bin/as``. The Spack-built compilers emit assembler options
+(``--gdwarf-4``) that the system binutils does not understand;
+without this, the first GCHP compile fails. If you build a custom
+image (Section 7) make sure your own ``env.sh`` includes
+``source /opt/rh/gcc-toolset-11/enable`` near the top.
 
 ``env.sh`` also exports the OpenMPI/UCX MCA parameters that select
 Falcon RDMA between nodes and shared memory within a node. If you
@@ -368,7 +376,7 @@ The recipe is:
 
    .. code-block:: bash
 
-      gcloud compute images deprecate gchp1470-full-v1 \
+      gcloud compute images deprecate gchp1470-full-v2 \
           --state=DEPRECATED \
           --replacement=gchp15xx-full-v1
 
