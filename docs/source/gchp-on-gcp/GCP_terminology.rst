@@ -138,8 +138,7 @@ Multi-node MPI via TCP over gVNIC degrades sharply at higher core
 counts because the kernel network stack adds latency and CPU
 overhead. Falcon RDMA bypasses the kernel for inter-node
 communication, restoring near-shared-memory performance across the
-cluster. Concretely, our C90 strong-scaling stays linear through
-360 cores (2 H4D nodes) with Falcon RDMA but would not over TCP.
+cluster. 
 
 *AWS equivalent: EFA on c5n/hpc6id instances.*
 
