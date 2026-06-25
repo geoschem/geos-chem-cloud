@@ -131,7 +131,7 @@ placeholders are sensible defaults you can leave alone.
          machine_type: h4d-standard-192
          bandwidth_tier: tier_1_enabled
          instance_image:
-           family: gchp1470-full                  # the published GCHP image
+           family: gchp1470-full-v2                  # the published GCHP image
            project: eece-acag                     # the ACAG project that hosts it
          maintenance_policy: TERMINATE            # H4D doesn't support live-migration
 
