@@ -441,7 +441,7 @@ These numbers come from GCHP 14.7.0 fullchem, 7-day simulations from
      - **360**
      - **2**
      - **Falcon RDMA**
-     - **1.9 h**
+     - **1.8 h**
      - **96**
    * - C180
      - 120
@@ -449,8 +449,37 @@ These numbers come from GCHP 14.7.0 fullchem, 7-day simulations from
      - SHM
      - 16.5 h
      - 10.2
+   * - **C180**
+     - **240**
+     - **2**
+     - **Falcon RDMA**
+     - **8.1 h**
+     - **20.8**
 
-Strong-scaling efficiency from 180 to 360 cores on C90 is roughly
-71% of ideal, which is what you should expect when Falcon RDMA is
-actually engaged. If a multi-node run drops far below this, suspect
-TCP fallback first.
+Strong-scaling with Falcon RDMA is good, and improves with resolution:
+C90 from 180 to 360 cores holds roughly 71% of ideal, while C180 from
+120 to 240 cores scales essentially 2x (near-ideal), because the larger
+domain keeps each rank busier. This is what you should expect when
+Falcon RDMA is actually engaged. If a multi-node run drops far below
+these, suspect TCP fallback first.
+
+The figure below places every benchmark run in one view, adding the
+``c2-standard-60`` (TCP/gVNIC) baseline alongside ``h4d-standard-192``
+across all four resolutions. Lower on the chart is faster. At a given
+core count, ``h4d-standard-192`` is consistently faster than
+``c2-standard-60``, and Falcon RDMA lets a two-node H4D run keep
+scaling (C90 to ~1.8 h, C180 to ~8.1 h) where TCP would stall.
+
+.. figure:: /_static/images/gchp_gcp_benchmark.png
+   :alt: GCHP throughput on Google Cloud across resolutions and instance types
+   :width: 100%
+   :align: center
+
+   GCHP 14.7 full-chemistry benchmark on Google Cloud -- ten timing runs,
+   7-day simulations starting 2019-07-01, across four resolutions
+   (C48-C360) and two instance types. *Lower on the chart is faster.*
+   Crosses: ``c2-standard-60`` (TCP/gVNIC). Stars: single-node
+   ``h4d-standard-192`` (shared memory). Red-edged stars: two
+   ``h4d-standard-192`` nodes with Falcon RDMA. Solid lines show strong
+   scaling within a single H4D node; dashed lines the transition to a
+   two-node Falcon RDMA run.
