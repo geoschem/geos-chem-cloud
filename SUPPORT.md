@@ -2,7 +2,7 @@
 
 GCPy support is maintained by the **GEOS-Chem Support Team (GCST)**, which is based jointly at Harvard University and Washington University in St. Louis.
 
-We track bugs, user questions, and feature requests through **[GitHub issues](https://www.youtube.com/watch?v=dFBhdotYVf8)**. Please help out as you can in response to issues and user questions.
+We track bugs, user questions, and feature requests through **[GitHub issues](https://github.com/geoschem/geos-chem-cloud/issues)**. Please help out as you can in response to issues and user questions.
 
 ## How to report a bug
 We use GitHub to track issues. To report a bug, **[open a new issue](https://github.com/geoschem/gcpy/issues/new/choose)**. Please include your name, institution, and all relevant information, such as simulation log files and instructions for replicating the bug.

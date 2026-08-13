@@ -12,7 +12,7 @@ GCHP simulations are highly computationally intensive and demand
 robust infrastructure. To achieve the multi-core processing and fast
 networking speeds required for efficient runs, we strongly recommend
 deploying GCHP on a Slurm-managed HPC cluster built with Google's
-`Cluster Toolkit <https://github.com/GoogleCloudPlatform/cluster-toolkit>`_.
+`Cluster Toolkit <https://github.com/GoogleCloudPlatform/cluster-toolkit>`__.
 
 This quickstart guides you through the necessary steps from the
 beginning to prepare your Google Cloud Platform (GCP) environment
@@ -62,7 +62,7 @@ project, and billing is tracked per project.
 2. IAM Permissions for Cluster Creation
 ================================================================================
 
-Cluster Toolkit uses `Terraform <https://www.terraform.io/>`_ to
+Cluster Toolkit uses `Terraform <https://www.terraform.io/>`__ to
 provision resources on your behalf, including VPCs, Compute Engine
 instances, Filestore volumes, and :ref:`IAM <term-iam-gcp>` service
 accounts. The user who runs ``gcluster create`` must have permission

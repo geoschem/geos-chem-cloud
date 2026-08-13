@@ -8,12 +8,12 @@
 Run GEOS-Chem Classic on AWS EC2
 ################################
 
-`GEOS-Chem Classic <https://geos-chem.readthedocs.io>`_  is an `OpenMP
-<https://www.openmp.org/>`_ application, meaning it runs on a single
+`GEOS-Chem Classic <https://geos-chem.readthedocs.io>`__  is an `OpenMP
+<https://www.openmp.org/>`__ application, meaning it runs on a single
 node. Therefore, you do not need a complex cluster scheduler (like
 :ref:`AWS ParallelCluster <using_aws_parallelcluster>`). You can
 simply launch a single, powerful Elastic Cloud Compute (EC2) instance
-using our provided  Amazon Machine Image (AMI).
+using our provided Amazon Machine Image (AMI).
 
 .. list-table:: Available AMIs
    :align: center
@@ -40,7 +40,7 @@ Launch your EC2 instance
 ========================
 
 #. Log in to the **AWS Console** and navigate to `EC2
-   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/console.html>`_. |br|
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/console.html>`__. |br|
    |br|
 
 #. Click **Launch Instance**.
@@ -57,7 +57,7 @@ Launch your EC2 instance
    |br|
 
 #. We recommend that you create a **Spot Instance** with one of the
-   **instance types**  listed below:
+   **instance types** listed below:
 
    .. list-table:: Suggested AWS EC2 instance types
       :align: center
@@ -102,24 +102,24 @@ Launch your EC2 instance
    instance being pre-empted.
 
    Be sure to check the latest `pricing for spot instances
-   <https://aws.amazon.com/ec2/spot/pricing/>`_ vs. `pricing for
+   <https://aws.amazon.com/ec2/spot/pricing/>`__ vs. `pricing for
    on-demand instances
-   <https://aws.amazon.com/ec2/pricing/on-demand/>`_ for each instance
+   <https://aws.amazon.com/ec2/pricing/on-demand/>`__ for each instance
    type.  This information changes frequently, so be sure to check
    back periodically. |br|
    |br|
 
 
 #. Select your **SSH key pair** or `create a new key pair
-   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`__
    if you don't have one.  The private key should end with the
    :file:`.pem` extension and be placed in your :file:`~/.ssh` folder.
    Make sure the private key is only readable by you (i.e. give it
-   :literal:`chmod 600` permission. |br|
+   :literal:`chmod 600` permission). |br|
    |br|
 
 #. Ensure that your `security group
-   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html>`_
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html>`__
    allows SSH access (port 22) and any other required ports for your
    simulation (e.g., 80, 443). |br|
    |br|
@@ -137,11 +137,11 @@ Launch your EC2 instance
 
    .. tip::
 
-      You should increase the size of the :literal:`/data` volume as
+      You should increase the size of the :literal:`/data` volume
       accordingly for your simulation.
 
 #. `Launch your EC2 instance
-   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html>`_.
+   <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html>`__.
    You should see your instance listed in the EC2 Console with a
    status of "Running".
 
@@ -157,7 +157,7 @@ Connect to your instance via SSH:
 
     $ ssh -YA -i ~/.ssh/your-private-key.pem ec2-user@<instance-ip>
 
-You can get the :literal:<instance-ip>` from the EC2 Console.
+You can get the :literal:`<instance-ip>` from the EC2 Console.
 
 ======================
 Verify the environment
@@ -177,7 +177,7 @@ Download the GC-Classic source code and data
 
 Follow the instructions
 in the `GEOS-Chem Classic Quickstart Guide
-<https://geos-chem.readthedocs.io/en/stable/getting-started/quick-start.html>`_
+<https://geos-chem.readthedocs.io/en/stable/getting-started/quick-start.html>`__
 to download the GEOS-Chem Classic source code and input data to your
 instance's :literal:`/data` directory.
 
