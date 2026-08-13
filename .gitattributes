@@ -1,0 +1,22 @@
+# Auto-detect text files and normalize line endings to LF in the repository
+* text=auto eol=lf
+
+# Documentation source
+*.rst text
+*.md text
+*.txt text
+*.bib text
+*.yml text
+*.yaml text
+*.py text
+
+# Binary files (do not modify line endings)
+*.png binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+
+# Exclude generated documentation output from GitHub language statistics
+docs/build/** linguist-generated=true
