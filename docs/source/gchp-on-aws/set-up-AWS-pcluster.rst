@@ -13,8 +13,8 @@ Quickstart II: Set up AWS ParallelCluster
     AWS ParallelCluster and (:ref:`FSx for Lustre <term-fsx-lustre>`)
     costs hundreds or thousands of dollars per month.  Please review
     `FSx for Lustre Pricing
-    <https://aws.amazon.com/fsx/lustre/pricing/>`_ and  `EC2 Pricing
-    <https://aws.amazon.com/ec2/pricing/on-demand/>`_ for details.
+    <https://aws.amazon.com/fsx/lustre/pricing/>`__ and  `EC2 Pricing
+    <https://aws.amazon.com/ec2/pricing/on-demand/>`__ for details.
 
 AWS ParallelCluster is a service that allows you to deploy and manage
 your own HPC cluster in the cloud. Running GCHP on AWS ParallelCluster
@@ -39,7 +39,7 @@ AMIs are listed below:
 
 .. note::
 
-   This AMI is free to use and available at all regions. It is also available on the AWS Marketplace: `GCHP <https://aws.amazon.com/marketplace/pp/prodview-25uihnrrtcbc4?sr=0-1&ref_=beagle&applicationId=AWSMPContessa>`_. 
+   This AMI is free to use and available at all regions. It is also available on the AWS Marketplace: `GCHP <https://aws.amazon.com/marketplace/pp/prodview-25uihnrrtcbc4?sr=0-1&ref_=beagle&applicationId=AWSMPContessa>`__. 
 
 The image contains pre-built tools for creating a GCHP run directory
 and compiling the model.
@@ -59,13 +59,13 @@ This page has instructions on using the AMIs to create your own
 ParallelCluster. You may also choose to set up AWS ParallelCluster
 manually, and the other GCHP documentation like `building GCHP's
 dependencies
-<https://gchp.readthedocs.io/en/stable/geos-chem-shared-docs/supplemental-guides/spack-guide.html>`_,
+<https://gchp.readthedocs.io/en/stable/geos-chem-shared-docs/supplemental-guides/spack-guide.html>`__,
 `downloading GCHP
-<https://gchp.readthedocs.io/en/stable/user-guide/downloading.html>`_,
+<https://gchp.readthedocs.io/en/stable/user-guide/downloading.html>`__,
 `Building GCHP
-<https://gchp.readthedocs.io/en/stable/user-guide/compiling.html>`_,
+<https://gchp.readthedocs.io/en/stable/user-guide/compiling.html>`__,
 and `running GCHP
-<https://gchp.readthedocs.io/en/stable/user-guide/running.html>`_ is
+<https://gchp.readthedocs.io/en/stable/user-guide/running.html>`__ is
 applicable for using GCHP on AWS ParallelCluster.
 
 .. _workflow:
@@ -103,13 +103,13 @@ This file system will be used for storing GEOS-Chem input data as well
 as housing your GEOS-Chem run directories.
 
 Refer to the official `FSx for Lustre Instructions
-<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html>`_
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html>`__
 for instructions on creating the file system. Only
 
 `Step 1: Create your FSx for Lustre file system
-<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step1>`_
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step1>`__
 is necessary. `Step 2: Install and configure the Lustre Client
-<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step2>`_
+<https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html#getting-started-step2>`__
 and subsequent steps have instructions for mounting your file system
 to EC2 instances, but AWS ParallelCluster automates this for
 us. Record the following details about your new file system for later
@@ -139,11 +139,11 @@ Once you have created the file system, proceed with :ref:`aws_cli_setup`.
 Ensure you have the AWS CLI installed and configured. The AWS CLI is a
 terminal command, :literal:`aws`, for working with AWS services. If
 you have already installed and configured the AWS CLI previously,
-continue to :ref:`creating_your_pcluster`.
+continue to :ref:`create_your_pcluster`.
 
 Install the :literal:`aws` command: `Official AWS CLI Install
 Instructions
-<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_.
+<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`__.
 Once you have installed the :literal:`aws` command, you need to
 configure it with the credentials for your AWS account:
 
@@ -153,9 +153,9 @@ configure it with the credentials for your AWS account:
 
 For instructions on :literal:`aws configure`, refer to the `Official
 AWS Instructions
-<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_
+<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`__
 or `this YouTube tutorial
-<https://www.youtube.com/watch?v=Rp-A84oh4G8>`_.
+<https://www.youtube.com/watch?v=Rp-A84oh4G8>`__.
 
 .. _configure_your_pcluster:
 
@@ -167,7 +167,7 @@ or `this YouTube tutorial
 
    We recommend referring to the official AWS documentation on
    `Configuring AWS ParallelCluster
-   <https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
+   <https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`__.
    Those instructions will have the latest information on using AWS
    ParallelCluster.  The instructions on this page are meant to
    supplement the official instructions, and  point out the important
@@ -177,7 +177,7 @@ or `this YouTube tutorial
 ---------------------
 
 Make sure you already have a `key pair
-<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`_
+<https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html>`__
 before moving on. A key pair is needed as your secure identity
 credential to access your cluster's head node. You can create the key
 pair using the AWS Management Console or the AWS CLI:
@@ -197,7 +197,7 @@ pair. Set strict permissions for your keypair:
 -------------------------------
 
 Install `AWS ParallelCluster
-<https://docs.aws.amazon.com/parallelcluster/latest/ug/parallelcluster-version-3.html>`_
+<https://docs.aws.amazon.com/parallelcluster/latest/ug/parallelcluster-version-3.html>`__
 using :literal:`pip` (requires Python 3).
 If you are using an AMI, make sure the parallelcluster version matches
 your AMI.
@@ -221,13 +221,11 @@ Generate a configuration file:
 
 For instructions on :literal:`pcluster configure`, refer to the
 official instructions `Configuring AWS ParallelCluster
-<https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`_.
+<https://docs.aws.amazon.com/parallelcluster/latest/ug/install-v3-configuring.html>`__.
 
 When prompted, we recommend the following settings:
 
-.. list-table::
-   :header-columns: 1
-   :caption: Recommended settings for ParallelCluster
+.. list-table:: Recommended settings for ParallelCluster
    :widths: 50 50
 
    * - Scheduler
@@ -243,8 +241,8 @@ When prompted, we recommend the following settings:
    * - Maximum instance count
      - [Your Choice] (This sets the limit for concurrent execution nodes).
 
-Execution nodes automatically spinup and shutdown according when there
-are jobs in your queue.
+Execution nodes automatically spin up and shut down depending on
+whether there are jobs in your queue.
 
 3d. Customize your configuration
 ---------------------------------
@@ -304,7 +302,6 @@ with your specific IDs from Step 1.
            RootVolume:
              VolumeType: gp3
 
-
 .. _create_your_pcluster:
 
 ==============================
@@ -355,8 +352,8 @@ start a superuser shell by running :command:`sudo -s`.
 For comprehensive instructions on configuring and running the model
 and downloading the necessary input data, please follow the
 instructions in the `GCHP User Guide
-<https://gchp.readthedocs.io/en/stable/>`_ or the `GCHP Quick Start Guide
-<https://gchp.readthedocs.io/en/stable/getting-started/quick-start.html>`_.
+<https://gchp.readthedocs.io/en/stable/>`__ or the `GCHP Quick Start Guide
+<https://gchp.readthedocs.io/en/stable/getting-started/quick-start.html>`__.
 
 Below are two scripts you can use to run GCHP on AWS. The first
 **gchp_aws_run.sh** is the main Slurm submission script, and the

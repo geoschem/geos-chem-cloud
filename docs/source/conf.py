@@ -32,7 +32,7 @@ release = '1.0.0'
 extensions = [
     "sphinx_rtd_theme",   
     "sphinxcontrib.bibtex",
-    "recommonmark",
+    "myst_parser",
     "sphinx.ext.intersphinx",
 ]
 
@@ -112,6 +112,5 @@ html_logo = "_static/images/gc_logo.png"
 # More theme settings
 html_theme_options = {
     'logo_only': False,                        # Show logo & top text
-    'display_version': False,                  # Don't show version number
     'style_nav_header_background': '#FCFCFC',  # 99% white for top left bkgrnd
 }

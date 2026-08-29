@@ -22,9 +22,9 @@ your AWS environment before configuring :ref:`AWS ParallelCluster
 
 AWS ParallelCluster uses :ref:`AWS CloudFormation
 <term-cloudformation>` to automatically provision resources on your
-behalf, including VPCs, EC2 instances, and IAM roles.
-And We need to set up the necessary :ref:`IAM permissions
-<term-iam>` for this to work correctly.
+behalf, including VPCs, EC2 instances, and IAM roles. We need to set
+up the necessary :ref:`IAM permissions <term-iam>` for this to work
+correctly.
 
 How you set this up depends on whether you own the AWS account or are
 using an institution's account.
@@ -37,7 +37,7 @@ should create a dedicated IAM user with Administrator access
 specifically for managing your clusters.
 
 #. Log in to the `AWS Management Console
-   <https://console.aws.amazon.com/iam/>`_ and navigate to the **IAM**
+   <https://console.aws.amazon.com/iam/>`__ and navigate to the **IAM**
    dashboard. |br|
    |br|
 
@@ -90,7 +90,7 @@ You may send your administrator the following message:
    CLI uses AWS CloudFormation to automatically provision VPCs, EC2
    instances, Auto Scaling Groups, and S3 buckets.  Crucially, it also
    provisions customized IAM Roles for the cluster's Head Node and
-   Compute Nodes.* *I need my IAM user to be granted a policy that
+   Compute Nodes. I need my IAM user to be granted a policy that
    allows the following actions:
 
    1. cloudformation
@@ -111,7 +111,7 @@ You may send your administrator the following message:
    You can then reference those existing roles in your
    :file:`cluster-config.yaml`  file. Refer them to the official AWS
    documentation on `Using an existing IAM role
-   <https://docs.aws.amazon.com/parallelcluster/latest/ug/iam-roles-in-parallelcluster-v3.html>`_
+   <https://docs.aws.amazon.com/parallelcluster/latest/ug/iam-roles-in-parallelcluster-v3.html>`__
    for details.
 
 - **Recommended for Individuals:** If you manage your own AWS account,
@@ -181,7 +181,7 @@ How to request a quota increase
 
 #. Log in to the AWS Management Console and navigate to the `Service
    Quotas dashboard
-   <https://console.aws.amazon.com/servicequotas/>`_. |br|
+   <https://console.aws.amazon.com/servicequotas/>`__. |br|
    |br|
 
 #. In the left-hand navigation pane, click on **AWS services**, then
@@ -230,7 +230,7 @@ Install Node.js
 The most reliable way to install Node.js on a Linux or macOS
 environment is by using the Node Version Manager (nvm) to install the
 latest Node.js version.  Alternatively, you can download the installer
-directly from the `official Node.js website <https://nodejs.org/>`_.
+directly from the `official Node.js website <https://nodejs.org/>`__.
 
 Verify your Node.js installation
 -----------------------------------

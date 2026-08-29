@@ -1,8 +1,8 @@
 .. _basics:
 
-#######################################
+########################################
 Set up and use a cloud computing account
-#######################################
+########################################
 
 Here you will find useful information about how to create a cloud
 computing account if you do not already have one.
@@ -13,7 +13,7 @@ computing account if you do not already have one.
 Amazon Web Services (AWS)
 =========================
 
-Please visit the the documentation links below for mor information
+Please visit the documentation links below for more information
 about how to set up and use an Amazon Web Services (AWS) cloud
 computing account.
 
@@ -21,7 +21,7 @@ computing account.
 
    This information is subject to change.  Please inform the
    `GEOS-Chem Support Team
-   <https://geos-chem-cloud.readthedocs.io/en/latest/reference/SUPPORT.html>`_
+   <https://geos-chem-cloud.readthedocs.io/en/latest/reference/SUPPORT.html>`__
    if you encounter broken links or outdated information.
 
 .. _basics-aws-create:
@@ -29,54 +29,54 @@ computing account.
 Account creation
 ----------------
 
-- `How do I create and activate a new AWS account? <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`_
+- `How do I create and activate a new AWS account? <https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/>`__
 
-- `Create an AWS account (video tutorial) <https://www.youtube.com/watch?v=gA9pl-A9gDM>`_
+- `Create an AWS account (video tutorial) <https://www.youtube.com/watch?v=gA9pl-A9gDM>`__
 
-- `Setting up your AWS environment <https://docs.aws.amazon.com/hands-on/latest/setup-environment/setup-environment.html>`_
+- `Setting up your AWS environment <https://docs.aws.amazon.com/hands-on/latest/setup-environment/setup-environment.html>`__
 
-- `AWS Organizations and AWS Account Managment <https://docs.aws.amazon.com/organizations/>`_
+- `AWS Organizations and AWS Account Managment <https://docs.aws.amazon.com/organizations/>`__
 
 .. _basics-aws-setup:
 
 Setup and security
 ------------------
 
-- `Getting started with AWS (tutorials and more) <https://aws.amazon.com/getting-started/>`_
+- `Getting started with AWS (tutorials and more) <https://aws.amazon.com/getting-started/>`__
 
-- `Security best practices <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>`_
+- `Security best practices <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>`__
 
-- `Security groups <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html>`_
+- `Security groups <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html>`__
 
-- `IAM roles (aka user permissions) <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html>`_
+- `IAM roles (aka user permissions) <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html>`__
 
 .. _basics-aws-cli:
 
 AWS Command Line Interface (AWSCLI)
 -----------------------------------
 
-- `AWSCLI Documentation <https://docs.aws.amazon.com/cli/>`_
+- `AWSCLI Documentation <https://docs.aws.amazon.com/cli/>`__
 
-- `AWSCLI User Guide <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html>`_
+- `AWSCLI User Guide <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html>`__
 
-- `AWSCLI Reference Guide <https://docs.aws.amazon.com/cli/latest/reference/>`_
+- `AWSCLI Reference Guide <https://docs.aws.amazon.com/cli/latest/reference/>`__
 
 .. _basics-aws-ec2:
 
 Elastic Cloud Compute (EC2)
 ---------------------------
 
-- `What is Amazon EC2? <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html>`_
+- `What is Amazon EC2? <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html>`__
 
-- `Get started with Amazon EC2 <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html>`_
+- `Get started with Amazon EC2 <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html>`__
 
-- `Amazon Machine Images in Amazon EC2 <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`_
+- `Amazon Machine Images in Amazon EC2 <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`__
 
-- `Launch an EC2 instance using the Launch Instance Wizard <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html>`_
+- `Launch an EC2 instance using the Launch Instance Wizard <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html>`__
 
-- `Stop and start Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html>`_
+- `Stop and start Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html>`__
 
-- `Terminating Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html>`_
+- `Terminating Amazon EC2 instances <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html>`__
 
 .. _basics-aws-billing:
 
@@ -84,20 +84,20 @@ Billing
 -------
 
 - `Getting set up with AWS Billing
-  <https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-getting-started.html>`_
+  <https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-getting-started.html>`__
 
-- `Creating a budget <https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html>`_
+- `Creating a budget <https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html>`__
 
 .. _basics-aws-support:
 
 Troubleshooting and support
 ---------------------------
 
-- `AWS Knowledge Center <https://repost.aws/knowledge-center>`_
+- `AWS Knowledge Center <https://repost.aws/knowledge-center>`__
 
 ============
 Google Cloud
 ============
 
-At present, GEOS-Chem is not supported on the Google Cloud (but it may
-be in the future).
+GCHP is supported on Google Cloud Platform (GCP). To get started
+setting up a GCP account and cluster, see :ref:`prepare-gcp-environment`.

@@ -313,7 +313,7 @@ or queue with Dynamic Workload Scheduler Flex Start:
 6. Measured performance
 ================================================================================
 
-These numbers are partly chosen from GCHP 14.7.0 fullchem, 7-day simulations from
+These numbers are measured from GCHP 14.7.0 fullchem, 7-day simulations from
 2019-07-01, built against this exact stack and run on
 ``h4d-standard-192``:
 
@@ -364,7 +364,7 @@ across all four resolutions. Lower on the chart is faster. At a given
 core count, ``h4d-standard-192`` is consistently faster than
 ``c2-standard-60``, and Falcon RDMA lets a two-node H4D run keep
 scaling (C90 to ~1.8 h, C180 to ~8.1 h) where TCP would stall. An overall 
-suggestion is that GCHP users should consider H4D for runs that exceeds 
+suggestion is that GCHP users should consider H4D for runs that exceed
 180 cores with high resolution, and enable Falcon RDMA when using multi-node H4D.
 
 .. figure:: /_static/images/gchp_gcp_benchmark.png
