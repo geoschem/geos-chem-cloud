@@ -13,6 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added `the-basics/getting-started.rst` page with documentation links
   to AWS cloud
 - Added `.gitignore` in the root-level folder
+- Added `docs/source/gcclassic-on-gcp/gcc-GCP.rst`: running GEOS-Chem
+  Classic on Google Cloud (single-node, OpenMP, one Compute Engine VM)
+- Added Google Cloud account-setup links (account creation, IAM, gcloud
+  CLI, Compute Engine, billing) to `the-basics/getting-started.rst`
+- Added a GCP benchmark figure and expanded the "Measured performance"
+  section on `docs/source/gchp-on-gcp/falcon-rdma-image.rst`
 
 ### Changed
 - Updated `AUTHORS.txt` and `LICENSE.txt` as of Feb 2026 (GEOS-Chem 14.7.0)

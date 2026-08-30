@@ -56,6 +56,12 @@ use**.
 
 .. toctree::
    :maxdepth: 3
+   :caption: GC-Classic on Google Cloud
+
+   gcclassic-on-gcp/gcc-GCP
+
+.. toctree::
+   :maxdepth: 3
    :caption: GCHP on Google Cloud
 
    gchp-on-gcp/prepare-GCP-environment

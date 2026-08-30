@@ -95,9 +95,93 @@ Troubleshooting and support
 
 - `AWS Knowledge Center <https://repost.aws/knowledge-center>`__
 
+.. _basics-gcp:
+
 ============
 Google Cloud
 ============
 
-GCHP is supported on Google Cloud Platform (GCP). To get started
-setting up a GCP account and cluster, see :ref:`prepare-gcp-environment`.
+Please visit the documentation links below for more information about
+how to set up and use a Google Cloud Platform (GCP) account. Once your
+account is ready:
+
+- To run **GEOS-Chem Classic** on a single VM, see :ref:`run-gcc-on-gcp`.
+
+- To run **GCHP** on a Slurm cluster, see :ref:`prepare-gcp-environment`.
+
+.. note::
+
+   This information is subject to change.  Please inform the
+   `GEOS-Chem Support Team
+   <https://geos-chem-cloud.readthedocs.io/en/latest/reference/SUPPORT.html>`__
+   if you encounter broken links or outdated information.
+
+.. _basics-gcp-create:
+
+Account creation
+----------------
+
+- `Get started with Google Cloud <https://cloud.google.com/docs/get-started>`__
+
+- `Create a Google Cloud account (Free Tier and $300 credit) <https://cloud.google.com/free>`__
+
+- `Create and manage projects <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__
+
+.. _basics-gcp-setup:
+
+Setup and security
+------------------
+
+- `Identity and Access Management (IAM) overview <https://cloud.google.com/iam/docs/overview>`__
+
+- `Use IAM securely (best practices) <https://cloud.google.com/iam/docs/using-iam-securely>`__
+
+- `VPC firewall rules <https://cloud.google.com/firewall/docs/firewalls>`__
+
+.. _basics-gcp-cli:
+
+Google Cloud CLI (gcloud)
+-------------------------
+
+- `Install the gcloud CLI <https://cloud.google.com/sdk/docs/install>`__
+
+- `gcloud CLI overview <https://cloud.google.com/sdk/docs>`__
+
+- `gcloud command reference <https://cloud.google.com/sdk/gcloud/reference>`__
+
+.. _basics-gcp-compute:
+
+Compute Engine (VMs)
+--------------------
+
+- `What is Compute Engine? <https://cloud.google.com/compute/docs/overview>`__
+
+- `Create and start a VM instance <https://cloud.google.com/compute/docs/instances/create-start-instance>`__
+
+- `Machine families and types <https://cloud.google.com/compute/docs/machine-resource>`__
+
+- `Custom and public images <https://cloud.google.com/compute/docs/images>`__
+
+- `Stop and start a VM <https://cloud.google.com/compute/docs/instances/stop-start-instance>`__
+
+- `Delete a VM <https://cloud.google.com/compute/docs/instances/deleting-instance>`__
+
+.. _basics-gcp-billing:
+
+Billing
+-------
+
+- `Google Cloud billing documentation <https://cloud.google.com/billing/docs>`__
+
+- `Create and manage budgets and alerts <https://cloud.google.com/billing/docs/how-to/budgets>`__
+
+- `Google Cloud pricing calculator <https://cloud.google.com/products/calculator>`__
+
+.. _basics-gcp-support:
+
+Troubleshooting and support
+---------------------------
+
+- `Google Cloud support <https://cloud.google.com/support>`__
+
+- `Compute Engine troubleshooting <https://cloud.google.com/compute/docs/troubleshooting>`__
